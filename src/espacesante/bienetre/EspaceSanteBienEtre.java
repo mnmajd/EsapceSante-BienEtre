@@ -5,6 +5,8 @@
  */
 package espacesante.bienetre;
 
+import Utils.ConnexionBD;
+
 /**
  *
  * @author majd
@@ -15,7 +17,10 @@ public class EspaceSanteBienEtre {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         // TODO code application logic here
+       ConnexionBD $d = new ConnexionBD();
+        
     }
     
 }
