@@ -24,7 +24,7 @@ public class EspaceSanteBienEtre {
              
        Membre m= new Membre("homme", 55, 77777, "membre", "jk", "kk,", "kjjj", 888, "ddd", 777, "rrrr", "eeee", new Date(2018_02_03));
         //ServiceMembre.insererMembre(m);
-         ServiceMembre.DeleteMembre(m);
+        // ServiceMembre.DeleteMembre("homme");
             
             
             /// test user ///

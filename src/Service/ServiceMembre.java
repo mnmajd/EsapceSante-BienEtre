@@ -51,16 +51,16 @@ public class ServiceMembre  {
               Logger.getLogger(Forum.class.getName()).log(Level.SEVERE,null , ex);
         }
 }       
-   public static void DeleteMembre( Membre m)
+   public static void DeleteMembre( String t)
     {
     
     
       try {
-              String req="DELETE FROM `user` WHERE  id_user=? ";
+              String req="DELETE FROM `user` WHERE  sexe=? ";
          PreparedStatement ste = ConnectionBD.getInstance().getConnection().prepareStatement(req);
        
        
-          ste.setInt(1,m.getId_user());
+          ste.setString(1,t);
                      ste.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -78,7 +78,7 @@ public class ServiceMembre  {
 
             ResultSet resultat = ste.executeQuery();
             while (resultat.next()) {
-
+//"homme", 55, 77777, "membre", "jk", "kk,", "kjjj", 888, "ddd", 777, "rrrr", "eeee", new Date(2018_02_03)
                 list.add(new Membre(resultat.getInt("id_user"),
                         resultat.getString("Role"),
                         resultat.getString("Nom"),
@@ -89,20 +89,53 @@ public class ServiceMembre  {
                         resultat.getInt("tel"),
                         resultat.getString("titre"),
                         resultat.getString("adresse"),
-                        resultat.getDate("date_naiss")));
+                        resultat.getString("sexe"),
+                        resultat.getInt("age"),
+                        resultat.getInt("cin")));
+                                            
                        
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ConnectionBD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Forum.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
    
+   
+   
    */
    
    
-   
-   
-   
+     public static void UpdateMembre(Membre m, int id)
+    {
+    
+      
+     try {
+              String req="UPDATE `user` SET role=?,nom=?,prenom=?,login=?,password=?,img=?,tel=?,titre=?,adresse=? WHERE id_user=?";
+        PreparedStatement ste = ConnectionBD.getInstance().getConnection().prepareStatement(req);
+         ste.setString(1,m.getRole());
+         ste.setString(2,m.getNom());
+         ste.setString(3,m.getPrenom());
+         ste.setString(4,m.getLogin());
+         ste.setInt(5,m.getPassword());
+         ste.setString(6,m.getImage());
+         ste.setInt(7,m.getTelephone());
+         ste.setString(8,m.getTitre());
+         ste.setString(9,m.getAdresse());
+         //ste.setString(10,s.getSpecialte());
+        ste.setInt(10,id);
+
+      
+            ste.executeUpdate();
+        } catch (SQLException ex) {
+              Logger.getLogger(Forum.class.getName()).log(Level.SEVERE,null , ex);
+        }
+    
+    }
+      
+      
+          
+    
+
     
 }
