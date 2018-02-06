@@ -40,6 +40,16 @@ public class Service {
         this.id_user = id_user;
     }
 
+    public Service(String heure_ouverture, String heure_fermeture, String e_mail, String adresse_etab, int tel_service, String image_serv, int id_user) {
+        this.heure_ouverture = heure_ouverture;
+        this.heure_fermeture = heure_fermeture;
+        this.e_mail = e_mail;
+        this.adresse_etab = adresse_etab;
+        this.tel_service = tel_service;
+        this.image_serv = image_serv;
+        this.id_user = id_user;
+    }
+
     public Service(String type_service, String heure_ouverture, String heure_fermeture, String e_mail, String adresse_etab, int tel_service, String image_serv, int id_user) {
         this.type_service = type_service;
         this.heure_ouverture = heure_ouverture;
@@ -50,15 +60,6 @@ public class Service {
         this.image_serv = image_serv;
         this.id_user = id_user;
     }
-
-    
-    
-    //public Service(String string, String francais, String cnam, String espece, int i, int i0, String medecin, String _000000, String _0000000, String chchesprittn, String gggg, int i1, String cUserschaymaDesktoptestweb, int i2) {
-   // }
-
-    /*public static Service getInstance() {
-        return instance;
-    }*/
 
     public int getId_service() {
         return id_service;

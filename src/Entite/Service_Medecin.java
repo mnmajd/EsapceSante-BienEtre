@@ -29,25 +29,20 @@ public class Service_Medecin extends Service{
         this.tarif = tarif;
     }
 
-   /* public Service_Medecin(String type_service, String heure_ouverture, String heure_fermeture, String e_mail, String adresse_etab, int tel_service, String image_serv, int id_user) {
-        super(type_service, heure_ouverture, heure_fermeture, e_mail, adresse_etab, tel_service, image_serv, id_user);
-        this.promotion = promotion;
-        this.langues_parlees = langues_parlees;
-        this.assurance_maladie = assurance_maladie;
-        this.modes_de_reglement = modes_de_reglement;
-        this.tarif = tarif;
-    }*/
-
-
-    
-    public Service_Medecin(Date promotion, String langues_parlees, String assurance_maladie, String modes_de_reglement, float tarif, int id_service, String heure_ouverture, String heure_fermeture, String e_mail, String adresse_etab, int tel_service, String image_serv, int id_user) {
-        super(id_service, heure_ouverture, heure_fermeture, e_mail, adresse_etab, tel_service, image_serv, id_user);
+    public Service_Medecin(Date promotion, String langues_parlees, String assurance_maladie, String modes_de_reglement, float tarif, String heure_ouverture, String heure_fermeture, String e_mail, String adresse_etab, int tel_service, String image_serv, int id_user) {
+        super(heure_ouverture, heure_fermeture, e_mail, adresse_etab, tel_service, image_serv, id_user);
         this.promotion = promotion;
         this.langues_parlees = langues_parlees;
         this.assurance_maladie = assurance_maladie;
         this.modes_de_reglement = modes_de_reglement;
         this.tarif = tarif;
     }
+
+    public Service_Medecin(String heure_ouverture, String heure_fermeture, String e_mail, String adresse_etab, int tel_service, String image_serv, int id_user) {
+        super(heure_ouverture, heure_fermeture, e_mail, adresse_etab, tel_service, image_serv, id_user);
+    }
+
+
 
     
 
