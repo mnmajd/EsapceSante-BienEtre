@@ -21,17 +21,23 @@ import java.util.logging.Logger;
  */
 public class QuestionService {
     
+    static QuestionService instance ;
+    
+    
+    
+    
     public static void AddQuestion( Question q)
     {
         
-        String req = "INSERT INTO question (id_question,contenu_quest,id_catF,id_user) VALUES(?,?,?,?)";
+        String req = "INSERT INTO question (id_question,contenu_quest,nbr_rep,id_catF,id_user) VALUES(?,?,?,?,?)";
       
         try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
              ste.setInt(1, q.getId_question());
              ste.setString(2, q.getContenu_question());
-             ste.setInt(3,q.getId_catF());
-             ste.setInt(4,q.getId_user());
+             ste.setInt(3, q.getNbr_rep());
+             ste.setInt(4,q.getId_catF());
+             ste.setInt(5,q.getId_user());
              ste.executeUpdate();
              System.out.println("ajout effectue");
         } catch (SQLException ex) {
@@ -42,12 +48,12 @@ public class QuestionService {
     
     
     
-    public static void DeleteQuestion(Question q)
+    public static void DeleteQuestion(int id)
     {
         String req =" DELETE FROM question where id_question=?";
         try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
-             ste.setInt(1, q.getId_question());
+             ste.setInt(1, id);
              ste.executeUpdate();
              System.out.println("supprission effectue");
         } catch (SQLException ex) {
@@ -92,19 +98,33 @@ public class QuestionService {
                 System.out.println(e);
           }*/
     }
-         public static void UpdateQuestion(Question q)
+         public static void UpdateQuestion(Question q , int id)
          {
              String req = "UPDATE question SET contenu_quest =? WHERE id_question =?";
          try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
              ste.setString(1, q.getContenu_question());
-             ste.setInt(2, q.getId_question());
+             ste.setInt(2, id);
              ste.executeUpdate();
         } catch (SQLException ex) {
              System.out.println(ex);
         }
          }
          
+         
+         
+         
+         
+         
+         
+         public static QuestionService getInstance()
+    {
+         if(instance == null )
+        {
+            return instance = new QuestionService();
+        }
+        return instance ;
+    }
          
     
 }

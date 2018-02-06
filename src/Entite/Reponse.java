@@ -21,8 +21,8 @@ public class Reponse {
     private static int  id_user  = 3;
     static Reponse instance ; 
 
-    public Reponse(int id_rep, String contenu_rep) {
-        this.id_rep = id_rep;
+    public Reponse( String contenu_rep) {
+        
         this.contenu_rep = contenu_rep;
     }
     public Reponse ()
