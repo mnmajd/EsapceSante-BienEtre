@@ -1,21 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package espacesante.bienetre;
 
-/**
- *
- * @author majd
- */
+import Entite.Annonce;
+import Service.ServiceUser;
+import static Service.ServiceUser.inserAnnonce;
+import java.sql.Date;
+import java.sql.SQLException;
+
 public class EspaceSanteBienEtre {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+       public static void main(String[] args) throws SQLException {
+              // Annonce pp=new Annonce ("mmmmmm","pgf",new Date(2017-1900,9-1,27),"abidgan","tarek lar",52216789,"offre d'emploi",2);
+               //inserAnnonce(pp);
+              
+          
+//*******************************
+         
+         ServiceUser s = new ServiceUser();
+        // s.deleteAnnonce(15);
+          //s.selectAnnonce();
+        
+//        Annonce an ;
+//         an = new Annonce("test","testm",new Date(2017-1900,9-1,27),"abidgan","3ou3ouuu",52216789,"evenement",1);
+//         s.updateAnnonce(an,16);
+//          
+//*******************************
+
+
+
+         
     }
     
+       
+   
+               
+               
 }
+
+    
+    
+   
