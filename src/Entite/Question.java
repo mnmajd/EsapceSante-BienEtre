@@ -15,7 +15,7 @@ public class Question {
     
     private int id_question ; 
     private String contenu_question ;
-    private static int id_catF = 2 ;
+    private static int id_catF = 3 ;
     private static int id_user = 3 ; 
     private static int nbr_rep = 15 ;
     static Question instance ; 
@@ -70,6 +70,24 @@ public class Question {
         Question.id_user = id_user;
     }
 
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public static Question getInstance()
     {
         if(instance == null )

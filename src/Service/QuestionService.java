@@ -113,7 +113,48 @@ public class QuestionService {
          
          
          
-         
+          public static void FilterByCat(int  id)
+            
+               {
+                   
+                   String req = "Select * from question where id_catF =?";
+        // List<Question> p = new ArrayList<>();
+         try {
+            
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ste.setInt(1, id);
+             ResultSet result = ste.executeQuery();
+             
+             
+            int count = 1;
+ 
+             while (result.next()){
+              int id_question = result.getInt(1);
+               String contenu_quest = result.getString(2);
+               String Date = result.getTimestamp(3).toString();
+                int nbr_rep = result.getInt(4);
+                 int id_catF = result.getInt(5);
+                 int id_user = result.getInt(6);
+                 String output = "Question #%d:  id_user : %s  contenu_question: %s date_publication : %s nbr_rep : %s   ,id_catF : %s id_user:  %s";
+                   System.out.println(String.format(output, count++, id_question, contenu_quest,Date,nbr_rep, id_catF, id_user));
+}
+             
+            /* while(result.next())
+             {
+                 p.add(
+                 new Question(result.getInt("id_question"),result.getString("contenu_quest"))
+                 );
+                 
+
+             }*/
+             
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+                
+                
+        
+                }
          
          
          

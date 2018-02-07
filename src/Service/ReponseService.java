@@ -109,8 +109,31 @@ public class ReponseService {
         
      
      
+     public static void LikeReponse( int id )
+     {
+        
+             String req = "UPDATE reponse SET nbr_aime_rep =nbr_aime_rep+1 WHERE id_rep =?";
+         try {
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ste.setInt(1, id);
+             ste.executeUpdate();
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+         }
+         
+         
      
+
      
+             
+             
+             
+             
+             
+             
+             
+             
           public static ReponseService getInstance()
     {
          if(instance == null )

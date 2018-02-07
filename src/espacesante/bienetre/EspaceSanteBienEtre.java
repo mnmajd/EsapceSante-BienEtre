@@ -46,10 +46,11 @@ public class EspaceSanteBienEtre {
    
        // ReponseService.getInstance().DeleteReponse(p1);
        
-//        CategorieForum c = new CategorieForum("dentaire")    ;
+//  CategorieForum c = new CategorieForum("dentaire")    ;
 //        ServiceCategorieForum.getInstance().AddCategorie(c);
-ServiceCategorieForum.getInstance().DeleteCategorie(3);
-
+//        Question q = new Question(15,"g mal au dents");
+//        QuestionService.getInstance().AddQuestion(q);
+        QuestionService.getInstance().FilterByCat(3);
 
 
 
