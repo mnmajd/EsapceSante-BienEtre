@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * @author majd
  */
 public class ConnexionBD {
-        Connection connection ;
+    Connection connection ;
    private   String url ="jdbc:mysql://localhost:3306/Espace_sante" ;
    private   String user ="root";
    private   String password ="";
