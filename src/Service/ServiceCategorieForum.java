@@ -21,7 +21,7 @@ public class ServiceCategorieForum {
     static ServiceCategorieForum instance ;
     
     
-         public static void AddCategorie( CategorieForum c )
+         public static void AddCategorie( String c )
      {
          
      String req = "INSERT INTO categorie_forum (nom_catF) VALUES(?)";
@@ -29,7 +29,7 @@ public class ServiceCategorieForum {
      try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
              
-             ste.setString(1,c.getNom_catF());
+             ste.setString(1,c);
              ste.executeUpdate();
              System.out.println("ajout effectue");
         } catch (SQLException ex) {
