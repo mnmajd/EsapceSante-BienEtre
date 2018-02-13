@@ -12,6 +12,7 @@ import Utils.ConnexionBD;
 import Service.QuestionService;
 import Service.ReponseService;
 import Service.ServiceCategorieForum;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,7 +51,10 @@ public class EspaceSanteBienEtre {
 //        ServiceCategorieForum.getInstance().AddCategorie(c);
 //        Question q = new Question(15,"g mal au dents");
 //        QuestionService.getInstance().AddQuestion(q);
-        QuestionService.getInstance().FilterByCat(3);
+   Question q = new Question ("Medecine" ,"pharmacie" ,"je peut pas dormir tres bien ");
+      QuestionService.getInstance().AddQuestion(q);
+        
+       
 
 
 

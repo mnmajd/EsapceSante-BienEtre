@@ -12,7 +12,7 @@ import java.util.Objects;
  * @author majd
  */
 public class CategorieForum {
-    private int id_catF ;
+ 
     private String nom_catF ; 
     
     public CategorieForum()
@@ -24,13 +24,7 @@ public class CategorieForum {
         this.nom_catF = nom_catF;
     }
 
-    public int getId_catF() {
-        return id_catF;
-    }
 
-    public void setId_catF(int id_catF) {
-        this.id_catF = id_catF;
-    }
 
     public String getNom_catF() {
         return nom_catF;
@@ -43,7 +37,7 @@ public class CategorieForum {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 83 * hash + this.id_catF;
+        
         hash = 83 * hash + Objects.hashCode(this.nom_catF);
         return hash;
     }
@@ -60,9 +54,8 @@ public class CategorieForum {
             return false;
         }
         final CategorieForum other = (CategorieForum) obj;
-        if (this.id_catF != other.id_catF) {
-            return false;
-        }
+        
+       
         if (!Objects.equals(this.nom_catF, other.nom_catF)) {
             return false;
         }
