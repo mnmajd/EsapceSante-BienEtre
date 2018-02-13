@@ -29,15 +29,16 @@ public class QuestionService {
     public static void AddQuestion( Question q)
     {
         
-        String req = "INSERT INTO question (id_question,contenu_quest,nbr_rep,id_catF,id_user) VALUES(?,?,?,?,?)";
+        String req = "INSERT INTO question (contenu_quest,Approved_Question ,Sujet_Question ,nbr_rep, id_user ,nom_catF) VALUES(?,?,?,?,?,?)";
       
         try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
-             ste.setInt(1, q.getId_question());
-             ste.setString(2, q.getContenu_question());
-             ste.setInt(3, q.getNbr_rep());
-             ste.setInt(4,q.getId_catF());
+             ste.setString(1, q.getContenu_question());
+             ste.setBoolean(2, q.isApproved_question());
+             ste.setString(3, q.getSujet_question());
+             ste.setInt(4, q.getNbr_rep());
              ste.setInt(5,q.getId_user());
+             ste.setString(6,q.getNom_catF());
              ste.executeUpdate();
              System.out.println("ajout effectue");
         } catch (SQLException ex) {

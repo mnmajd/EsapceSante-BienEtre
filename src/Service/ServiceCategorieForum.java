@@ -10,7 +10,12 @@ import Entite.Reponse;
 import static Service.ReponseService.instance;
 import Utils.ConnexionBD;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,13 +45,13 @@ public class ServiceCategorieForum {
      }
        
   
-     public static void DeleteCategorie( int id)
+     public static void DeleteCategorie(String s  )
      
      {
-           String req =" DELETE FROM categorie_forum where id_catF=?";
+           String req =" DELETE FROM categorie_forum where nom_catF=?";
         try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
-             ste.setInt(1,id);
+             ste.setString(1,s);
              ste.executeUpdate();
              System.out.println("supprission effectue");
         } catch (SQLException ex) {
@@ -56,7 +61,25 @@ public class ServiceCategorieForum {
          
      }
     
-    
+    public static List<String> ReadCategorie ()
+    {
+         String req = "Select nom_catF from categorie_forum";
+         List<String> p = new ArrayList<>();
+         try {
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ResultSet result = ste.executeQuery();
+             while(result.next())
+             {
+                 p.add(
+                 result.getString("nom_catF"));
+                 
+             }
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+          return p;    
+        
+    }
           public static ServiceCategorieForum getInstance()
     {
          if(instance == null )
@@ -65,6 +88,10 @@ public class ServiceCategorieForum {
         }
         return instance ;
     }
+          
+    
+          
+          
           
           
     
