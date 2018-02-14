@@ -37,12 +37,14 @@ public class ForumBasicController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-    List<String> p =  Service.ServiceCategorieForum.ReadCategorie();
-
-        for (String Categorie : p) {
-             pane.getTabs().add(new Tab(Categorie));
-            } 
-
+//    List<String> p =  Service.ServiceCategorieForum.ReadCategorie();
+//
+//        for (String Categorie : p) {
+        // pane.getTabs().add(new Tab("Medecin"));
+//            } 
+        
+        
+        
         // TODO
     }
 //    public void Reposnelead(Stage stage  )
