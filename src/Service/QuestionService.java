@@ -62,42 +62,50 @@ public class QuestionService {
             
         }
     }
-    public static void ReadQuestion()
+    public static List<Question> ReadQuestion()
     {
-        String req = "Select * from question";
-        // List<Question> p = new ArrayList<>();
+        String req = "Select contenu_quest, Sujet_Question, Date_publication, nbr_rep, id_user from question";
+         List<Question> p = new ArrayList<>();
          try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
              ResultSet result = ste.executeQuery();
-              
-            int count = 1;
- 
-             while (result.next()){
-              int id_question = result.getInt(1);
-               String contenu_quest = result.getString(2);
-               String Date = result.getTimestamp(3).toString();
-                int nbr_rep = result.getInt(4);
-                 int id_catF = result.getInt(5);
-                 int id_user = result.getInt(6);
-                 String output = "Question #%d:  id_user : %s  contenu_question: %s date_publication : %s nbr_rep : %s   ,id_catF : %s id_user:  %s";
-                   System.out.println(String.format(output, count++, id_question, contenu_quest,Date,nbr_rep, id_catF, id_user));
-}
-             
-            /* while(result.next())
+//              
+//            int count = 1;
+// 
+//             while (result.next()){
+//              int id_question = result.getInt(1);
+//               String contenu_quest = result.getString(2);
+//               String Date = result.getTimestamp(3).toString();
+//                int nbr_rep = result.getInt(4);
+//                 int id_catF = result.getInt(5);
+//                 int id_user = result.getInt(6);
+//                 String output = "Question #%d:  id_user : %s  contenu_question: %s date_publication : %s nbr_rep : %s   ,id_catF : %s id_user:  %s";
+//                   System.out.println(String.format(output, count++, id_question, contenu_quest,Date,nbr_rep, id_catF, id_user));
+//}
+//             
+//            /* while(result.next())
+//             {
+//                 p.add(
+//                 new Question(result.getInt("id_question"),result.getString("contenu_quest"))
+//                 );
+//                 
+//
+//             }*/
+              while(result.next())
              {
                  p.add(
-                 new Question(result.getInt("id_question"),result.getString("contenu_quest"))
+                 new Question(result.getString("contenu_quest"),result.getString("sujet_question") 
+                         ,result.getTimestamp("Date_publication").toString(), result.getInt("nbr_rep")
+                         ,result.getInt("id_user"))
                  );
-                 
-
-             }*/
-             
+             }
         } catch (SQLException ex) {
              System.out.println(ex);
         }
          /* for ( Question e : p) {
                 System.out.println(e);
           }*/
+         return p ;
     }
          public static void UpdateQuestion(Question q , int id)
          {
