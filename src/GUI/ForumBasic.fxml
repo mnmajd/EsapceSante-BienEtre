@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="593.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ForumBasicController">
+<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ForumBasicController">
    <children>
-      <Text fill="#39c1d0" layoutX="14.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forum Espace Sante" wrappingWidth="728.5810546875">
-         <font>
-            <Font size="29.0" />
-         </font>
-      </Text>
-      <TabPane fx:id="pane" layoutX="-1.0" layoutY="52.0" prefHeight="542.0" prefWidth="888.0" tabClosingPolicy="UNAVAILABLE" />
-      <Button layoutX="398.0" layoutY="16.0" mnemonicParsing="false" text="Poser Votre Question?" />
-      <TextField layoutX="703.0" layoutY="18.0" promptText="Recherche Question" />
+      <AnchorPane layoutX="-5.0" layoutY="73.0" prefHeight="733.0" prefWidth="1158.0">
+         <children>
+            <SplitPane dividerPositions="0.6423357664233577" orientation="VERTICAL" prefHeight="139.0" prefWidth="1158.0" AnchorPane.bottomAnchor="594.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="1088.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="129.0" layoutY="-17.0" prefHeight="65.0" prefWidth="1156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TabPane fx:id="TabeCat" prefHeight="40.0" prefWidth="1156.0" tabClosingPolicy="UNAVAILABLE" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="404.0" prefWidth="1156.0" />
+              </items>
+            </SplitPane>
+            <ListView fx:id="list" layoutX="338.0" layoutY="76.0" prefHeight="657.0" prefWidth="1158.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0" />
+         </children></AnchorPane>
+      <HBox layoutX="2.0" layoutY="-3.0" prefHeight="44.0" prefWidth="971.0">
+         <children>
+            <Label prefHeight="57.0" prefWidth="349.0" text="forum Espace sante" textFill="#26aed3">
+               <font>
+                  <Font name="Georgia" size="37.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="185.0" text="Posez votre Question" textFill="#228a9a">
+               <font>
+                  <Font name="KacstArt" size="13.0" />
+               </font>
+            </Button>
+            <Label prefHeight="44.0" prefWidth="169.0" />
+            <TextField prefHeight="46.0" prefWidth="171.0" promptText="Recherche Par sujet" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
