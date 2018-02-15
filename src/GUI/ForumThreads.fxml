@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+
+<ScrollPane prefHeight="445.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ForumThreadsController">
+   <content>
+      <ListView fx:id="list" prefHeight="443.0" prefWidth="707.0" />
+   </content>
+</ScrollPane>
