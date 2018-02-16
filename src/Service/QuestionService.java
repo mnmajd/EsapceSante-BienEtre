@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Entite.Question;
  
 /**
  *
@@ -126,7 +127,7 @@ public class QuestionService {
             
                {
                    
-                   String req = "Select contenu_quest, Sujet_Question, Date_publication, nbr_rep, id_user from question where nom_catF =?";
+                   String req = "Select c.id_question ,c.contenu_quest, c.Sujet_Question, c.Date_publication, c.nbr_rep , u.nom , u.prenom from question c join user u on c.id_user = u.id_user where nom_catF=?";
          List<Question> p = new ArrayList<>();
          try {
             
@@ -139,9 +140,10 @@ public class QuestionService {
  
              while (result.next()){
                   p.add(
-                 new Question(result.getString("contenu_quest"),result.getString("sujet_question") 
+                 new Question(result.getInt("id_question"), result.getString("contenu_quest"),result.getString("sujet_question") 
                          ,result.getTimestamp("Date_publication").toString(), result.getInt("nbr_rep")
-                         ,result.getInt("id_user"))
+                         , result.getString("nom"),result.getString("prenom")
+                  )
                  );
              
              
@@ -165,7 +167,27 @@ public class QuestionService {
         
                 }
          
+         public static Question SpecifiedQuestion ( int id )
+         {
          
+             Question q = null;
+            String req = " Select c.contenu_quest, c.Sujet_Question, c.Date_publication, c.nbr_rep , u.nom , u.prenom from question c join user u on c.id_user = u.id_user where c.id_question=?";
+             try {
+                 PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ste.setInt(1, id);
+             ResultSet result = ste.executeQuery();
+             while (result.next())
+             {
+                  q = new Question ( result.getString("contenu_quest"),result.getString("sujet_question") 
+                         ,result.getTimestamp("Date_publication").toString(), result.getInt("nbr_rep")
+                         , result.getString("nom"),result.getString("prenom"));
+             }
+             } catch (Exception e) {
+                 System.out.println(e);
+             }
+        
+             return q ;
+         }
          
          public static QuestionService getInstance()
     {
