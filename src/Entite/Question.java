@@ -14,14 +14,16 @@ import Utils.ConnexionBD;
 public class Question {
     
     private int id_question ; 
+   
     private String contenu_question ;
     private String nom_catF ; 
     private static int id_user = 3 ; 
     private  int nbr_rep = 0 ;
-
+    String nom , prenom;
     public String getDate_publication() {
         return Date_publication;
     }
+    
 
     public void setDate_publication(String Date_publication) {
         this.Date_publication = Date_publication;
@@ -37,15 +39,52 @@ public class Question {
         this.contenu_question = contenu_question;
         this.nom_catF =nom_catF;
     }
-     public Question ( String contenu_question , String sujet_question ,  String Date_publication , int nbr_rep , int id_user )
+     public Question (int id_question, String contenu_question , String sujet_question ,  String Date_publication , int nbr_rep , String nom , String prenom )
      {
          this.contenu_question = contenu_question ; 
          this.sujet_question = sujet_question ; 
-         this.Date_publication = Date_publication ; 
+         this.Date_publication = Date_publication ;
+         this.nom = nom ;
+         this.prenom = prenom ;
+         this.nbr_rep = nbr_rep ; 
+        this.id_question= id_question;
+     }
+      public Question (String contenu_question , String sujet_question ,  String Date_publication , int nbr_rep , String nom , String prenom )
+     {
+         this.contenu_question = contenu_question ; 
+         this.sujet_question = sujet_question ; 
+         this.Date_publication = Date_publication ;
+         this.nom = nom ;
+         this.prenom = prenom ;
+         this.nbr_rep = nbr_rep ; 
+        
+     }
+      public Question ( String contenu_question , String sujet_question ,  String Date_publication , int nbr_rep , int id_user )
+     {
+         this.contenu_question = contenu_question ; 
+         this.sujet_question = sujet_question ; 
+         this.Date_publication = Date_publication ;
+         this.id_question = id_question;
          this.nbr_rep = nbr_rep ; 
          Question.id_user = id_user ; 
      }
     private Question() {
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public  int getNbr_rep() {
