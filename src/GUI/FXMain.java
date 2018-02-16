@@ -23,11 +23,13 @@ import javafx.stage.Stage;
  * @author majd
  */
 public class FXMain extends Application {
-    
+    static Stage stg;
+    static int id;
     @Override
     public void start(Stage stage)  {
        
         try {
+             this.stg=stage;
                 Parent root = FXMLLoader.load(getClass().getResource("ForumBasic.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
