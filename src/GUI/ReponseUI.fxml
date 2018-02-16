@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="594.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReponseUIController">
+   <children>
+      <SplitPane dividerPositions="0.2715008431703204" layoutX="-1.0" orientation="VERTICAL" prefHeight="595.0" prefWidth="765.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <HBox layoutX="26.0" layoutY="22.0" prefHeight="157.0" prefWidth="763.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <VBox prefHeight="157.0" prefWidth="136.0">
+                           <children>
+                              <ImageView fx:id="img" fitHeight="124.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true" />
+                              <Text fx:id="nomprenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="141.7294921875" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="157.0" prefWidth="517.0">
+                           <children>
+                              <Text fx:id="sujet" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="114.7294921875" />
+                              <Text fx:id="contenu" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="124.7294921875" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="385.0" />
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
