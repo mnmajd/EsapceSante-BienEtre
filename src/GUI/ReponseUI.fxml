@@ -1,37 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane id="AnchorPane" prefHeight="594.0" prefWidth="765.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReponseUIController">
+<?import org.controlsfx.control.Rating?>
+<AnchorPane id="AnchorPane" prefHeight="957.0" prefWidth="1149.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReponseUIController">
    <children>
-      <SplitPane dividerPositions="0.2715008431703204" layoutX="-1.0" orientation="VERTICAL" prefHeight="595.0" prefWidth="765.0">
+      <SplitPane dividerPositions="0.2715008431703204" layoutX="-1.0" orientation="VERTICAL" prefHeight="957.0" prefWidth="1147.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="157.0" prefWidth="1131.0">
                <children>
-                  <HBox layoutX="26.0" layoutY="22.0" prefHeight="157.0" prefWidth="763.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <VBox prefHeight="157.0" prefWidth="136.0">
+                  <HBox layoutX="26.0" layoutY="22.0" prefHeight="157.0" prefWidth="1167.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-404.0" AnchorPane.topAnchor="0.0">
+                  
+                      <children>
+                        <VBox prefHeight="255.0" prefWidth="214.0">
                            <children>
-                              <ImageView fx:id="img" fitHeight="124.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true" />
-                              <Text fx:id="nomprenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="141.7294921875" />
+                              <ImageView fx:id="img" fitHeight="208.0" fitWidth="224.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                              <Text fx:id="nomprenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="141.7294921875">
+                                 <font>
+                                    <Font name="KacstPoster" size="18.0" />
+                                 </font>
+                              </Text>
+                              
                            </children>
                         </VBox>
-                        <VBox prefHeight="157.0" prefWidth="517.0">
+                        <VBox prefHeight="255.0" prefWidth="739.0">
                            <children>
-                              <Text fx:id="sujet" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="114.7294921875" />
-                              <Text fx:id="contenu" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="124.7294921875" />
+                              <Text fx:id="sujet" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="324.7294921875">
+                                 <font>
+                                    <Font name="KacstOffice" size="35.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="contenu" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="752.7294921875" />
+                              <TextArea fx:id="ContenuRep" prefHeight="143.0" prefWidth="753.0" />
                            </children>
                         </VBox>
+                        <Button fx:id="btnRepondre" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Répondre" />
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="385.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="385.0">
+               <children>
+                  <ListView fx:id="Reponselist" prefHeight="790.0" prefWidth="1153.0" AnchorPane.bottomAnchor="-362.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-390.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>

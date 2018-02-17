@@ -13,10 +13,13 @@ import java.util.Objects;
  * @author majd
  */
 public class Reponse {
+    
+    
     private int id_rep ; 
     private String contenu_rep ;
-    private static int nbr_aime_rep =20 ; 
-
+    private  int nbr_aime_rep ; 
+    private String Date_pub ; 
+    private String nom , prenom ; 
     private static int id_question = 2;
     private static int  id_user  = 3;
     static Reponse instance ; 
@@ -25,11 +28,40 @@ public class Reponse {
         
         this.contenu_rep = contenu_rep;
     }
-    public Reponse ()
-    {
-        
+
+    public String getDate_pub() {
+        return Date_pub;
     }
 
+    public void setDate_pub(String Date_pub) {
+        this.Date_pub = Date_pub;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+    
+    public Reponse ( String contenu_rep , String Date_pub , int nbr_aime , String nom , String prenom)
+    {
+        this.contenu_rep = contenu_rep;
+        this.Date_pub = Date_pub ; 
+        this.nbr_aime_rep = nbr_aime;
+        this.nom = nom;
+        this.prenom = prenom ;
+    }
+        
     public int getId_rep() {
         return id_rep;
     }
@@ -70,7 +102,10 @@ public class Reponse {
     public static void setId_user(int id_user) {
         Reponse.id_user = id_user;
     }
-
+ public Reponse()
+ {
+     
+ }
     public static Reponse getInstance() {
            if(instance == null )
         {
