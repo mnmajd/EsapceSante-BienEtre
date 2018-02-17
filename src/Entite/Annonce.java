@@ -1,13 +1,14 @@
 package Entite;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Annonce {
 
     public int id_annonce;
     public String type_annonce;
     public String titre_annonce;
-    public Date date_annonce;
+    public String date_annonce;
     public String desc_annonce;
     public String addr_annonce;
     public int tel_annonce;
@@ -17,7 +18,8 @@ public class Annonce {
     public Annonce() {
     }
 
-    public Annonce(int id_annonce, String type_annonce, String titre_annonce, Date date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce) {
+    public Annonce(int id_annonce, String type_annonce, String titre_annonce, String date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce) {
+       
         this.id_annonce = id_annonce;
         this.type_annonce = type_annonce;
         this.titre_annonce = titre_annonce;
@@ -28,9 +30,12 @@ public class Annonce {
         this.img_annonce = img_annonce;
     }
 
-    public Annonce(String type_annonce, String titre_annonce, Date date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce,int id_user) {
+    public Annonce(String titre_annonce) {
+        this.titre_annonce = titre_annonce;
+    }
+
+    public Annonce(String type_annonce, String titre_annonce, String date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce) {
         
-        this.id_user=id_user;
         this.type_annonce = type_annonce;
         this.titre_annonce = titre_annonce;
         this.date_annonce = date_annonce;
@@ -39,9 +44,30 @@ public class Annonce {
         this.tel_annonce = tel_annonce;
         this.img_annonce = img_annonce;
     }
-    
+    public Annonce(String type_annonce, String titre_annonce, String date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce, int id_user) {
 
-    
+        this.id_user = id_user;
+        this.type_annonce = type_annonce;
+        this.titre_annonce = titre_annonce;
+        this.date_annonce = date_annonce;
+        this.desc_annonce = desc_annonce;
+        this.addr_annonce = addr_annonce;
+        this.tel_annonce = tel_annonce;
+        this.img_annonce = img_annonce;
+    }
+//
+//    public Annonce(int id_annonce, String type_annonce, String titre_annonce, String date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce) {
+//        this.id_annonce = id_annonce;
+//        this.type_annonce = type_annonce;
+//        this.titre_annonce = titre_annonce;
+//        this.date_annonce = date_annonce;
+//        this.desc_annonce = desc_annonce;
+//        this.addr_annonce = addr_annonce;
+//        this.tel_annonce = tel_annonce;
+//        this.img_annonce = img_annonce;
+//    }
+
+   
 
     public int getId_annonce() {
         return id_annonce;
@@ -67,11 +93,11 @@ public class Annonce {
         this.titre_annonce = titre_annonce;
     }
 
-    public Date getDate_annonce() {
+    public String getDate_annonce() {
         return date_annonce;
     }
 
-    public void setDate_annonce(Date date_annonce) {
+    public void setDate_annonce(String date_annonce) {
         this.date_annonce = date_annonce;
     }
 

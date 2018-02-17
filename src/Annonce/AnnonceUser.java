@@ -1,4 +1,9 @@
-package Service;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Annonce;
 
 import Entite.Annonce;
 import java.sql.Date;
@@ -7,12 +12,14 @@ import java.sql.SQLException;
 import Utile.DataSource;
 import espacesante.bienetre.EspaceSanteBienEtre;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.time.LocalDate;
 
-public class ServiceUser {
+public class AnnonceUser {
 
     static DataSource ds = DataSource.getInstance();
 
@@ -30,7 +37,8 @@ public class ServiceUser {
             ste.setString(1, An.getType_annonce());
             ste.setString(2, An.getTitre_annonce());
             ste.setString(3, An.getDesc_annonce());
-            ste.setDate(4, An.getDate_annonce());
+
+            ste.setString(4, An.getDate_annonce());
             ste.setString(5, An.getAddr_annonce());
             ste.setInt(6, An.getTel_annonce());
             ste.setString(7, An.getImg_annonce());
@@ -42,14 +50,14 @@ public class ServiceUser {
         }
     }
 
-    public void updateAnnonce(Annonce An, int id) {
+    public static void updateAnnonce(Annonce An, int id) {
         try {
             String req = "UPDATE Annonce SET type_annonce =?, titre_annonce=? ,desc_annonce=?,date_annonce=?,addr_annonce=?,tel_annonce=?,img_annonce=?,id_user=?   WHERE Id_annonce=" + id;
             PreparedStatement ste = ds.getConnection().prepareStatement(req);
             ste.setString(1, An.getType_annonce());
             ste.setString(2, An.getTitre_annonce());
             ste.setString(3, An.getDesc_annonce());
-            ste.setDate(4, An.getDate_annonce());
+            ste.setString(4, An.getDate_annonce());
             ste.setString(5, An.getAddr_annonce());
             ste.setInt(6, An.getTel_annonce());
             ste.setString(7, An.getImg_annonce());
@@ -61,7 +69,7 @@ public class ServiceUser {
         }
     }
 
-    public void deleteAnnonce(int id) {
+    public static void deleteAnnonce(int id) {
         try {
             String req = "DELETE FROM Annonce WHERE Id_annonce =" + id;
             PreparedStatement ste = ds.getConnection().prepareStatement(req);
@@ -72,7 +80,7 @@ public class ServiceUser {
         }
     }
 
-    public List<Annonce> selectAnnonce() {
+    public static List<Annonce> selectAnnonce() {
         List<Annonce> list = new ArrayList<>();
         try {
             String req = "SELECT * FROM Annonce ";
@@ -92,15 +100,57 @@ public class ServiceUser {
                 int Tel_annonce = result.getInt("Tel_annonce");
                 String Type_annonce = result.getString("Type_annonce");
                 list.add(Annonce);
-                System.out.println(Id_annonce+"------"+Date_annonce);
+                System.out.println(Id_annonce + "-----" + Id_user + "-------" + Titre_annonce + "------" + Date_annonce);
 
-            } return list ;
+            }
+            return list;
         } catch (SQLException ex) {
             Logger.getLogger(Annonce.class.getName()).log(Level.SEVERE, null, ex);
-            return null ;
+            return null;
         }
-       
+
     }
 
-    // Select * FROM `Annonce` where type_annonce="event";
+    public static List<Annonce> selectAnnonce1() {
+        List<Annonce> list = new ArrayList<>();
+        try {
+            String req = "SELECT * FROM Annonce ";
+            PreparedStatement ste = ds.getConnection().prepareStatement(req);
+
+            ResultSet result = ste.executeQuery();
+            while (result.next()) {
+                list.add(new Annonce(
+                        result.getInt("id_annonce"),
+                        result.getString("Type_annonce"),
+                        result.getString("Titre_annonce"),
+                        result.getString("Date_annonce"),
+                        result.getString("Desc_annonce"),
+                        result.getString("Addr_annonce"),
+                        result.getInt("Tel_annonce"),
+                        result.getString("Img_annonce")
+                ));
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Annonce.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+//    public static List<String> EvenmntList() {
+//        List<String> p = new ArrayList<>();
+//        try {
+//            String sql = " select titre_annonce from Annonce";
+//            PreparedStatement ste = ds.getConnection().prepareStatement(sql);
+//            ResultSet result = ste.executeQuery();
+//            while (result.next()) {
+//                p.add(result.getString("Titre_Annonce"));
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//
+//        return p;
+//    }
 }
