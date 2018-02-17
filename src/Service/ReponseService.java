@@ -12,6 +12,8 @@ import Utils.ConnexionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -46,7 +48,7 @@ public class ReponseService {
      }
      
      
-      public static void ReadQuestion()
+      public static void ReadReponse()
       {
           String req = "Select * from reponse";
          
@@ -107,7 +109,7 @@ public class ReponseService {
         }
          }
         
-     
+    
      
      public static void LikeReponse( int id )
      {
@@ -124,7 +126,31 @@ public class ReponseService {
          
          
      
-
+ public static List<Reponse> FiltredReponse( int id)
+      {
+          List<Reponse> p = new ArrayList<>();
+          String req = "SELECT r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=?";
+         
+        
+         try {
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ste.setInt(1, id);
+             ResultSet result = ste.executeQuery();
+             
+             while (result.next()){
+                 p.add(
+                         new Reponse(result.getString("contenu_rep"),result.getTimestamp("Date_publication").toString()
+                                 ,result.getInt("nbr_aime_rep"),result.getString("nom"),result.getString("prenom"))
+                 );
+              
+                               }
+             
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+         return p ;
+          
+      }
      
              
              
