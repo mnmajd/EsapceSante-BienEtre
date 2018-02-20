@@ -19,7 +19,8 @@ public class Question {
     private String nom_catF ; 
     private static int id_user = 3 ; 
     private  int nbr_rep = 0 ;
-    String nom , prenom;
+    String nom , prenom ;
+    
     public String getDate_publication() {
         return Date_publication;
     }
@@ -33,6 +34,24 @@ public class Question {
     private boolean approved_question = false ; 
     static Question instance ; 
 
+    public Question( int id_user ,int id_ques,String nom , String prenom , String contenu_question , String sujet , boolean approved )
+    
+    {
+    this.id_user = id_user;
+    this.nom = nom ; 
+    this.prenom = prenom; 
+    this.id_question = id_ques;
+    this.contenu_question = contenu_question;
+    this.sujet_question = sujet ;
+    this.approved_question = approved;
+    
+    }
+    
+    
+    
+    
+    
+    
     public Question( String sujet_question  ,String nom_catF,String contenu_question  ) {
         
         this.sujet_question = sujet_question;
