@@ -28,5 +28,6 @@
 
           
       </ComboBox>
+      <Button fx:id="Backbtn" layoutX="55.0" layoutY="540.0" mnemonicParsing="false" onAction="#BackToForum" text="Back To Forum" />
    </children>
 </AnchorPane>

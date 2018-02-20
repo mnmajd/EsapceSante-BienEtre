@@ -51,10 +51,22 @@ public class EspaceSanteBienEtre {
 //        ServiceCategorieForum.getInstance().AddCategorie(c);
 //        Question q = new Question(15,"g mal au dents");
 //        QuestionService.getInstance().AddQuestion(q);
-   Question q = new Question ("Medecine" ,"pharmacie" ,"je peut pas dormir tres bien ");
-      QuestionService.getInstance().AddQuestion(q);
+//   Question q = new Question ("Medecine" ,"pharmacie" ,"je peut pas dormir tres bien ");
+//      QuestionService.getInstance().AddQuestion(q);
+//    List<Question> p = new ArrayList<>() ; 
+//    p=   QuestionService.getInstance().ReadQuestion();
+//    
+//        for ( Question e : p) {
+//            System.out.println(" {");
+//                System.out.print(e.getContenu_question());
+//                System.out.print( e.getSujet_question());
+//                System.out.print(e.getNbr_rep());
+//                System.out.print(e.getDate_publication());
+//                System.out.println("} /n");
+//          }
         
-       
+//       Question q = QuestionService.SpecifiedQuestion(31);
+//        System.out.println(q.getContenu_question());
 
 
 

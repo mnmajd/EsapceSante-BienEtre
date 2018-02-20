@@ -13,23 +13,61 @@ import java.util.Objects;
  * @author majd
  */
 public class Reponse {
+    
+    
     private int id_rep ; 
     private String contenu_rep ;
-    private static int nbr_aime_rep =20 ; 
-
-    private static int id_question = 2;
-    private static int  id_user  = 3;
+    private   static int nbr_aime_rep  = 0; 
+    private String Date_pub ; 
+    private String nom , prenom ; 
+    private  int id_question ;
+    private  static int  id_user = 3;
     static Reponse instance ; 
 
     public Reponse( String contenu_rep) {
         
         this.contenu_rep = contenu_rep;
     }
-    public Reponse ()
-    {
-        
+
+    public String getDate_pub() {
+        return Date_pub;
     }
 
+    public void setDate_pub(String Date_pub) {
+        this.Date_pub = Date_pub;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+    public Reponse (String contenu_rep , int id_question  )
+    {
+    this.contenu_rep = contenu_rep ;
+    this.id_question = id_question;
+    
+    
+    }
+    public Reponse ( String contenu_rep , String Date_pub , int nbr_aime , String nom , String prenom)
+    {
+        this.contenu_rep = contenu_rep;
+        this.Date_pub = Date_pub ; 
+        this.nbr_aime_rep = nbr_aime;
+        this.nom = nom;
+        this.prenom = prenom ;
+    }
+        
     public int getId_rep() {
         return id_rep;
     }
@@ -55,22 +93,25 @@ public class Reponse {
     }
 
 
-    public static int getId_question() {
+    public  int getId_question() {
         return id_question;
     }
 
-    public static void setId_question(int id_question) {
-        Reponse.id_question = id_question;
+    public  void setId_question(int id_question) {
+        this.id_question = id_question;
     }
 
-    public static int getId_user() {
+    public static  int getId_user() {
         return id_user;
     }
 
-    public static void setId_user(int id_user) {
+    public  static void setId_user(int id_user) {
         Reponse.id_user = id_user;
     }
-
+ public Reponse()
+ {
+     
+ }
     public static Reponse getInstance() {
            if(instance == null )
         {
