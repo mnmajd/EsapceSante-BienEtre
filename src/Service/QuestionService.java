@@ -189,6 +189,28 @@ public class QuestionService {
              return q ;
          }
          
+         
+         public void UpdateLikes()
+         {
+           
+             String req =" UPDATE question q SET nbr_rep = (select COUNT(*) FROM reponse WHERE id_question = q.id_question ) WHERE 1";
+             try {
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req); 
+              ste.executeUpdate();
+
+             } catch (Exception ex) {
+                 System.out.println(ex);
+             }
+         }
+         
+         
+         
+         
+         
+         
+         
+         
+         
          public static QuestionService getInstance()
     {
          if(instance == null )

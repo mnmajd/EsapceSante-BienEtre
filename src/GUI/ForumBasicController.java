@@ -31,7 +31,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -53,9 +55,11 @@ public class ForumBasicController implements Initializable {
     private ListView<Question> list;
      @FXML
     private TabPane TabeCat;
-    
+    @FXML
+    private Button Questionbtn;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        QuestionService.getInstance().UpdateLikes();
               List<String> p  =  Service.ServiceCategorieForum.ReadCategorie();
 
         ObservableList CategorieForum  = FXCollections.observableArrayList (
@@ -86,20 +90,25 @@ public class ForumBasicController implements Initializable {
                           super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                        if ( item != null)
                        {
-                                
-                
+                       
                    Circle c = new Circle();
+                    
     
                     c.setCenterX(50.0);
                     c.setCenterY(125.0);
                     c.setRadius(30.0);
-                  
-                    c.setCache(true);
-                    VBox vBox1 = new VBox(c);
-                    
+                    c.setFill(Paint.valueOf("#097D99"));
+                         Text text = new Text (String.valueOf(item.getNbr_rep()));
+                         StackPane stack = new StackPane();
+                        stack.getChildren().addAll(c, text);
+
+                        stack.setLayoutX(30);
+                        stack.setLayoutY(30);
+                      VBox vbox0 = new VBox(stack , new Text("Reponse"));
+                     
                          VBox vBox = new VBox(
-                                    new Text(item.getSujet_question()), new Text(item.getContenu_question())
-                                          , new Text(item.getDate_publication()), new Text(String.valueOf(item.getNbr_rep()))
+                                    new Text(item.getSujet_question())
+                                          , new Text(item.getDate_publication())
                             );
                             vBox.setSpacing(15);
                           
@@ -109,8 +118,8 @@ public class ForumBasicController implements Initializable {
                             imv.setFitWidth(130);
                              VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
                             
-                            HBox hBox = new HBox(nbox2, vBox ,vBox1);
-                            hBox.setSpacing(30);
+                            HBox hBox = new HBox(nbox2, vBox ,vbox0);
+                            hBox.setSpacing(100);
                             
                             setGraphic(hBox);
                        
@@ -144,35 +153,39 @@ public class ForumBasicController implements Initializable {
                           super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                        if ( item != null)
                        {
-                           
-                   Circle c = new Circle();
+ 
+      Circle c = new Circle();
+                    
     
                     c.setCenterX(50.0);
                     c.setCenterY(125.0);
                     c.setRadius(30.0);
-                  
-                    c.setCache(true);
-                    VBox vBox1 = new VBox(c);
-                    
+                    c.setFill(Paint.valueOf("#097D99"));
+                         Text text = new Text (String.valueOf(item.getNbr_rep()));
+                         StackPane stack = new StackPane();
+                        stack.getChildren().addAll(c, text);
+
+                        stack.setLayoutX(30);
+                        stack.setLayoutY(30);
+                     VBox vbox0 = new VBox(stack , new Text("Reponse"));
                          VBox vBox = new VBox(
-                                    new Text(item.getSujet_question()),
-                                          new Text(item.getDate_publication()),
-                                          new Text()
+                                    new Text(item.getSujet_question())
+                                          , new Text(item.getDate_publication())
                             );
-                            vBox.setSpacing(4);
-                      
-                        
+                            vBox.setSpacing(15);
+                          
                             Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             ImageView imv =new ImageView(image);
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);
-                            VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
+                             VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
                             
-                            HBox hBox = new HBox(nbox2, vBox,vBox1);
-                            hBox.setSpacing(15);
-                            
+                            HBox hBox = new HBox(nbox2, vBox ,vbox0);
+                            hBox.setSpacing(100);
                             
                             setGraphic(hBox);
+//*UPDATE question q SET nbr_rep = (select COUNT(*) FROM reponse WHERE id_question = q.id_question ) WHERE 1
+
                        
                        }
                       }
@@ -201,6 +214,7 @@ public class ForumBasicController implements Initializable {
                             FXMain.stg.close();
                             FXMain.stg = stage;
                       } catch (Exception e) {
+                           System.out.println(e);
                       }
                   }
               });
@@ -208,7 +222,22 @@ public class ForumBasicController implements Initializable {
    
    
     }
-
+     public void GoToQuestion()
+     {
+         try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AddQuestion.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+  } catch (Exception e) {
+       System.out.println(e);
+  }
+         
+     }
                        
   
     }

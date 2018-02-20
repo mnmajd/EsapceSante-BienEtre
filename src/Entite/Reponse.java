@@ -17,11 +17,11 @@ public class Reponse {
     
     private int id_rep ; 
     private String contenu_rep ;
-    private  int nbr_aime_rep ; 
+    private   static int nbr_aime_rep  = 0; 
     private String Date_pub ; 
     private String nom , prenom ; 
-    private static int id_question = 2;
-    private static int  id_user  = 3;
+    private  int id_question ;
+    private  static int  id_user = 3;
     static Reponse instance ; 
 
     public Reponse( String contenu_rep) {
@@ -52,7 +52,13 @@ public class Reponse {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+    public Reponse (String contenu_rep , int id_question  )
+    {
+    this.contenu_rep = contenu_rep ;
+    this.id_question = id_question;
     
+    
+    }
     public Reponse ( String contenu_rep , String Date_pub , int nbr_aime , String nom , String prenom)
     {
         this.contenu_rep = contenu_rep;
@@ -87,19 +93,19 @@ public class Reponse {
     }
 
 
-    public static int getId_question() {
+    public  int getId_question() {
         return id_question;
     }
 
-    public static void setId_question(int id_question) {
-        Reponse.id_question = id_question;
+    public  void setId_question(int id_question) {
+        this.id_question = id_question;
     }
 
-    public static int getId_user() {
+    public static  int getId_user() {
         return id_user;
     }
 
-    public static void setId_user(int id_user) {
+    public  static void setId_user(int id_user) {
         Reponse.id_user = id_user;
     }
  public Reponse()

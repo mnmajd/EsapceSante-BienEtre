@@ -10,10 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import org.controlsfx.control.Rating?>
+
 <AnchorPane id="AnchorPane" prefHeight="957.0" prefWidth="1149.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReponseUIController">
    <children>
-      <SplitPane dividerPositions="0.2715008431703204" layoutX="-1.0" orientation="VERTICAL" prefHeight="957.0" prefWidth="1147.0">
+      <SplitPane layoutX="-1.0" orientation="VERTICAL" prefHeight="275.0" prefWidth="1147.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="157.0" prefWidth="1131.0">
                <children>
@@ -28,6 +28,7 @@
                                     <Font name="KacstPoster" size="18.0" />
                                  </font>
                               </Text>
+                              <Text fx:id="dare" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="244.7294921875" />
                               
                            </children>
                         </VBox>
@@ -39,19 +40,22 @@
                                  </font>
                               </Text>
                               <Text fx:id="contenu" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="752.7294921875" />
-                              <TextArea fx:id="ContenuRep" prefHeight="143.0" prefWidth="753.0" />
+                              <TextArea fx:id="ContenuRep" prefHeight="135.0" prefWidth="753.0" />
+                            
                            </children>
                         </VBox>
-                        <Button fx:id="btnRepondre" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Répondre" />
+                        <VBox prefHeight="289.0" prefWidth="140.0">
+                           <children>
+                              <Button fx:id="btnRepondre" mnemonicParsing="false" onAction="#AddRep" prefHeight="60.0" prefWidth="156.0" text="Répondre" />
+                              <Button mnemonicParsing="false" onAction="#BackToForum" prefHeight="72.0" prefWidth="144.0" text="Back To forum" />
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="385.0">
-               <children>
-                  <ListView fx:id="Reponselist" prefHeight="790.0" prefWidth="1153.0" AnchorPane.bottomAnchor="-362.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-390.0" AnchorPane.topAnchor="0.0" />
-               </children></AnchorPane>
         </items>
       </SplitPane>
+      <ListView fx:id="Reponselist" layoutX="-5.0" layoutY="276.0" prefHeight="612.0" prefWidth="1154.0" />
    </children>
 </AnchorPane>

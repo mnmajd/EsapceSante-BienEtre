@@ -15,7 +15,11 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -24,8 +28,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.controlsfx.control.Rating;
 
@@ -59,7 +67,10 @@ public class ReponseUIController implements Initializable {
     @FXML
     private Text contenu;
     @FXML
+    
     private ListView<Reponse> Reponselist;
+    @FXML
+    private Text dare;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -76,6 +87,7 @@ public class ReponseUIController implements Initializable {
         contenu.setText(q.getContenu_question());
         sujet.setText(q.getSujet_question());
         nomprenom.setText(q.getNom()+" "+q.getPrenom());
+        dare.setText(q.getDate_publication());
       
       Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             img.setImage(image);
@@ -96,12 +108,38 @@ public class ReponseUIController implements Initializable {
                         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                      if ( item != null)
                      {
-                          Rating rating = new Rating(5);
+                         Button likeBtn = new Button();
+                          Button DislikeBtn = new Button();
+                          likeBtn.setText("like");
+                          DislikeBtn.setText("Dislike");
+                          
+                          
+                     Circle c = new Circle();
+                    
+    
+                    c.setCenterX(50.0);
+                    c.setCenterY(125.0);
+                    c.setRadius(30.0);
+                    c.setFill(Paint.valueOf("#097D99"));
+                         Text text = new Text (String.valueOf(item.getNbr_aime_rep()));
+                         StackPane stack = new StackPane();
+                        stack.getChildren().addAll(c, text);
+
+                        stack.setLayoutX(30);
+                        stack.setLayoutY(30);
+                      VBox vbox0 = new VBox(stack , new Text("Likes"));
+                     
+                  
+                      VBox btnBox = new VBox (likeBtn,DislikeBtn);
+                      btnBox.setSpacing(15);
+                     
+                           
+                          
                     
                          VBox vBox = new VBox(
                                     new Text(item.getContenu_rep()), new Text(item.getDate_pub())
-                                          , new Text(String.valueOf(item.getNbr_aime_rep())
-                            ),rating);
+                       
+                            );
                          
                             vBox.setSpacing(15);
                           
@@ -112,8 +150,8 @@ public class ReponseUIController implements Initializable {
                             
                              VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
                             
-                            HBox hBox = new HBox(nbox2, vBox );
-                            hBox.setSpacing(30);
+                            HBox hBox = new HBox(nbox2, vBox,vbox0 ,btnBox);
+                            hBox.setSpacing(80);
                             
                             setGraphic(hBox);
                      }
@@ -124,6 +162,37 @@ public class ReponseUIController implements Initializable {
           }
         });
     }
+    public void AddRep()
+    {
+        if(ContenuRep.getText().equals(""))
+        {
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+           alert.setContentText("reponse vide");
+           alert.showAndWait();        
+        }
+        else 
+        {
+            Reponse r = new Reponse(ContenuRep.getText(),FXMain.id);
+            ReponseService.getInstance().AddReponse(r);
+        }
+        
+    }
+    public void BackToForum()
+     {
+         try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ForumBasic.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+  } catch (Exception e) {
+       System.out.println(e);
+  }
+     }
+    
 }
             
             

@@ -28,7 +28,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="404.0" prefWidth="1156.0" />
               </items>
             </SplitPane>
-            <ListView fx:id="list" layoutX="338.0" layoutY="76.0" prefHeight="657.0" prefWidth="1158.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0" />
+            <ListView fx:id="list" layoutX="338.0" layoutY="76.0" prefHeight="581.0" prefWidth="1158.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0" />
          </children></AnchorPane>
       <HBox layoutX="2.0" layoutY="-3.0" prefHeight="44.0" prefWidth="971.0">
          <children>
@@ -37,7 +37,7 @@
                   <Font name="Georgia" size="37.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="185.0" text="Posez votre Question" textFill="#228a9a">
+            <Button fx:id="Questionbtn" mnemonicParsing="false" onAction="#GoToQuestion" prefHeight="42.0" prefWidth="185.0" text="Posez votre Question" textFill="#228a9a">
                <font>
                   <Font name="KacstArt" size="13.0" />
                </font>
