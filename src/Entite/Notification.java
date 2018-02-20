@@ -9,12 +9,6 @@ package Entite;
  *
  * @author said hmidi
  */
-public class Admin extends User 
-{
-    
-  
-    
-        
-    
+public class Notification {
     
 }

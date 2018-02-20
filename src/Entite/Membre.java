@@ -7,6 +7,9 @@ package Entite;
 
 import java.sql.Date;
 import java.util.Objects;
+import javafx.scene.control.DateCell;
+import javafx.scene.control.DatePicker;
+import javafx.util.Callback;
 
 /**
  *
@@ -18,14 +21,29 @@ public class Membre extends User{
     private int age ; 
     private int cin ;
 
-    public Membre(String sexe, int age, int cin,String role, String nom, String prenom, String login, int password, String image, int telephone, String titre, String adresse, Date date_naiss) {
-        super(role, nom, prenom, login, password, image, telephone, titre, adresse, date_naiss);
+    public Membre(String sexe, int age, int cin, String nom, String prenom, String login, String password, String image, int telephone, String adresse, String date_naiss) {
+        super(nom, prenom, login, password, image, telephone, adresse, date_naiss);
         this.sexe = sexe;
         this.age = age;
         this.cin = cin;
     }
 
+    public Membre(String sexe, int age, int cin, String role, String nom, String prenom, String login, String password, String image, int telephone, String adresse, String date_naiss, String status) {
+        super(role, nom, prenom, login, password, image, telephone, adresse, date_naiss, status);
+        this.sexe = sexe;
+        this.age = age;
+        this.cin = cin;
+    }
+
+    public Membre() {
+       //To change body of generated methods, choose Tools | Templates.
+    }
+
    
+
+   
+
+
 
     public String getSexe() {
         return sexe;

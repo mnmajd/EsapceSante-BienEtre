@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import utile.ConnectionBD;
-
+import Entite.User;
+import java.sql.Date;
 /**
  *
  * @author said hmidi
@@ -27,31 +28,31 @@ public class ServiceMembre  {
     
     
  
-                public static void insererMembre( Membre m) 
+                public  void insererMembre( Membre m) 
     {
         try {
-              String req="INSERT INTO user(id_user,role,nom,prenom,login,password,img,tel,titre,adresse,date_naiss,specialte,sexe,age,cin) VALUES (?,?,?,?,?,?,?,?,?,?,?,NULL,?,?,?)";
+              String req = " insert into user ( role , nom , prenom ,login,password,img,tel,adresse,date_naiss,sexe,age,cin) values(?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ste = ConnectionBD.getInstance().getConnection().prepareStatement(req);
-        ste.setInt(1,m.getId_user());
-        ste.setString(2,m.getRole());
-        ste.setString(3,m.getNom());
-         ste.setString(4,m.getPrenom());
-         ste.setString(5,m.getLogin());
-         ste.setInt(6,m.getPassword());
-         ste.setString(7,m.getImage());
-         ste.setInt(8,m.getTelephone());
-         ste.setString(9,m.getTitre());
-         ste.setString(10,m.getAdresse());
-         ste.setDate(11,m.getDate_naiss());
-         ste.setString(12,m.getSexe());
-         ste.setInt(13,m.getAge());
-         ste.setInt(14,m.getCin());
+        
+       
+           ste.setString(1,"membre");     
+           ste.setString(2,m.getNom());
+           ste.setString(3,m.getPrenom());
+           ste.setString(4,m.getLogin());
+           ste.setString(5,m.getPassword());
+           ste.setString(6,m.getImage());
+           ste.setInt(7,m.getTelephone());      
+           ste.setString(8,m.getAdresse());
+           ste.setString(9,m.getDate_naiss());
+           ste.setString(10,m.getSexe());
+           ste.setInt(11,m.getAge());
+           ste.setInt(12,m.getCin());  
          ste.executeUpdate();
         } catch (SQLException ex) {
               Logger.getLogger(Forum.class.getName()).log(Level.SEVERE,null , ex);
         }
 }       
-   public static void DeleteMembre( String t)
+   public  void DeleteMembre( String t)
     {
     
     
@@ -68,8 +69,7 @@ public class ServiceMembre  {
     
     }
    
-   
-     /* public static List<Membre> selectMemebre() {
+  public  List<Membre> selectMembre() {
         List<Membre> list = new ArrayList<>();
         try {
             String req = "select * from user ";
@@ -78,49 +78,47 @@ public class ServiceMembre  {
 
             ResultSet resultat = ste.executeQuery();
             while (resultat.next()) {
-//"homme", 55, 77777, "membre", "jk", "kk,", "kjjj", 888, "ddd", 777, "rrrr", "eeee", new Date(2018_02_03)
-                list.add(new Membre(resultat.getInt("id_user"),
-                        resultat.getString("Role"),
-                        resultat.getString("Nom"),
-                        resultat.getString("Prenom"),
-                        resultat.getString("Login"),
-                        resultat.getInt("password"),
-                        resultat.getString("img"),
-                        resultat.getInt("tel"),
-                        resultat.getString("titre"),
-                        resultat.getString("adresse"),
+               list.add(new Membre(
                         resultat.getString("sexe"),
                         resultat.getInt("age"),
-                        resultat.getInt("cin")));
-                                            
-                       
+                        resultat.getInt("cin"),
+                        resultat.getString("nom"),
+                        resultat.getString("prenom"),
+                        resultat.getString("login"),
+                        resultat.getString("password"),
+                        resultat.getString("img"),
+                        resultat.getInt("tel"),
+                        resultat.getString("adresse"),
+                        resultat.getString("date_naiss")
+                         
+                ));
+                        
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Forum.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConnectionBD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
     }
    
    
    
-   */
    
    
-     public static void UpdateMembre(Membre m, int id)
+   
+     public void UpdateMembre(Membre m, int id)
     {
     
       
      try {
-              String req="UPDATE `user` SET role=?,nom=?,prenom=?,login=?,password=?,img=?,tel=?,titre=?,adresse=? WHERE id_user=?";
+              String req="UPDATE `user` SET nom=?,prenom=?,login=?,password=?,img=?,tel=?,titre=?,adresse=? WHERE id_user=?";
         PreparedStatement ste = ConnectionBD.getInstance().getConnection().prepareStatement(req);
          ste.setString(1,m.getRole());
          ste.setString(2,m.getNom());
          ste.setString(3,m.getPrenom());
          ste.setString(4,m.getLogin());
-         ste.setInt(5,m.getPassword());
+         ste.setString(5,m.getPassword());
          ste.setString(6,m.getImage());
-         ste.setInt(7,m.getTelephone());
-         ste.setString(8,m.getTitre());
+     
          ste.setString(9,m.getAdresse());
          //ste.setString(10,s.getSpecialte());
         ste.setInt(10,id);
@@ -133,7 +131,40 @@ public class ServiceMembre  {
     
     }
       
-      
+             public  void signupMembre(Membre membre) {
+        
+
+                     String req= " insert into user ( role , nom , prenom ,login,password,img,tel,adresse,date_naiss,sexe,age,cin) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+      try (PreparedStatement ste = ConnectionBD.getInstance().getConnection().prepareStatement(req)) {
+         ste.setString(1,"membre");     
+           ste.setString(2,membre.getNom());
+           ste.setString(3,membre.getPrenom());
+           ste.setString(4,membre.getLogin());
+           ste.setString(5,membre.getPassword());
+           ste.setString(6,membre.getImage());
+           ste.setInt(7,membre.getTelephone());      
+           ste.setString(8,membre.getAdresse());
+           ste.setString(9,membre.getDate_naiss());
+           ste.setString(10,membre.getSexe());
+           ste.setInt(11,membre.getAge());
+           ste.setInt(12,membre.getCin());  
+         
+        
+            
+            
+
+            ste.executeUpdate();
+
+            ResultSet resultSet = ste.getGeneratedKeys();
+            if (resultSet.next()) {
+                membre.setId(resultSet.getInt(1));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
           
     
 
