@@ -27,7 +27,7 @@ public class QuestionService {
     
     
     
-    public static void AddQuestion( Question q)
+    public static void AddQuestion(Question q)
     {
         
         String req = "INSERT INTO question (contenu_quest,Approved_Question ,Sujet_Question ,nbr_rep, id_user ,nom_catF) VALUES(?,?,?,?,?,?)";
@@ -65,39 +65,18 @@ public class QuestionService {
     }
     public static List<Question> ReadQuestion()
     {
-        String req = "Select contenu_quest, Sujet_Question, Date_publication, nbr_rep, id_user from question";
+        String req = "SELECT u.id_user ,q.id_question ,u.nom , u.prenom , q.contenu_quest, q.Sujet_Question , q.Approved_Question from question q join user u on q.id_user = u.id_user where q.Approved_Question=0 ";
          List<Question> p = new ArrayList<>();
          try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
              ResultSet result = ste.executeQuery();
-//              
-//            int count = 1;
-// 
-//             while (result.next()){
-//              int id_question = result.getInt(1);
-//               String contenu_quest = result.getString(2);
-//               String Date = result.getTimestamp(3).toString();
-//                int nbr_rep = result.getInt(4);
-//                 int id_catF = result.getInt(5);
-//                 int id_user = result.getInt(6);
-//                 String output = "Question #%d:  id_user : %s  contenu_question: %s date_publication : %s nbr_rep : %s   ,id_catF : %s id_user:  %s";
-//                   System.out.println(String.format(output, count++, id_question, contenu_quest,Date,nbr_rep, id_catF, id_user));
-//}
-//             
-//            /* while(result.next())
-//             {
-//                 p.add(
-//                 new Question(result.getInt("id_question"),result.getString("contenu_quest"))
-//                 );
-//                 
-//
-//             }*/
+
               while(result.next())
              {
                  p.add(
-                 new Question(result.getString("contenu_quest"),result.getString("sujet_question") 
-                         ,result.getTimestamp("Date_publication").toString(), result.getInt("nbr_rep")
-                         ,result.getInt("id_user"))
+                 new Question(result.getInt("u.id_user"),result.getInt("q.id_question"),result.getString("u.nom") 
+                         ,result.getString("u.prenom"), result.getString("q.contenu_quest")
+                         ,result.getString("q.Sujet_Question"), result.getBoolean("q.Approved_Question"))
                  );
              }
         } catch (SQLException ex) {
@@ -202,6 +181,22 @@ public class QuestionService {
                  System.out.println(ex);
              }
          }
+         
+         public void ApproveQuestion( int id )
+         {
+             String req="UPDATE question SET Approved_Question = 1 WHERE id_question = ?";
+             try {
+             
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req); 
+             ste.setInt(1, id);
+             ste.executeUpdate();
+             
+                 
+             } catch (Exception e) {
+             }
+            
+         }
+         
          
          
          
