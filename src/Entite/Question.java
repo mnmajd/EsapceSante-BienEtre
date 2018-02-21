@@ -17,7 +17,7 @@ public class Question {
    
     private String contenu_question ;
     private String nom_catF ; 
-    private static int id_user = 3 ; 
+    private  int id_user = 3 ; 
     private  int nbr_rep = 0 ;
     String nom , prenom ;
     
@@ -85,7 +85,7 @@ public class Question {
          this.Date_publication = Date_publication ;
          this.id_question = id_question;
          this.nbr_rep = nbr_rep ; 
-         Question.id_user = id_user ; 
+         this.id_user = id_user ; 
      }
     private Question() {
     }
@@ -140,12 +140,12 @@ public class Question {
     }
 
    
-    public static int getId_user() {
+    public int getId_user() {
         return id_user;
     }
 
-    public static void setId_user(int id_user) {
-        Question.id_user = id_user;
+    public  void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public String getSujet_question() {

@@ -12,6 +12,8 @@ import Service.QuestionService;
 import Service.ReponseService;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -71,9 +73,13 @@ public class ReponseUIController implements Initializable {
     private ListView<Reponse> Reponselist;
     @FXML
     private Text dare;
+     Button likeBtn,dislike ; 
+    
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+        
          btnRepondre.setVisible(true);
          ContenuRep.setVisible(true);
          
@@ -108,15 +114,15 @@ public class ReponseUIController implements Initializable {
                         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                      if ( item != null)
                      {
-                         Button likeBtn = new Button();
-                          Button DislikeBtn = new Button();
-                          likeBtn.setText("like");
-                          DislikeBtn.setText("Dislike");
-                          
-                          
+                       
+                        int id = item.getId_rep();
+                      likeBtn = new Button("Like");  
+                     dislike = new Button ("Dislike");
+                        
+                      
                      Circle c = new Circle();
                     
-    
+                     
                     c.setCenterX(50.0);
                     c.setCenterY(125.0);
                     c.setRadius(30.0);
@@ -128,9 +134,15 @@ public class ReponseUIController implements Initializable {
                         stack.setLayoutX(30);
                         stack.setLayoutY(30);
                       VBox vbox0 = new VBox(stack , new Text("Likes"));
+                      
                      
                   
-                      VBox btnBox = new VBox (likeBtn,DislikeBtn);
+                      VBox btnBox = new VBox (likeBtn,dislike);
+                      likeBtn.setOnAction((event) -> {
+                          btnBox.getChildren().remove(dislike);
+                      });
+                    
+                         
                       btnBox.setSpacing(15);
                      
                            
@@ -161,6 +173,10 @@ public class ReponseUIController implements Initializable {
                 };
           }
         });
+                        
+            
+            
+            
     }
     public void AddRep()
     {
@@ -192,6 +208,7 @@ public class ReponseUIController implements Initializable {
        System.out.println(e);
   }
      }
+   
     
 }
             

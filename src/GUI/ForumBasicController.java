@@ -51,6 +51,8 @@ public class ForumBasicController implements Initializable {
      * 
      * Initializes the controller class.
      */
+        @FXML
+    private TextField rechecherTxt;
     @FXML
     private ListView<Question> list;
      @FXML
@@ -77,7 +79,15 @@ public class ForumBasicController implements Initializable {
                   
             
           );
+            
           list.getItems().addAll(data);
+          rechecherTxt.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                list.getItems().addAll(data);
+            } else {
+                list.setItems(FXCollections.observableArrayList(QuestionService.getInstance().FilterByTopic(rechecherTxt.getText())));
+            }
+        });
           list.setCellFactory(new Callback<ListView<Question>, ListCell<Question>>()
                   {
               @Override
@@ -237,10 +247,13 @@ public class ForumBasicController implements Initializable {
        System.out.println(e);
   }
          
-     }
+     };
+ 
+     
                        
   
     }
+
 
 
 

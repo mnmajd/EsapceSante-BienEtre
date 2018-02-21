@@ -68,7 +68,10 @@ public class EspaceSanteBienEtre {
 //       Question q = QuestionService.SpecifiedQuestion(31);
 //        System.out.println(q.getContenu_question());
 
+        
+//            System.out.println(QuestionService.GetPhoneNumber(3));
 
+        
 
 
 

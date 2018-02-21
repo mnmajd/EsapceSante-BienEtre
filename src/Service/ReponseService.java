@@ -123,13 +123,25 @@ public class ReponseService {
              System.out.println(ex);
         }
          }
+      public static void DislikeReponse( int id )
+     {
+        
+             String req = "UPDATE reponse SET nbr_aime_rep =nbr_aime_rep-1 WHERE id_rep =?";
+         try {
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ste.setInt(1, id);
+             ste.executeUpdate();
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+         }
          
          
      
  public static List<Reponse> FiltredReponse( int id)
       {
           List<Reponse> p = new ArrayList<>();
-          String req = "SELECT r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=?";
+          String req = "SELECT r.id_rep,r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=?";
          
         
          try {
@@ -139,8 +151,8 @@ public class ReponseService {
              
              while (result.next()){
                  p.add(
-                         new Reponse(result.getString("contenu_rep"),result.getTimestamp("Date_publication").toString()
-                                 ,result.getInt("nbr_aime_rep"),result.getString("nom"),result.getString("prenom"))
+                         new Reponse(result.getInt("r.id_rep"),result.getString("r.contenu_rep"),result.getTimestamp("r.Date_publication").toString()
+                                 ,result.getInt("r.nbr_aime_rep"),result.getString("u.nom"),result.getString("u.prenom"))
                  );
               
                                }
