@@ -139,7 +139,9 @@ public class ReponseUIController implements Initializable {
                   
                       VBox btnBox = new VBox (likeBtn,dislike);
                       likeBtn.setOnAction((event) -> {
-                          btnBox.getChildren().remove(dislike);
+                          
+                      });
+                      dislike.setOnAction((event) -> {
                       });
                     
                          
