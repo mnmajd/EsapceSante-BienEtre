@@ -90,6 +90,7 @@ public class VerifyQuestionAdminController implements Initializable {
                   public void changed(ObservableValue<? extends Question> observable, Question oldValue, Question newValue) {
                        try {
                            id_question = newValue.getId_question();
+                           id_user= newValue.getId_user();
                          sujetTxt.setText( newValue.getSujet_question()); 
                            ContenuQuestion.setText(newValue.getContenu_question());
 
@@ -107,16 +108,18 @@ public class VerifyQuestionAdminController implements Initializable {
           {
               try {
                 QuestionService.getInstance().ApproveQuestion(id_question);
-
+                
               } catch (Exception e) {
                   System.out.println(e);
               }
-              try {
+         try {
+              String tel = String.valueOf(QuestionService.getInstance().GetPhoneNumber(id_user));
+//                System.out.println(tel);
 			// Construct data
-			String apiKey = "apikey=" + "vB/jqlLaluw-fsiqKzQ8F6WW5CNMWYdFMlZsvmrdIO";
+			String apiKey = "apikey=" + "3cpHk55sE5E-uyCNHABrLG9EkHdIXtWmbDuV4Q7P98";
 			String message = "&message=" + "Votre Message dans notre espace santé est approuve";
 			String sender = "&sender=" + "Espace Santé";
-			String numbers = "&numbers=" + "0021655215220";
+			String numbers = "&numbers=" + "00216"+tel+"";
 			
 			// Send data
 			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();

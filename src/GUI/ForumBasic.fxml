@@ -43,7 +43,7 @@
                </font>
             </Button>
             <Label prefHeight="44.0" prefWidth="169.0" />
-            <TextField prefHeight="46.0" prefWidth="171.0" promptText="Recherche Par sujet" />
+            <TextField fx:id="rechecherTxt" prefHeight="46.0" prefWidth="171.0" promptText="Recherche Par sujet" />
          </children>
       </HBox>
    </children>

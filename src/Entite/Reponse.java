@@ -17,7 +17,7 @@ public class Reponse {
     
     private int id_rep ; 
     private String contenu_rep ;
-    private   static int nbr_aime_rep  = 0; 
+    private  int nbr_aime_rep  = 0; 
     private String Date_pub ; 
     private String nom , prenom ; 
     private  int id_question ;
@@ -59,13 +59,14 @@ public class Reponse {
     
     
     }
-    public Reponse ( String contenu_rep , String Date_pub , int nbr_aime , String nom , String prenom)
+    public Reponse ( int id_rep ,String contenu_rep , String Date_pub , int nbr_aime , String nom , String prenom)
     {
         this.contenu_rep = contenu_rep;
         this.Date_pub = Date_pub ; 
         this.nbr_aime_rep = nbr_aime;
         this.nom = nom;
         this.prenom = prenom ;
+        this.id_rep= id_rep;
     }
         
     public int getId_rep() {

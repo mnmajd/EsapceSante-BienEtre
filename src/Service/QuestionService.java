@@ -129,14 +129,7 @@ public class QuestionService {
              
              }
              
-            /* while(result.next())
-             {
-                 p.add(
-                 new Question(result.getInt("id_question"),result.getString("contenu_quest"))
-                 );
-                 
-
-             }*/
+           
              
         } catch (SQLException ex) {
              System.out.println(ex);
@@ -145,6 +138,50 @@ public class QuestionService {
                 return p ;
         
                 }
+          
+          public static List<Question> FilterByTopic(String  sujet)
+            
+               {
+                   
+                   String req = "Select c.id_question ,c.contenu_quest, c.Sujet_Question, c.Date_publication, c.nbr_rep , u.nom , u.prenom from question c join user u on c.id_user = u.id_user where Sujet_Question=?";
+         List<Question> p = new ArrayList<>();
+         try {
+            
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ste.setString(1, sujet);
+             ResultSet result = ste.executeQuery();
+             
+             
+            
+ 
+             while (result.next()){
+                  p.add(
+                 new Question(result.getInt("id_question"), result.getString("contenu_quest"),result.getString("sujet_question") 
+                         ,result.getTimestamp("Date_publication").toString(), result.getInt("nbr_rep")
+                         , result.getString("nom"),result.getString("prenom")
+                  )
+                 );
+             
+             
+             
+             }
+             
+           
+             
+        } catch (SQLException ex) {
+             System.out.println(ex);
+        }
+                
+                return p ;
+        
+                }
+          
+          
+          
+          
+          
+          
+          
          
          public static Question SpecifiedQuestion ( int id )
          {
@@ -197,7 +234,22 @@ public class QuestionService {
             
          }
          
-         
+         public static int GetPhoneNumber(int id)
+         {
+             int x =0 ;
+             String req="SELECT tel from user where id_user = ?";
+             try {
+                 PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req); 
+             ste.setInt(1, id);
+                ResultSet result = ste.executeQuery();
+                while (result.next())
+                {
+                    x= result.getInt("tel");
+                }
+             } catch (Exception e) {
+             }
+             return x ;
+         }
          
          
          
