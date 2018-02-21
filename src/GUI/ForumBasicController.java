@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -59,7 +60,10 @@ public class ForumBasicController implements Initializable {
     private TabPane TabeCat;
     @FXML
     private Button Questionbtn;
+    static int id_question;// pour recupurer l'id du question a modifié
+
     @Override
+   
     public void initialize(URL url, ResourceBundle rb) {
         QuestionService.getInstance().UpdateLikes();
               List<String> p  =  Service.ServiceCategorieForum.ReadCategorie();
@@ -111,11 +115,37 @@ public class ForumBasicController implements Initializable {
                          Text text = new Text (String.valueOf(item.getNbr_rep()));
                          StackPane stack = new StackPane();
                         stack.getChildren().addAll(c, text);
-
+                         Button edit = new Button("edit");  
+                         Button delete = new Button("delete");  
                         stack.setLayoutX(30);
                         stack.setLayoutY(30);
-                      VBox vbox0 = new VBox(stack , new Text("Reponse"));
-                     
+                        
+                        
+                      VBox vbox0 = new VBox(stack , new Text("Reponse"),edit,delete);
+                      vbox0.setSpacing(8);
+                           delete.setOnAction((event) -> {
+                          
+                          DeleteQuestion(item.getId_question());
+                          list.refresh();
+                      });
+                      
+                      edit.setOnAction((event) -> {
+                          try {
+                              id_question = item.getId_question();
+                           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QuestionUpdate.fxml"));
+                            Parent root = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root));  
+                            stage.show();
+                            
+                            FXMain.stg = stage;
+                      } catch (Exception e) {
+                           System.out.println(e);
+                      }
+                          
+                          
+                      });
+                      
                          VBox vBox = new VBox(
                                     new Text(item.getSujet_question())
                                           , new Text(item.getDate_publication())
@@ -164,7 +194,7 @@ public class ForumBasicController implements Initializable {
                        if ( item != null)
                        {
  
-      Circle c = new Circle();
+                       Circle c = new Circle();
                     
     
                     c.setCenterX(50.0);
@@ -175,9 +205,40 @@ public class ForumBasicController implements Initializable {
                          StackPane stack = new StackPane();
                         stack.getChildren().addAll(c, text);
 
+                        Button edit = new Button("edit");  
+                         Button delete = new Button("delete");  
                         stack.setLayoutX(30);
                         stack.setLayoutY(30);
-                     VBox vbox0 = new VBox(stack , new Text("Reponse"));
+                        
+                      VBox vbox0 = new VBox(stack , new Text("Reponse"),edit,delete);
+                      vbox0.setSpacing(8);
+                      
+                      delete.setOnAction((event) -> {
+                          
+                          DeleteQuestion(item.getId_question());
+                           list.getItems().addAll(data);
+                          list.refresh();
+                      });
+                      
+                      edit.setOnAction((event) -> {
+                         try {
+                             id_question = item.getId_question();
+                           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("QuestionUpdate.fxml"));
+                            Parent root = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root));  
+                            stage.show();
+                            FXMain.stg.close();
+                            FXMain.stg = stage;
+                      } catch (Exception e) {
+                           System.out.println(e);
+                      }
+                          
+                      });
+                      
+                      
+                      
+                      
                          VBox vBox = new VBox(
                                     new Text(item.getSujet_question())
                                           , new Text(item.getDate_publication())
@@ -248,7 +309,36 @@ public class ForumBasicController implements Initializable {
   }
          
      };
- 
+     
+     
+ public void DeleteQuestion( int id)
+ {
+     try {
+         QuestionService.getInstance().DeleteQuestion(id);
+         
+     } catch (Exception e) {
+         System.out.println(e);
+     }
+     try {
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Delete Question");
+              alert.setHeaderText("Votre question est supprimé");
+           
+              alert.showAndWait();
+     } catch (Exception e) {
+     }
+     try {
+          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("forumBasic.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+//        FXMain.stg.close();
+        FXMain.stg = stage;
+         
+     } catch (Exception e) {
+     }
+ }
      
                        
   

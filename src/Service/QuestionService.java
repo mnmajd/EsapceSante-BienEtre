@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Entite.Question;
+import com.sun.xml.internal.bind.v2.runtime.output.SAXOutput;
  
 /**
  *
@@ -63,6 +64,30 @@ public class QuestionService {
             
         }
     }
+    
+    public static String GetContenuQuestion( int id )
+    {
+        String res ="" ;
+        String req =" select contenu_quest from question where id_question = ?";
+        try {
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+              ste.setInt(1, id);
+            ResultSet result = ste.executeQuery();
+            while (result.next())
+            {
+                res = result.getString("contenu_quest");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }
+    
+    
+    
+    
+    
+    
     public static List<Question> ReadQuestion()
     {
         String req = "SELECT u.id_user ,q.id_question ,u.nom , u.prenom , q.contenu_quest, q.Sujet_Question , q.Approved_Question from question q join user u on q.id_user = u.id_user where q.Approved_Question=0 ";
@@ -87,12 +112,12 @@ public class QuestionService {
           }*/
          return p ;
     }
-         public static void UpdateQuestion(Question q , int id)
+         public static void UpdateQuestion(String s , int id)
          {
              String req = "UPDATE question SET contenu_quest =? WHERE id_question =?";
          try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
-             ste.setString(1, q.getContenu_question());
+             ste.setString(1, s);
              ste.setInt(2, id);
              ste.executeUpdate();
         } catch (SQLException ex) {
