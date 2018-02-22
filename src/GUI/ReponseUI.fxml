@@ -11,11 +11,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="957.0" prefWidth="1149.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReponseUIController">
+<AnchorPane id="AnchorPane" prefHeight="1019.0" prefWidth="1479.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReponseUIController">
    <children>
-      <SplitPane layoutX="-1.0" orientation="VERTICAL" prefHeight="275.0" prefWidth="1147.0">
+      <SplitPane layoutX="-1.0" orientation="VERTICAL" prefHeight="275.0" prefWidth="1479.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="157.0" prefWidth="1131.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="273.0" prefWidth="1421.0">
                <children>
                   <HBox layoutX="26.0" layoutY="22.0" prefHeight="157.0" prefWidth="1167.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-404.0" AnchorPane.topAnchor="0.0">
                   
@@ -56,6 +56,6 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <ListView fx:id="Reponselist" layoutX="-5.0" layoutY="276.0" prefHeight="612.0" prefWidth="1154.0" />
+      <ListView fx:id="Reponselist" layoutX="-5.0" layoutY="276.0" prefHeight="448.0" prefWidth="1484.0" />
    </children>
 </AnchorPane>

@@ -70,7 +70,7 @@ public class EspaceSanteBienEtre {
 
         
 //            System.out.println(QuestionService.GetPhoneNumber(3));
- QuestionService.getInstance().DeleteQuestion(34);
+ReponseService.getInstance().DeleteReponse(6);
 
 
         
