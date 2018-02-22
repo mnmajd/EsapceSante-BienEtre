@@ -96,12 +96,12 @@ public class ReponseService {
         }
          
      }
-     public static void UpdateReponse(Reponse p , int id)
+     public static void UpdateReponse(String s , int id)
          {
              String req = "UPDATE reponse SET contenu_rep =? WHERE id_rep =?";
          try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
-             ste.setString(1, p.getContenu_rep());
+             ste.setString(1, s);
              ste.setInt(2, id);
              ste.executeUpdate();
         } catch (SQLException ex) {
@@ -164,7 +164,23 @@ public class ReponseService {
           
       }
      
-             
+       public static String GetContenuReponse( int id )
+    {
+        String res ="" ;
+        String req =" select contenu_rep from reponse where id_rep = ?";
+        try {
+             PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+              ste.setInt(1, id);
+            ResultSet result = ste.executeQuery();
+            while (result.next())
+            {
+                res = result.getString("contenu_rep");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return res;
+    }       
              
              
              

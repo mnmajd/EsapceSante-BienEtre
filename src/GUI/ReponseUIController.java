@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -75,7 +76,7 @@ public class ReponseUIController implements Initializable {
     private Text dare;
      Button likeBtn,dislike ; 
     
-   
+   static int id_rep ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -115,14 +116,70 @@ public class ReponseUIController implements Initializable {
                      if ( item != null)
                      {
                        
-                        int id = item.getId_rep();
-                      likeBtn = new Button("Like");  
-                     dislike = new Button ("Dislike");
+                        id_rep = item.getId_rep();
+                        Button edit = new Button("edit");  
+                         Button delete = new Button("delete"); 
+                         ToggleButton likeBtn = new ToggleButton();
                         
-                      
+                      likeBtn.setOnMouseClicked((event) -> {
+                        if (likeBtn.isSelected())  
+                        {
+                            try {
+                                ReponseService.getInstance().LikeReponse(id_rep);
+                            
+
+                             
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }
+                              
+                         
+             
+                        }
+                        else 
+                        {
+                           try {
+                                ReponseService.getInstance().DislikeReponse(id_rep);
+                             
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }
+                             
+                         
+                        
+            }
+                        
+                            
+                      });
+                         
+                       edit.setOnAction((event) -> {
+                           try {
+                               
+                               id_rep = item.getId_rep();
+                           FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditReponse.fxml"));
+                            Parent root = (Parent) fxmlLoader.load();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root));  
+                            stage.show();
+                            FXMain.stg.close();
+                            FXMain.stg = stage;
+                      } catch (Exception e) {
+                           System.out.println(e);
+                      }
+                           
+                       });
+                       delete.setOnAction((event) -> {
+                           try {
+                                ReponseService.getInstance().DeleteReponse(item.getId_rep());
+                           } catch (Exception e) {
+                               System.out.println(e);
+                           }
+                           
+                          
+                           
+                       });
+                         
                      Circle c = new Circle();
-                    
-                     
                     c.setCenterX(50.0);
                     c.setCenterY(125.0);
                     c.setRadius(30.0);
@@ -133,16 +190,12 @@ public class ReponseUIController implements Initializable {
 
                         stack.setLayoutX(30);
                         stack.setLayoutY(30);
-                      VBox vbox0 = new VBox(stack , new Text("Likes"));
+                      VBox vbox0 = new VBox(stack,new Text("Likes"));
                       
                      
                   
-                      VBox btnBox = new VBox (likeBtn,dislike);
-                      likeBtn.setOnAction((event) -> {
-                          
-                      });
-                      dislike.setOnAction((event) -> {
-                      });
+                      VBox btnBox = new VBox (likeBtn,edit,delete);
+                     
                     
                          
                       btnBox.setSpacing(15);
@@ -165,7 +218,7 @@ public class ReponseUIController implements Initializable {
                              VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
                             
                             HBox hBox = new HBox(nbox2, vBox,vbox0 ,btnBox);
-                            hBox.setSpacing(80);
+                            hBox.setSpacing(250);
                             
                             setGraphic(hBox);
                      }
@@ -190,8 +243,19 @@ public class ReponseUIController implements Initializable {
         }
         else 
         {
+            try {
+                
+            } catch (Exception e) {
+            }
             Reponse r = new Reponse(ContenuRep.getText(),FXMain.id);
             ReponseService.getInstance().AddReponse(r);
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           alert.setTitle("Information");
+           alert.setContentText("Votre reponse est ajoutée ");
+           alert.showAndWait();
+  
+        
+         
         }
         
     }

@@ -7,8 +7,7 @@ package GUI;
 
 import Entite.Question;
 import Service.QuestionService;
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
-import java.awt.Color;
+
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -85,6 +84,7 @@ public class ForumBasicController implements Initializable {
           );
             
           list.getItems().addAll(data);
+          
           rechecherTxt.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
                 list.getItems().addAll(data);
@@ -127,6 +127,7 @@ public class ForumBasicController implements Initializable {
                           
                           DeleteQuestion(item.getId_question());
                           list.refresh();
+                         
                       });
                       
                       edit.setOnAction((event) -> {
@@ -216,7 +217,7 @@ public class ForumBasicController implements Initializable {
                       delete.setOnAction((event) -> {
                           
                           DeleteQuestion(item.getId_question());
-                           list.getItems().addAll(data);
+                          
                           list.refresh();
                       });
                       
@@ -340,7 +341,16 @@ public class ForumBasicController implements Initializable {
      }
  }
      
-                       
+     public void List()
+     {
+         ObservableList<Question> data = FXCollections.observableArrayList(
+             QuestionService.getInstance().FilterByCat(TabeCat.getSelectionModel().getSelectedItem().getText())
+                  
+            
+          );
+            
+          list.getItems().addAll(data);
+     }
   
     }
 
