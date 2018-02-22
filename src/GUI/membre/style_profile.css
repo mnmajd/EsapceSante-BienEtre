@@ -1,0 +1,32 @@
+.background{
+    -fx-background-image: url("../../images/profile.jpg");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+ 
+
+}
+
+
+.modifier{
+    -fx-background-image: url("../../images/modifier.jpg")  ;
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+ 
+
+}
+.solde{
+    -fx-background-image: url("../../images/solde.jpg")  ;
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+ 
+
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="1009.0" prefWidth="1400.0" stylesheets="@style_profile.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.membre.MembreViewController">
+   <children>
+      <ScrollPane layoutX="8.0" layoutY="1.0" prefHeight="1036.0" prefWidth="1387.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1041.0" prefWidth="1414.0" styleClass="background">
+               <children>
+                  <ImageView fx:id="photo" fitHeight="232.0" fitWidth="229.0" layoutX="149.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" />
+                  <AnchorPane fx:id="content" layoutX="124.0" layoutY="547.0" prefHeight="428.0" prefWidth="1183.0" />
+                  <Pane fx:id="chnager" layoutX="149.0" layoutY="408.0" onMouseClicked="#photochange" opacity="0.75" prefHeight="66.0" prefWidth="231.0" style="-fx-background-color: #000000;" visible="false">
+                     <children>
+                        <Label layoutX="3.0" layoutY="20.0" prefHeight="35.0" prefWidth="232.0" text="         Modifier la photo de profile" textFill="#ddd9d9">
+                           <font>
+                              <Font name="AdobeDevanagari-Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="51.0" fitWidth="29.0" layoutX="5.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/Camera.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Label layoutX="423.0" layoutY="443.0" onMouseClicked="#apropo" prefHeight="59.0" prefWidth="227.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Label>
+                  <Label fx:id="currentUser" alignment="CENTER_RIGHT" layoutX="397.0" layoutY="393.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="260.0" text="currentuser" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="855.0" layoutY="444.0" onMouseClicked="#logout" prefHeight="47.0" prefWidth="257.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
