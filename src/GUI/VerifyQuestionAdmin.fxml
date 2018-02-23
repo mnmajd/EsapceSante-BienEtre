@@ -25,6 +25,7 @@
                   <Label layoutX="44.0" layoutY="146.0" text="contenu" />
                   <TextField fx:id="sujetTxt" layoutX="171.0" layoutY="90.0" />
                   <TextArea fx:id="ContenuQuestion" layoutX="171.0" layoutY="146.0" prefHeight="200.0" prefWidth="270.0" />
+                  <Button layoutX="52.0" layoutY="369.0" mnemonicParsing="false" onAction="#DeclineQuestion" prefHeight="26.0" prefWidth="90.0" text="Decline" />
                </children>
             </AnchorPane>
         </items>

@@ -112,6 +112,7 @@ public class ForumBasicController implements Initializable {
                     c.setCenterY(125.0);
                     c.setRadius(30.0);
                     c.setFill(Paint.valueOf("#097D99"));
+                    
                          Text text = new Text (String.valueOf(item.getNbr_rep()));
                          StackPane stack = new StackPane();
                         stack.getChildren().addAll(c, text);
@@ -158,9 +159,10 @@ public class ForumBasicController implements Initializable {
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);
                              VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
-                            
-                            HBox hBox = new HBox(nbox2, vBox ,vbox0);
-                            hBox.setSpacing(100);
+                            HBox hbox = new HBox (nbox2,vBox);
+                            hbox.setSpacing(10);
+                            HBox hBox = new HBox(hbox ,vbox0);
+                            hBox.setSpacing(650);
                             
                             setGraphic(hBox);
                        
