@@ -116,8 +116,9 @@ public class VerifyQuestionAdminController implements Initializable {
               String tel = String.valueOf(QuestionService.getInstance().GetPhoneNumber(id_user));
 //                System.out.println(tel);
 			// Construct data
+                        String nomPrenom = QuestionService.getInstance().GetCredential(id_user);
 			String apiKey = "apikey=" + "3cpHk55sE5E-uyCNHABrLG9EkHdIXtWmbDuV4Q7P98";
-			String message = "&message=" + "Votre Message dans notre espace santé est approuve";
+			String message = "&message=" + ""+nomPrenom+" Votre Message dans notre espace santé est acceptée";
 			String sender = "&sender=" + "Espace Santé";
 			String numbers = "&numbers=" + "00216"+tel+"";
 			
@@ -144,6 +145,42 @@ public class VerifyQuestionAdminController implements Initializable {
               
               
               
-          }    
+          }  
+     public void DeclineQuestion()
+     {
+            try {
+               
+              String tel = String.valueOf(QuestionService.getInstance().GetPhoneNumber(id_user));
+              String nomPrenom = QuestionService.getInstance().GetCredential(id_user);
+//                System.out.println(tel);
+			// Construct data
+			String apiKey = "apikey=" + "3cpHk55sE5E-uyCNHABrLG9EkHdIXtWmbDuV4Q7P98";
+			String message = "&message=" + ""+nomPrenom+" Votre Message dans notre espace santé est refusé";
+			String sender = "&sender=" + "Espace Santé";
+			String numbers = "&numbers=" + "00216"+tel+"";
+			
+			// Send data
+			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+			String data = apiKey + numbers + message + sender;
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+			conn.getOutputStream().write(data.getBytes("UTF-8"));
+			final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			final StringBuffer stringBuffer = new StringBuffer();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				stringBuffer.append(line);
+			}
+			rd.close();
+			
+//			return stringBuffer.toString();
+		} catch (Exception e) {
+			System.out.println("Error SMS "+e);
+//			return "Error "+e;
+		}
+              
+         
+     }
     
 }
