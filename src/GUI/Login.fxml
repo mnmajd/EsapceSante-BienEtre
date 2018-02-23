@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
+   <children>
+      <GridPane layoutX="-45.0" layoutY="2.0" prefHeight="850.0" prefWidth="1400.0" styleClass="Anchornpane" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1056.2658081054688" minWidth="10.0" prefWidth="971.8867797851562" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="745.3388671875" minWidth="10.0" prefWidth="371.3114013671875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="745.3388671875" minWidth="0.0" prefWidth="61.6885986328125" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="278.17364501953125" minHeight="0.0" prefHeight="118.89054870605469" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="641.5773124694824" minHeight="10.0" prefHeight="625.1094512939453" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="133.96649169921875" minHeight="10.0" prefHeight="105.555908203125" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fitHeight="623.0" fitWidth="397.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <image>
+                  <Image url="@../images/2.jpg" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fitHeight="107.0" fitWidth="301.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/giphy.gif" />
+                     </image>
+                     <VBox.margin>
+                        <Insets bottom="70.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <Region layoutX="10.0" layoutY="35.0" prefHeight="5.0" prefWidth="370.0" />
+                  <JFXTextField fx:id="usernameTextField" alignment="CENTER" focusColor="#1d8cf4" labelFloat="true" prefHeight="25.0" prefWidth="365.0" promptText="Nom d'utilisateur">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <Region prefHeight="40.0" prefWidth="391.0" />
+                  <JFXPasswordField fx:id="passwordTextField" alignment="CENTER" focusColor="#1d8cf4" labelFloat="true" promptText="Password">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </JFXPasswordField>
+                  <Region prefHeight="50.0" prefWidth="370.0" />
+                  <HBox prefHeight="80.0" prefWidth="370.0">
+                     <children>
+                        <Button id="btn_valider" fx:id="loginButton" onAction="#loginButtoAnction" prefHeight="27.0" prefWidth="84.0" text="Login!" textFill="#3ab2d0">
+                           <HBox.margin>
+                              <Insets left="50.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Region prefHeight="110.0" prefWidth="89.0" HBox.hgrow="ALWAYS" />
+                        <Button id="btn_valider" fx:id="SinginButton" onAction="#SinginButtonAction" prefHeight="27.0" prefWidth="97.0" text="s'inscrire" textFill="#3ab2d0">
+                           <HBox.margin>
+                              <Insets right="50.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Region prefHeight="20.0" prefWidth="370.0" />
+                  <JFXButton fx:id="mdpOublie" onMouseClicked="#forgetpass" prefHeight="27.0" prefWidth="147.0" text="Mot de passe oublié" textFill="#4a1414" />
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <Region prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Region prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+            <Region prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <Region prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <Region prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+            <Region prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Region prefHeight="50.0" prefWidth="100.0" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
