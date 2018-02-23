@@ -278,6 +278,31 @@ public class QuestionService {
          
          
          
+         public static String GetCredential(int id )
+         {
+             String nom ="";
+             String prenom="";
+             
+             String req="SELECT nom , prenom from user where id_user = ?";
+             try {
+                 PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req); 
+              ste.setInt(1, id);
+              ResultSet result = ste.executeQuery();
+               while (result.next())
+                {
+                    nom= result.getString("nom");
+                    prenom = result.getString("prenom");
+                }
+             } catch (Exception e) {
+                 
+                 
+                 System.out.println(e);
+             }
+              return nom+" "+prenom ;   
+         }
+         
+         
+         
          
          
          
