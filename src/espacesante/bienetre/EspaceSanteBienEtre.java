@@ -1,67 +1,189 @@
+//EspaceSanteBienEtre 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package espacesante.bienetre;
-import Entite.User;
-import Entite.Membre;
-//import Entite.Prestataire;
-import Service.ServiceMembre;
-import Service.ServiceUser;
-//import Service.ServicePrestataire;
-import java.sql.Date;
-import utile.ConnectionBD;
-/**
- *
- * @author majd
- */
-public class EspaceSanteBienEtre {
+
+import entites.User;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import java.io.IOException;
+import java.util.Locale;
+import static javafx.application.Application.launch;
+import javafx.scene.image.Image;
+import utile.AnimationGenerator;
+
+
+
+
+public class EspaceSanteBienEtre  extends Application {
+    public static Stage stage;
+    public static AnchorPane loginWindow;
+    public static Parent signupWindow;
+    public static Scene loginScene;
+    public static Scene signupScene;
     
+    public static User currentUser;
+
+    static Stage stageprim, stage1, stage2, stage4, stage3, stage5, stage6,stage7;
+    public String clinicName = "";
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+//        this.stage = primaryStage;
+//        splashWindow();
+        this.stage = primaryStage;
+        loginWindow();
+    }
+     public void loginWindow() {
+        try {
+            currentUser = null;
+            loginWindow = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
+
+            loginScene = new Scene(loginWindow);
+            stage.getIcons().add(new Image("/images/doc.png"));
+            stage.setScene(loginScene);
+            stage.setMinHeight(770);
+            stage.setMaxHeight(770);
+            
+            stage.setMinWidth(1370);
+            stage.setMaxWidth(1370);
+            stage.centerOnScreen();
+            stage.setTitle("Espace Sante Bien etre");
+           // stage.setFullScreen(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+     
+     public static void logout() {
+        AnimationGenerator animationGenerator = new AnimationGenerator();
+        animationGenerator.applyFadeAnimationOn(stage.getScene().getRoot(), 500, 1.0f, 0f, event -> {
+            try {
+                EspaceSanteBienEtre.currentUser = null;
+                loginWindow = FXMLLoader.load(EspaceSanteBienEtre.class.getResource("/GUI/Login.fxml"));
+                loginScene = new Scene(loginWindow);
+                EspaceSanteBienEtre.stage.setScene(loginScene);
+                stage.centerOnScreen();
+                EspaceSanteBienEtre.loginWindow.setOpacity(1f);
+                animationGenerator.applyFadeAnimationOn(EspaceSanteBienEtre.loginWindow, 500, 0f, 1.0f, null);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
+    }
+        
+     public void splashWindow() {
+  try {
+            currentUser = null;
+            loginWindow = FXMLLoader.load(getClass().getResource("/GUI/splash.fxml"));
+
+            loginScene = new Scene(loginWindow);
+//            stage.getIcons().add(new Image("/images/logo1.png"));
+            stage.setScene(loginScene);
+            stage.setMinHeight(750);
+            stage.setMaxHeight(750);
+            
+            stage.setMinWidth(1350);
+            stage.setMaxWidth(1350);
+            stage.centerOnScreen();
+            stage.setTitle("ESpace Sante");
+           // stage.setFullScreen(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+         
+     public void splashWindowClose() {
+        stage.close();
+    }
+     
+    
+     
+ 
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /// test admin //
-      // User m = new Membre("homme", 12, 133, "said","hmidi","saidhha","2121", "d", 12, "tunis", "xxxx");
-      
-        //ServiceMembre membre= new ServiceMembre();
-       // membre.insererMembre((Membre) m);
-       // membre.signupMembre((Membre) m);
-       //membre.selectMembre();
-       // System.out.println(m);
         
-      //Membre m= new Membre("homme", 0, 0,"said","hmidi","said.hmidi@esprit.tn", 0,"hhh", 0,"lll",new Date(2017-1990 , 9-1 , 27));
-        //ServiceMembre.insererMembre((Membre) us);
-        // ServiceMembre.DeleteMembre("homme");
-        //ServiceMembre.selectMemebre().forEach(System.out::println);
-        //ServiceMembre.UpdateMembre(new Membre("ms",55,888,"membre", "said", "hmidi", "said.hmidi",777,"hhh",22,"bbb", "jjjj", new Date(2017_03_01)),23);
-            
-            
-            /// test user ///
-            
-        // User us = new User("prestatiare","mmmm","lllll","saidhmidi96@gmail.com","saidii","aaaa",8898,"tunis",new Date(2017-1900 , 9-1 , 27));
-        /// ServiceUser myuser = new ServiceUser();
         
-          //ServiceUser.UpdateUser(new User("role","bbbb","mmm","ddqsd",555,"qd",88,"ttt",new Date(2017-1990 , 9-1 , 27)),29);
-      //  myuser.selectUser().forEach(System.out::println);
-        //ServiceUser.DeleteUser(us);
-      
-       //myuser.UpdateUser(us, 29);
-        //myuser.selectUser();
-      // myuser.insererUser(us);
-       //myuser.signup(us);
-      // myuser.checkUsername("saidhmidi96@gmail.com", 32);
+        //   Client c=new Client(2,3,"mimi","momo","w=alha","balhaaaaaa","loulou.123");
+      // GestionUser gs=new GestionUser();
+//       // gs.add_client(c);
+//        System.out.println("succses");
+//            gs.lister().forEach(System.out::println);
+//System.out.println(c1.getLogin());
+//
+//           System.out.println(c1.getPassword());
+// //System.out.println(gs.verif_C(c1.getPassword(),c1.getLogin())); 
+// boolean ok=gs.verif_Client(c1.getLogin(),c1.getPassword());
+//        if (ok) {
+//            System.out.println("okk");}
+//  else{
+//            System.out.println("not ok");}
+//        
+//              Client c1=new Client("loooool","bbbbb");
+//                GestionClients gs1 = new GestionClients();
+//                gs1.update_client(c1,1);
+//        gs.delete_client(4);
+        
+//        Boutique b=new Boutique(5,"zara");
+//        
+//        
+//        ChefBoutique ch=new ChefBoutique(2,1,"xxx","raed","bouteraa","ooo@gmail.com","kjnjkn","nkjnkj","jkbhjb",b);
+//        gs.add_chef_boutique(ch);
+//        boolean x= gs.verif_C(c.getLogin(),c.getPassword());
+//        if (x==true) {
+//            System.out.println("okk");}
+//            else{
+//            System.out.println("not ok");}
+            
        
-       
-      
-      
-      
-      
-        //// test prestataire ///
-       // Prestataire p = new Prestataire("string", "string0", "string1", 0, 0, "string2", "string3", new Date(2017-1990 , 9-1,27), "string4", "string5", 0, 0," string6");
-        //ServicePrestataire.insererPrestataire(p);
-        //ServicePrestataire.selectPrestataire(p);
-    }
-    
+                Locale.setDefault(new Locale("en", "US"));
+
+
+ 
+                 launch(args);
+//       GestionClients gs1= new GestionClients();
+//        System.out.println(gs1.add_solde("1234", 2));
+// try {
+//                        String host = "localhost";
+//                        int port = 9500;
+//                        String username = "admin";
+//                        String password = "abc123";
+//
+//                        MyOzSmsClient osc = new MyOzSmsClient(host, port);
+//                        osc.login(username, password);
+//
+//                        
+//                        String line = "Hello World";
+//
+//                        System.out.println("SMS message:");
+//
+//                        if(osc.isLoggedIn()) {
+//                                osc.sendMessage("+21627170090", line);
+//                                osc.logout();
+//                        }
+//
+//
+//                } catch (IOException e) {
+//                        System.out.println(e.toString());
+//                        e.printStackTrace();
+//                } catch (InterruptedException e) {
+//                        System.out.println(e.toString());
+//                        e.printStackTrace();
+//                }
+    }   
 }
+
