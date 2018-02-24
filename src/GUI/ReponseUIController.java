@@ -50,6 +50,7 @@ public class ReponseUIController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    static int current_user_id = 3 ; 
     @FXML
     private TextArea ContenuRep;
 
@@ -59,7 +60,10 @@ public class ReponseUIController implements Initializable {
     @FXML
     private Button btnRepondre;
      @FXML
+    private VBox UpBox;
+     @FXML
     private ImageView img;
+    
 
     @FXML
     private Text nomprenom;
@@ -79,6 +83,7 @@ public class ReponseUIController implements Initializable {
    static int id_rep ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        UpBox.setSpacing(10);
         try {
         
          btnRepondre.setVisible(true);
@@ -121,41 +126,54 @@ public class ReponseUIController implements Initializable {
                          Button delete = new Button("delete"); 
                          ToggleButton likeBtn = new ToggleButton();
                         
+              likeBtn.setSelected(ReponseService.getInstance().CurrentUserLikedReponse(id_rep,current_user_id));
+                         
+                     Circle c = new Circle();
+                    c.setCenterX(50.0);
+                    c.setCenterY(125.0);
+                    c.setRadius(30.0);
+                    c.setFill(Paint.valueOf("#097D99"));
+                         Text text = new Text (String.valueOf(item.getNbr_aime_rep()));
+                         StackPane stack = new StackPane();
+                        stack.setLayoutX(30);
+                        stack.setLayoutY(30);
+                        stack.getChildren().addAll(c, text);
+
+                      
+                     
+                            Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
+                            ImageView imv =new ImageView(image);
+                            imv.setFitHeight(130);
+                            imv.setFitWidth(130);   
+                         
                       likeBtn.setOnMouseClicked((event) -> {
                         if (likeBtn.isSelected())  
                         {
                             try {
+                                
                                 ReponseService.getInstance().LikeReponse(id_rep);
-                            
-
+                                ReponseService.getInstance().AddLikedQuestion(id_rep,current_user_id);
                              
                             } catch (Exception e) {
                                 System.out.println(e);
                             }
-                              
-                         
-             
                         }
                         else 
                         {
                            try {
                                 ReponseService.getInstance().DislikeReponse(id_rep);
+                                ReponseService.getInstance().DeleteLikedQuestion(id_rep,current_user_id);
                              
                             } catch (Exception e) {
                                 System.out.println(e);
-                            }
-                             
-                         
-                        
-            }
-                        
-                            
+                            }                                      
+                        }                                  
                       });
                          
                        edit.setOnAction((event) -> {
                            try {
                                
-                               id_rep = item.getId_rep();
+                            id_rep = item.getId_rep();
                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditReponse.fxml"));
                             Parent root = (Parent) fxmlLoader.load();
                             Stage stage = new Stage();
@@ -170,7 +188,15 @@ public class ReponseUIController implements Initializable {
                        });
                        delete.setOnAction((event) -> {
                            try {
+                                   Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Information");
+                                         alert.setContentText("Vous Voulez Vraiment supprimer cette reponse?  ");
+                                             alert.showAndWait();
                                 ReponseService.getInstance().DeleteReponse(item.getId_rep());
+                                 ObservableList<Reponse> dataList = FXCollections.observableArrayList(ReponseService.getInstance().FiltredReponse(FXMain.id));
+                                 Reponselist.getItems().addAll(dataList);
+                                
+                                
                            } catch (Exception e) {
                                System.out.println(e);
                            }
@@ -179,48 +205,30 @@ public class ReponseUIController implements Initializable {
                            
                        });
                          
-                     Circle c = new Circle();
-                    c.setCenterX(50.0);
-                    c.setCenterY(125.0);
-                    c.setRadius(30.0);
-                    c.setFill(Paint.valueOf("#097D99"));
-                         Text text = new Text (String.valueOf(item.getNbr_aime_rep()));
-                         StackPane stack = new StackPane();
-                        stack.getChildren().addAll(c, text);
-
-                        stack.setLayoutX(30);
-                        stack.setLayoutY(30);
-                      VBox vbox0 = new VBox(stack,new Text("Likes"));
-                      
-                     
-                  
-                      VBox btnBox = new VBox (likeBtn,edit,delete);
-                     
-                    
-                         
-                      btnBox.setSpacing(15);
-                     
-                           
-                          
-                    
-                         VBox vBox = new VBox(
-                                    new Text(item.getContenu_rep()), new Text(item.getDate_pub())
+                  VBox vbox1 = new VBox(imv , new Text(item.getNom()+" "+item.getPrenom()));
+                  vbox1.setSpacing(8);
+                  Text contenu = new Text(item.getContenu_rep());
+                  contenu.setWrappingWidth(750);
+                 
+                  VBox vbox2 = new VBox(contenu, new Text(item.getDate_pub()));
+                  vbox2.setSpacing(25);
+                  VBox vbox3 = new VBox(likeBtn,edit,delete);
+                  vbox3.setSpacing(30);
+                  VBox vbox4 = new VBox(stack,new Text("Likes")); 
+                  vbox4.setSpacing(8);
+                  HBox ImgTxt = new HBox(vbox1,vbox2);  
+                  ImgTxt.setSpacing(15);
+                  HBox LikeButtons = new HBox(vbox3,vbox4);     
+                  LikeButtons.setSpacing(15);
+                  HBox principale = new HBox(ImgTxt,LikeButtons);
+                  principale.setSpacing(300);
+                    setGraphic(principale);
                        
-                            );
-                         
-                            vBox.setSpacing(15);
-                          
-                            Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
-                            ImageView imv =new ImageView(image);
-                            imv.setFitHeight(130);
-                            imv.setFitWidth(130);
+     
                             
-                             VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
+
                             
-                            HBox hBox = new HBox(nbox2, vBox,vbox0 ,btnBox);
-                            hBox.setSpacing(250);
                             
-                            setGraphic(hBox);
                      }
                         
                     }
@@ -249,10 +257,12 @@ public class ReponseUIController implements Initializable {
             }
             Reponse r = new Reponse(ContenuRep.getText(),FXMain.id);
             ReponseService.getInstance().AddReponse(r);
-              Alert alert = new Alert(Alert.AlertType.INFORMATION);
-           alert.setTitle("Information");
-           alert.setContentText("Votre reponse est ajoutée ");
-           alert.showAndWait();
+        
+            
+           
+           
+        ObservableList<Reponse> dataList = FXCollections.observableArrayList(ReponseService.getInstance().FiltredReponse(FXMain.id));
+        Reponselist.getItems().addAll(dataList);
   
         
          

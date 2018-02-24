@@ -141,7 +141,7 @@ public class ReponseService {
  public static List<Reponse> FiltredReponse( int id)
       {
           List<Reponse> p = new ArrayList<>();
-          String req = "SELECT r.id_rep,r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=?";
+          String req = "SELECT r.id_rep,r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=? ORDER BY r.Date_publication DESC";
          
         
          try {
@@ -182,7 +182,29 @@ public class ReponseService {
         return res;
     }       
              
-             
+      public  static Boolean CurrentUserLikedReponse(int id_rep , int id_user)      
+      {
+          Boolean exist =true;
+          String req = "SELECT COUNT(*) FROM `Liked_question` WHERE id_liked_reponse = ? and id_user = ?";
+          try {
+              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+              ste.setInt(1, id_rep);
+              ste.setInt(2, id_user);
+             ResultSet result = ste.executeQuery();
+              while (result.next())
+              {
+                if (  result.getInt("COUNT(*)")  == 1) 
+                    exist = true;
+              
+                else 
+                     exist = false ;
+              }
+          } catch (Exception e) {
+              System.out.println(e);
+          }
+       
+          return exist;
+      }
              
              
              
