@@ -73,8 +73,7 @@ public class EspaceSanteBienEtre {
 //            System.out.println(QuestionService.getInstance().GetCredential(3));
 
 
-        
-
+        ReponseService.getInstance().DeleteLikedQuestion(4,3);
 
 
 
