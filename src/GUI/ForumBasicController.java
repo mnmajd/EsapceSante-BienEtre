@@ -87,6 +87,7 @@ public class ForumBasicController implements Initializable {
           
           rechecherTxt.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
+               
                 list.getItems().addAll(data);
             } else {
                 list.setItems(FXCollections.observableArrayList(QuestionService.getInstance().FilterByTopic(rechecherTxt.getText())));

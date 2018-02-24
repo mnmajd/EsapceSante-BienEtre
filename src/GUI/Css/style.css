@@ -1,0 +1,8 @@
+.Anchornpane{
+    -fx-background-image: url("../Images/1.jpg");
+
+    -fx-background-size:cover, auto;
+    -fx-background-position: center center;
+
+
+}

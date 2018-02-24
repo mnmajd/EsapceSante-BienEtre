@@ -168,7 +168,7 @@ public class QuestionService {
             
                {
                    
-                   String req = "Select c.id_question ,c.contenu_quest, c.Sujet_Question, c.Date_publication, c.nbr_rep , u.nom , u.prenom from question c join user u on c.id_user = u.id_user where Sujet_Question=?  ORDER BY c.Date_publication DESC";
+                   String req = "Select c.id_question ,c.contenu_quest, c.Sujet_Question, c.Date_publication, c.nbr_rep , u.nom , u.prenom from question c join user u on c.id_user = u.id_user where Sujet_Question=? ";
          List<Question> p = new ArrayList<>();
          try {
             
