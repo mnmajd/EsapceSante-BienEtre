@@ -24,7 +24,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Pagination;
+
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -162,7 +162,7 @@ public class ForumBasicController implements Initializable {
                             HBox hbox = new HBox (nbox2,vBox);
                             hbox.setSpacing(10);
                             HBox hBox = new HBox(hbox ,vbox0);
-                            hBox.setSpacing(650);
+                            hBox.setSpacing(700);
                             
                             setGraphic(hBox);
                        
@@ -238,24 +238,21 @@ public class ForumBasicController implements Initializable {
                       }
                           
                       });
-                      
-                      
-                      
-                      
                          VBox vBox = new VBox(
                                     new Text(item.getSujet_question())
                                           , new Text(item.getDate_publication())
                             );
                             vBox.setSpacing(15);
                           
-                            Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
+                          Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             ImageView imv =new ImageView(image);
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);
                              VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
-                            
-                            HBox hBox = new HBox(nbox2, vBox ,vbox0);
-                            hBox.setSpacing(100);
+                            HBox hbox = new HBox (nbox2,vBox);
+                            hbox.setSpacing(10);
+                            HBox hBox = new HBox(hbox ,vbox0);
+                            hBox.setSpacing(700);
                             
                             setGraphic(hBox);
 //*UPDATE question q SET nbr_rep = (select COUNT(*) FROM reponse WHERE id_question = q.id_question ) WHERE 1
