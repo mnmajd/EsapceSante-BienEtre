@@ -5,6 +5,7 @@
  */
 package GUI.admin;
 
+import espacesante.bienetre.EspaceSanteBienEtre;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,11 +18,10 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import espacesante.bienetre.EspaceSanteBienEtre ;
-import tray.notification.NotificationType;
-import tray.notification.TrayNotification;
 import utile.AnimationGenerator;
 import utils.ImageEditor;
+
+
 
 
 public class DashboardViewController implements Initializable {
@@ -34,7 +34,6 @@ public class DashboardViewController implements Initializable {
     @FXML
     private Label managerUsers;
    
-    
     @FXML
     private Label about;
     @FXML
@@ -43,7 +42,8 @@ public class DashboardViewController implements Initializable {
     boolean menuClosed = false;
     AnimationGenerator animationGenerator;
     ImageEditor imageEditor;
-  
+    @FXML
+    private Label statistique;
     @FXML
     private Label test;
 
@@ -52,18 +52,10 @@ public class DashboardViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // GestionNotification notif=new  GestionNotification();
+    
         
         animationGenerator = new AnimationGenerator();
         imageEditor = new ImageEditor();
-//        imageEditor.setImageOn(managerUsers, "/images/users.png", 25, 25);
-//        imageEditor.setImageOn(statistiques, "/images/chart.png", 25, 25);
-//        imageEditor.setImageOn(Deals, "/images/pack.png", 25, 25);
-//        imageEditor.setImageOn(newsletter, "/images/newsletter.png", 25, 25);
-//        imageEditor.setImageOn(about, "/images/about.png", 25, 25);
-
-        
-        
         
     }    
 
@@ -103,14 +95,14 @@ public class DashboardViewController implements Initializable {
 
     
 
-    @FXML
+    
+ @FXML
     private void about(MouseEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About!");
         alert.setContentText("Said Hmidi 3A3 ESPRIT!");
         alert.showAndWait();
     }
-
 
 
     @FXML
@@ -124,6 +116,17 @@ public class DashboardViewController implements Initializable {
         AnchorPane.setBottomAnchor(parent, 0d);
         AnchorPane.setLeftAnchor(parent, 0d);
     }
-
+@FXML
+ private void statistique(MouseEvent event)throws IOException {
  
+        Parent parent = FXMLLoader.load(getClass().getResource("/GUI/admin/FXMLstat.fxml"));
+ 
+        content.getChildren().clear();
+        content.getChildren().add(parent);
+        AnchorPane.setTopAnchor(parent, 0d);
+        AnchorPane.setRightAnchor(parent, 0d);
+        AnchorPane.setBottomAnchor(parent, 0d);
+        AnchorPane.setLeftAnchor(parent, 0d);
+ 
+ }
 }

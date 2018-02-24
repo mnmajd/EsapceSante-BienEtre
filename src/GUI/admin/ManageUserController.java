@@ -76,13 +76,20 @@ public class ManageUserController implements Initializable {
 
     @FXML
     TableColumn statusColumn;
-   
-    @FXML
-    private JFXTextField tfSearch;
+   @FXML
+    private TextField tfSearch;
         private ObservableList<User> data = FXCollections.observableArrayList();
 
     FilteredList<User> filteredData = new FilteredList<>(data, p -> true);
     User us;
+    @FXML
+    private TableColumn<?, ?> idColumn;
+    @FXML
+    private TableColumn<?, ?> roleColumn;
+    @FXML
+    private TableColumn<?, ?> usernameColumn;
+    @FXML
+    private TableColumn<?, ?> nameColumn;
 
     /**
      * Initializes the controller class.
@@ -330,6 +337,7 @@ public class ManageUserController implements Initializable {
            
 
     }
+
       
     
 }

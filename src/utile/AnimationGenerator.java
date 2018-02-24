@@ -13,10 +13,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
-/**
- *
- * @author oualha
- */
+
 public class AnimationGenerator {
     
 public void applyRotationOn(Node node, int duration, double angle, int cycleCount) {

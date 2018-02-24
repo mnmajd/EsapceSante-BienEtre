@@ -144,7 +144,7 @@ UserDAO userDAO=new UserDAO();
           
         ObservableList specList = FXCollections.observableArrayList(
                 "coach salle de sport",
-                "Docteur"
+                "medecin"
         );
         ObservableList sexeList = FXCollections.observableArrayList(
                 "Homme",

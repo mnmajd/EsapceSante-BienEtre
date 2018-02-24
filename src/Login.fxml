@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="1500.0" styleClass="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.LoginController">
+   <children>
+      <GridPane layoutX="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <JFXTextField fx:id="usernameTextField" alignment="CENTER" focusColor="#1d8cf4" labelFloat="true" promptText="Nom d'utilisateur" />
+                  <Region prefHeight="19.0" prefWidth="235.0" />
+                  <JFXPasswordField fx:id="passwordTextField" alignment="CENTER" focusColor="#1d8cf4" labelFloat="true" promptText="Password" />
+                  <Region prefHeight="12.0" prefWidth="235.0" />
+                  <HBox prefHeight="61.0" prefWidth="169.0">
+                     <children>
+                        <Button id="btn_valider" fx:id="loginButton" onAction="#loginButtoAnction" prefHeight="27.0" prefWidth="84.0" text="Login!" textFill="#3ab2d0">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Region prefHeight="57.0" prefWidth="84.0" HBox.hgrow="ALWAYS" />
+                        <Button id="btn_valider" fx:id="SinginButton" onAction="#SinginButtonAction" prefHeight="27.0" prefWidth="97.0" text="s'inscrire" textFill="#3ab2d0">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="25.0" prefWidth="235.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Region prefHeight="47.0" prefWidth="100.0" />
+                        <ImageView fitHeight="60.0" fitWidth="50.0" onMouseClicked="#facebook" pickOnBounds="true" preserveRatio="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <image>
+                              <Image url="@../images/facebook.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="14.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Region prefHeight="50.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+               </children>
+            </VBox>
+            <HBox prefHeight="275.0" prefWidth="275.0" GridPane.columnIndex="1">
+               <children>
+                  <Region prefHeight="259.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fitHeight="86.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logo1.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets top="50.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Region prefHeight="259.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+               <children>
+                  <Region prefHeight="200.0" prefWidth="200.0" />
+                  <HBox prefHeight="32.0" prefWidth="116.0">
+                     <children>
+                        <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                        <Label prefHeight="17.0" prefWidth="95.0" text="E-shp © 2017" />
+                        <Region prefHeight="200.0" prefWidth="50.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="101.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.0" minWidth="10.0" prefWidth="270.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="311.0" minHeight="10.0" prefHeight="256.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="268.0" minHeight="10.0" prefHeight="256.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="184.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1400.0" styleClass="barre" stylesheets="@dashboardview.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaces.admin.DashboardViewController">
+   <children>
+      <ImageView fitHeight="18.0" fitWidth="35.0" layoutX="1353.0" layoutY="10.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <image>
+            <Image url="@../../images/Shutdown.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="currentUser" alignment="CENTER_RIGHT" layoutX="1255.0" layoutY="10.0" minWidth="-Infinity" prefHeight="15.0" text="currentuser" textAlignment="RIGHT">
+         <font>
+            <Font name="BebasNeueRegular" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="statistiques" layoutX="40.0" layoutY="582.0" onMouseClicked="#openStatistique" prefHeight="19.0" prefWidth="204.0" styleClass="menuItem" text="Statistiques" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="BebasNeueRegular" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="newsletter" layoutX="35.0" layoutY="613.0" onMouseClicked="#openNewsletter" prefWidth="204.0" styleClass="menuItem" text="Newsletter" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="BebasNeueRegular" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="managerUsers" layoutX="11.0" layoutY="280.0" onMouseClicked="#openManageUsers" prefHeight="19.0" prefWidth="190.0" styleClass="menuItem" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="BebasNeueRegular" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="managerUsers1" layoutX="239.0" layoutY="113.0" onMouseClicked="#openManageUsers" prefHeight="86.0" prefWidth="266.0" styleClass="menuItem" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="BebasNeueRegular" size="16.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="content" layoutX="244.0" layoutY="259.0" prefHeight="508.0" prefWidth="1138.0" />
+   </children>
+</AnchorPane>

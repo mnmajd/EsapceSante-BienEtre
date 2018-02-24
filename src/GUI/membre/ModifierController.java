@@ -42,9 +42,10 @@ public class ModifierController implements Initializable {
          nom.setText(EspaceSanteBienEtre.currentUser.getFirstname());
         prenom.setText(EspaceSanteBienEtre.currentUser.getLastname());
         mail.setText(EspaceSanteBienEtre.currentUser.getEmail());
+        tel.setText(EspaceSanteBienEtre.currentUser.getTelephone());
         password.setText(EspaceSanteBienEtre.currentUser.getPassword());
         password2.setText(EspaceSanteBienEtre.currentUser.getPassword());
-        tel.setText(EspaceSanteBienEtre.currentUser.getTelephone());
+      
         System.out.println(EspaceSanteBienEtre.currentUser.getAvatar());
   
     }    
