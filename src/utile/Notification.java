@@ -11,17 +11,13 @@ import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-
-/**
- *
- * @author said hmidi
- */
+import org.controlsfx.control.Notifications;
 
 
 public class Notification {
     public static void notificationDeConfirmation(ActionEvent event,Image i){
         
-     /*    Notifications notificationBuilder = Notifications.create()
+         Notifications notificationBuilder = Notifications.create()
                 .title("Evénements")
                 .text(" Creation faite")
                  
@@ -84,7 +80,6 @@ public class Notification {
         });
            notificationBuilder.darkStyle();
            notificationBuilder.show();
-*/
        
        }
     
