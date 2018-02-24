@@ -1,0 +1,20 @@
+
+.barre{
+    -fx-background-image: url("../Images/admin.jpg");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+    -fx-background-position: center center;
+
+
+}
+
+.left{
+    -fx-background-image: url("../Images/admin2.jpg");
+    -fx-background-attachment: fixed;
+    -fx-background-position: center center;
+    -fx-background-size:100% auto;
+
+
+
+}

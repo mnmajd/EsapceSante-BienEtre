@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="466.0" prefWidth="1183.0" styleClass="modifier" stylesheets="GUI/Css/style_profile.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifierController">
+   <children>
+      <TextField fx:id="prenom"  layoutX="650.0" layoutY="38.0" prefHeight="39.0" prefWidth="255.0">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="mail"  layoutX="358.0" layoutY="91.0" prefHeight="36.0" prefWidth="546.0">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="tel"  layoutX="357.0" layoutY="138.0" prefHeight="37.0" prefWidth="547.0">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="password"  layoutX="358.0" layoutY="186.0" prefHeight="36.0" prefWidth="547.0">
+         <font>
+            <Font name="Comic Sans MS Bold" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="nom"  layoutX="358.0" layoutY="40.0" prefHeight="37.0" prefWidth="256.0">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font></TextField>
+      <TextField fx:id="password2"  layoutX="358.0" layoutY="234.0" prefHeight="34.0" prefWidth="546.0">
+         <font>
+            <Font name="Comic Sans MS" size="20.0" />
+         </font></TextField>
+      <Label layoutX="839.0" layoutY="298.0" onMouseClicked="#modifier" prefHeight="41.0" prefWidth="301.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+   </children>
+</AnchorPane>

@@ -205,6 +205,33 @@ public class ReponseService {
        
           return exist;
       }
+      public static void AddLikedQuestion( int id_rep , int id_user)
+      {
+          String req ="INSERT INTO Liked_question(id_liked_reponse, id_user) VALUES (?,?)" ;
+          try {
+              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ste.setInt(1,id_rep);
+             ste.setInt(2,id_user);
+             ste.executeUpdate();
+              
+          } catch (Exception e) {
+              System.out.println(e);
+          }
+          
+      }
+      public static void DeleteLikedQuestion(int id_rep,int id_user)
+      {
+             String req ="DELETE FROM Liked_question WHERE id_liked_reponse = ? AND id_user = ? " ;
+          try {
+              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
+             ste.setInt(1,id_rep);
+             ste.setInt(2,id_user);
+             ste.executeUpdate();
+              
+          } catch (Exception e) {
+              System.out.println(e);
+          }
+      }
              
              
              
