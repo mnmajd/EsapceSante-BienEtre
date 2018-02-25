@@ -124,6 +124,7 @@ public class ReponseUIController implements Initializable {
                         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                      if ( item != null)
                      {
+                         
                          ImageView likeicon = new ImageView();
                    Image likeimg = new Image("/GUI/Images/like.png") ;
                    likeicon.setImage(likeimg);
@@ -145,20 +146,20 @@ public class ReponseUIController implements Initializable {
                          likeBtn.setGraphic(likeicon);
                          edit.setGraphic(editIcon);
                          delete.setGraphic(deleteicon);
-                        
-              likeBtn.setSelected(ReponseService.getInstance().CurrentUserLikedReponse(id_rep,current_user_id));
-                      
-              if (likeBtn.isSelected())
-              {
-               likeBtn.setGraphic(dislikeicon);   
-              }
-              else if (likeBtn.isSelected() == false)
-              {
-                  likeBtn.setGraphic(likeicon);   
-              }
              
+              likeBtn.setGraphic(likeicon);   
               
-              
+      
+//                      
+//              if (likeBtn.isSelected())
+//              {
+//               likeBtn.setGraphic(dislikeicon);   
+//              }
+//              else if (likeBtn.isSelected() == false)
+//              {
+//                  likeBtn.setGraphic(likeicon);   
+//                       
+                      
               
               
               
@@ -184,35 +185,7 @@ public class ReponseUIController implements Initializable {
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);   
                             
-                         
-                      likeBtn.setOnMouseClicked((event) -> {
-                        if (likeBtn.isSelected())  
-                        {
-                            try {
-                                
-                                ReponseService.getInstance().LikeReponse(id_rep);
-                                ReponseService.getInstance().AddLikedQuestion(id_rep,current_user_id);
-                                likeBtn.setGraphic(dislikeicon);  
-                                  
-                            } catch (Exception e) {
-                                System.out.println(e);
-                            }
-                        }
-                        else 
-                        {
-                           try {
-                               
-                                ReponseService.getInstance().DislikeReponse(id_rep);
-                                ReponseService.getInstance().DeleteLikedQuestion(id_rep,current_user_id);
-                                likeBtn.setGraphic(likeicon); 
-                                
-                                 
-                                 
-                            } catch (Exception e) {
-                                System.out.println(e);
-                            }                                      
-                        }                                  
-                      });
+
                          
                        edit.setOnAction((event) -> {
                            try {
@@ -262,20 +235,50 @@ public class ReponseUIController implements Initializable {
                   Text contenu = new Text(item.getContenu_rep());
                   contenu.setWrappingWidth(750);
                  
-                  VBox vbox2 = new VBox(contenu, new Text(item.getDate_pub()));
+                  VBox vbox2 = new VBox(contenu, new Text("id reponse"+id_rep),new Text(item.getDate_pub()));
                   vbox2.setSpacing(25);
                   VBox vbox3 = new VBox(likeBtn,edit,delete);
                   vbox3.setSpacing(30);
+                  
                   VBox vbox4 = new VBox(stack,new Text("Likes")); 
                   vbox4.setSpacing(8);
                   HBox ImgTxt = new HBox(vbox1,vbox2);  
                   ImgTxt.setSpacing(15);
-                  HBox LikeButtons = new HBox(vbox3,vbox4);     
-                  LikeButtons.setSpacing(10);
+                    HBox LikeButtons = new HBox(vbox3,vbox4);     
+                    LikeButtons.setSpacing(10);
                   HBox principale = new HBox(ImgTxt,LikeButtons);
                   principale.setSpacing(300);
                     setGraphic(principale);
-                       
+                     likeBtn.setSelected(ReponseService.CurrentUserLikedReponse(id_rep, current_user_id));
+                       likeBtn.setOnMouseClicked((event) -> {
+                        if (likeBtn.isSelected())  
+                        {
+                            try {
+                                
+                                ReponseService.getInstance().LikeReponse(item.getId_rep());
+                              ReponseService.getInstance().AddLikedQuestion(item.getId_rep(),current_user_id);
+                            
+                                  
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }
+                        }
+                        else 
+                        {
+                           try {
+                               
+                                ReponseService.getInstance().DislikeReponse(item.getId_rep());
+                              ReponseService.getInstance().DeleteLikedQuestion(item.getId_rep(),current_user_id);
+                  
+                                
+                                 
+                                 
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }                                      
+                        }                                  
+                      });
+              
      
                             
 

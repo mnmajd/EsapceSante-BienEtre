@@ -32,9 +32,9 @@
          </children></AnchorPane>
       <HBox layoutX="2.0" layoutY="-3.0" prefHeight="44.0" prefWidth="971.0">
          <children>
-            <Label prefHeight="57.0" prefWidth="349.0" text="forum Espace sante" textFill="#26aed3">
+            <Label prefHeight="44.0" prefWidth="505.0" text="Forum Espace sante" textFill="#26aed3">
                <font>
-                  <Font name="Georgia" size="37.0" />
+                  <Font name="DejaVu Serif Bold" size="37.0" />
                </font>
             </Label>
             <Button fx:id="Questionbtn" mnemonicParsing="false" onAction="#GoToQuestion" prefHeight="42.0" prefWidth="185.0" text="Posez votre Question" textFill="#228a9a">
