@@ -72,7 +72,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <image>
-                              <Image url="@../../images/add_user.png" />
+                              <Image url="GUI/Images/add_user.png" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="edit" disable="true" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#userEdit" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
@@ -80,7 +80,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <image>
-                              <Image url="@../../images/edit_user.png" />
+                              <Image url="GUI/Images/edit_user.png" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="delete" disable="true" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#userDelete" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
@@ -88,7 +88,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <image>
-                              <Image url="@../../images/delete_user.png" />
+                              <Image url="GUI/Images/delete_user.png" />
                            </image>
                         </ImageView>
                      </children>

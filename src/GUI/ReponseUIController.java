@@ -1,3 +1,6 @@
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,9 +14,9 @@ import Entite.Reponse;
 import Service.QuestionService;
 import Service.ReponseService;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -38,7 +42,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.controlsfx.control.Rating;
+
 
 /**
  * FXML Controller class
@@ -120,14 +124,48 @@ public class ReponseUIController implements Initializable {
                         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                      if ( item != null)
                      {
-                       
+                         ImageView likeicon = new ImageView();
+                   Image likeimg = new Image("/GUI/Images/like.png") ;
+                   likeicon.setImage(likeimg);
+                   ImageView dislikeicon = new ImageView();
+                   Image dislikeimg = new Image("/GUI/Images/dislike.png") ;
+                   dislikeicon.setImage(dislikeimg);
+                   
+                   ImageView editIcon = new ImageView();
+                   Image editimg = new Image("/GUI/Images/edit.png") ;
+                   editIcon.setImage(editimg);
+                   
+                   ImageView deleteicon = new ImageView();
+                   Image deleteimg = new Image("/GUI/Images/rubbish.png") ;
+                   deleteicon.setImage(deleteimg);
                         id_rep = item.getId_rep();
-                        Button edit = new Button("edit");  
-                         Button delete = new Button("delete"); 
+                        Button edit = new Button();  
+                         Button delete = new Button(); 
                          ToggleButton likeBtn = new ToggleButton();
+                         likeBtn.setGraphic(likeicon);
+                         edit.setGraphic(editIcon);
+                         delete.setGraphic(deleteicon);
                         
               likeBtn.setSelected(ReponseService.getInstance().CurrentUserLikedReponse(id_rep,current_user_id));
-                         
+                      
+              if (likeBtn.isSelected())
+              {
+               likeBtn.setGraphic(dislikeicon);   
+              }
+              else if (likeBtn.isSelected() == false)
+              {
+                  likeBtn.setGraphic(likeicon);   
+              }
+             
+              
+              
+              
+              
+              
+              
+              
+              
+              
                      Circle c = new Circle();
                     c.setCenterX(50.0);
                     c.setCenterY(125.0);
@@ -140,11 +178,12 @@ public class ReponseUIController implements Initializable {
                         stack.getChildren().addAll(c, text);
 
                       
-                     
+   
                             Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             ImageView imv =new ImageView(image);
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);   
+                            
                          
                       likeBtn.setOnMouseClicked((event) -> {
                         if (likeBtn.isSelected())  
@@ -153,7 +192,8 @@ public class ReponseUIController implements Initializable {
                                 
                                 ReponseService.getInstance().LikeReponse(id_rep);
                                 ReponseService.getInstance().AddLikedQuestion(id_rep,current_user_id);
-                             
+                                likeBtn.setGraphic(dislikeicon);  
+                                  
                             } catch (Exception e) {
                                 System.out.println(e);
                             }
@@ -161,9 +201,13 @@ public class ReponseUIController implements Initializable {
                         else 
                         {
                            try {
+                               
                                 ReponseService.getInstance().DislikeReponse(id_rep);
                                 ReponseService.getInstance().DeleteLikedQuestion(id_rep,current_user_id);
-                             
+                                likeBtn.setGraphic(likeicon); 
+                                
+                                 
+                                 
                             } catch (Exception e) {
                                 System.out.println(e);
                             }                                      
@@ -190,11 +234,19 @@ public class ReponseUIController implements Initializable {
                            try {
                                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                     alert.setTitle("Information");
-                                         alert.setContentText("Vous Voulez Vraiment supprimer cette reponse?  ");
-                                             alert.showAndWait();
-                                ReponseService.getInstance().DeleteReponse(item.getId_rep());
+                                     alert.setContentText("Vous Voulez Vraiment supprimer cette reponse?  ");
+                                   Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == ButtonType.OK){
+                                         ReponseService.getInstance().DeleteReponse(item.getId_rep());
+                                Reponselist.getItems().clear();
                                  ObservableList<Reponse> dataList = FXCollections.observableArrayList(ReponseService.getInstance().FiltredReponse(FXMain.id));
                                  Reponselist.getItems().addAll(dataList);
+  
+                                } else {
+                                            
+                                                }
+                                     
+                               
                                 
                                 
                            } catch (Exception e) {
@@ -219,7 +271,7 @@ public class ReponseUIController implements Initializable {
                   HBox ImgTxt = new HBox(vbox1,vbox2);  
                   ImgTxt.setSpacing(15);
                   HBox LikeButtons = new HBox(vbox3,vbox4);     
-                  LikeButtons.setSpacing(15);
+                  LikeButtons.setSpacing(10);
                   HBox principale = new HBox(ImgTxt,LikeButtons);
                   principale.setSpacing(300);
                     setGraphic(principale);
@@ -258,9 +310,7 @@ public class ReponseUIController implements Initializable {
             Reponse r = new Reponse(ContenuRep.getText(),FXMain.id);
             ReponseService.getInstance().AddReponse(r);
         
-            
-           
-           
+           Reponselist.getItems().clear();
         ObservableList<Reponse> dataList = FXCollections.observableArrayList(ReponseService.getInstance().FiltredReponse(FXMain.id));
         Reponselist.getItems().addAll(dataList);
   
