@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLmembreViewController">
+   <children>
+      <ListView fx:id="list" layoutY="71.0" prefHeight="650.0" prefWidth="900.0" />
+      <TextField fx:id="txtrech" layoutX="88.0" layoutY="30.0" onKeyReleased="#reche" prefHeight="25.0" prefWidth="171.0" promptText="Rechercher par titre " />
+      <ComboBox fx:id="combofind" layoutX="471.0" layoutY="30.0" prefHeight="25.0" prefWidth="200.0" promptText="Rechercher par catégorie" />
+   </children>
+</AnchorPane>

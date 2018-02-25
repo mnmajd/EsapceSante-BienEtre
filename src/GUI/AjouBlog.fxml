@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AjouBlogController">
+   <children>
+      <TabPane id="tab1" fx:id="tabpane" prefHeight="600.0" prefWidth="900.0" styleClass="tab1" stylesheets="@st.css" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab id="tab1" fx:id="tab1" style="fx-background-image: &quot;health.jpg&quot;;" styleClass="tab1" text="Ajouter Blog">
+            <content>
+              <AnchorPane id="tab1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="900.0">
+                     <children>
+                        <Button fx:id="idimage" layoutX="341.0" layoutY="295.0" mnemonicParsing="false" onAction="#ajoutimg" text="Ajouter une image " textFill="#369ce0">
+                           <font>
+                              <Font name="Microsoft NeoGothic Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <TextField id="idtitre" fx:id="idtitre" layoutX="341.0" layoutY="69.0" prefHeight="25.0" prefWidth="212.0" promptText="Titre du Blog" />
+                        <Text fx:id="titr" fill="#36e4a4" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Blog ..." wrappingWidth="176.185546875">
+                           <font>
+                              <Font name="Source Code Pro ExtraLight" size="24.0" />
+                           </font>
+                           <effect>
+                              <Bloom />
+                           </effect>
+                        </Text>
+                        <TextField id="idsujet" fx:id="idsujet" layoutX="341.0" layoutY="100.0" prefHeight="25.0" prefWidth="212.0" promptText="Sujet" />
+                        <TextArea id="idcontenu" fx:id="idcontenu" layoutX="341.0" layoutY="169.0" prefHeight="119.0" prefWidth="379.0" promptText="Ajouter un Blog ..." />
+                        <Button id="btnAjout" fx:id="btnadd" layoutX="692.0" layoutY="334.0" mnemonicParsing="false" onAction="#insererArticle" prefHeight="25.0" prefWidth="104.0" text="Publier" />
+                        <ComboBox fx:id="idchoix" layoutX="341.0" layoutY="137.0" prefHeight="25.0" prefWidth="213.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab fx:id="tab2" text="Consulter Blogs">
+            <content>
+              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="900.0" minWidth="450.0" prefHeight="500.0" prefWidth="900.0">
+                     <children>
+                        <Text fx:id="txt1" fill="#942a2a" layoutX="18.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valeur pour tester !" wrappingWidth="424.13671875">
+                           <font>
+                              <Font name="Bauhaus 93" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                        <ListView id="liste" fx:id="liste" layoutY="22.0" prefHeight="540.0" prefWidth="900.0" stylesheets="@styleli.css">
+                           <styleClass>
+                              <String fx:value="list-view" />
+                              <String fx:value="list-cell" />
+                           </styleClass></ListView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

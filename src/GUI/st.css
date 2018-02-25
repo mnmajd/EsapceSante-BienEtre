@@ -1,0 +1,5 @@
+#tab1{
+   -fx-background-image: url('health.jpg');
+   -fx-background-repeat: stretch;   
+   -fx-background-position: center center;
+}
