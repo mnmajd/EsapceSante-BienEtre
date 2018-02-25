@@ -47,7 +47,7 @@ public class ModifierController implements Initializable {
         password2.setText(EspaceSanteBienEtre.currentUser.getPassword());
       
         System.out.println(EspaceSanteBienEtre.currentUser.getAvatar());
-  
+ 
     }    
 
     @FXML
@@ -66,8 +66,10 @@ public class ModifierController implements Initializable {
             user.setAdress(EspaceSanteBienEtre.currentUser.getAdress());
             user.setTelephone(tel.getText());
             user.setStatus(EspaceSanteBienEtre.currentUser.getStatus());
-
-            userDAO.update(user);
+            userDAO.update2(user);
+           
+          
+            
             System.out.println(user.getEmail());
           
                 Mail.sendMail(user.getEmail(), "Compte Espace sante", "Votre compte en tant que"+user.getRole()+" chez Espace sante a été modifier avec succsée: " 

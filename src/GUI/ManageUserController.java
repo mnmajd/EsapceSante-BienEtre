@@ -99,6 +99,7 @@ public class ManageUserController implements Initializable {
         usersTable.setEditable(true);
         
   userDAO = new UserDAO();
+  
         role.setItems(FXCollections.observableArrayList(
                 "Choisissez un role...",
                 "Membre",
@@ -115,12 +116,13 @@ public class ManageUserController implements Initializable {
                 UserStatus.PENDING,
                 UserStatus.REFUSED
         ));
-         
+         idColumn.setVisible(false);
         usersTable.getSelectionModel().selectedItemProperty()
                 .addListener((observableValue, oldValue, newValue) -> { 
                     if (newValue != null) {
                         User selectedUser = (User) newValue;
                         if (selectedUser.getRole().toLowerCase().equals("admin")) {
+                            //refreshTable();
                             clearFields();
                             return;
                         }
@@ -140,6 +142,8 @@ public class ManageUserController implements Initializable {
                         clearFields();
                     }
                 });
+        
+        id.setVisible(false);
         statusColumn.setCellFactory(column -> {
             return new TableCell<User, String>() {
                 @Override

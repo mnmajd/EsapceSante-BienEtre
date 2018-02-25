@@ -85,6 +85,7 @@ public class MembreViewController implements Initializable {
         AnchorPane.setRightAnchor(parent, 0d);
         AnchorPane.setBottomAnchor(parent, 0d);
         AnchorPane.setLeftAnchor(parent, 0d);
+        
     }
 
     @FXML

@@ -72,7 +72,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <image>
-                              <Image url="@../../images/add_user.png" />
+                              <Image url="GUI/Images/add_user.png" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="edit" disable="true" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#userEdit" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
@@ -80,7 +80,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <image>
-                              <Image url="@../../images/edit_user.png" />
+                              <Image url="GUI/Images/edit_user.png" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="delete" disable="true" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#userDelete" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
@@ -88,7 +88,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                            <image>
-                              <Image url="@../../images/delete_user.png" />
+                              <Image url="GUI/Images/delete_user.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -151,7 +151,7 @@
       </SplitPane>
       <ImageView fitHeight="29.0" fitWidth="240.0" layoutX="933.0" layoutY="1.0" onKeyTyped="#serachUser" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="630.0" AnchorPane.leftAnchor="933.0" AnchorPane.rightAnchor="16.945205688476562" AnchorPane.topAnchor="1.0">
          <image>
-            <Image url="@../../images/barre_recherche.png" />
+            <Image url="GUI/Images/barre_recherche.png" />
          </image>
       </ImageView>
        <TextField fx:id="tfSearch"  layoutX="939.0" layoutY="-3.0" onKeyReleased="#serachUser" prefHeight="25.0" prefWidth="139.0" />
