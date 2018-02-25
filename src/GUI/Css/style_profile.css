@@ -20,13 +20,4 @@ fx-background-position: center center;
 
 
 }
-.solde{
-    -fx-background-image: url("../Images/solde.jpg")  ;
--fx-background-size:100% auto;
--fx-background-attachment: fixed;
--fx-overflow-x:hidden;
-fx-background-position: center center;
--fx-background-repeat: no-repeat;
 
-
-}

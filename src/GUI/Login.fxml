@@ -45,7 +45,7 @@
                      </VBox.margin>
                   </TextField>
                   <Region prefHeight="40.0" prefWidth="391.0" />
-                  <PasswordField fx:id="passwordTextField" alignment="CENTER" promptText="Password">
+                  <PasswordField fx:id="passwordTextField" alignment="CENTER"   promptText="Password">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>

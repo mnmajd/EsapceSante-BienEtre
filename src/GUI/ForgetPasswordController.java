@@ -66,8 +66,11 @@ public class ForgetPasswordController implements Initializable {
       
         user = userDAO.findByEmail(email.getText());
        
+      
+        
+        
          System.out.println(user.getId());
-        if( !user.equals(null) ) {
+        if( !user.equals(null)  ) {
            
             buttonError.setText("Veuillez verifier votre boite mail");
         buttonError.setVisible(true);

@@ -193,6 +193,18 @@ UserDAO userDAO=new UserDAO();
 
             return;
         }
+        if(userDAO.checkUseremail(email.getText()))
+        {
+        PseudoClass pseudoClass = PseudoClass.getPseudoClass("error");
+            username.pseudoClassStateChanged(pseudoClass, true);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Eamil existe deja!");
+            alert.setHeaderText(username.getText());
+            alert.setContentText("Ce mail d'utilisateur existe deja");
+            alert.showAndWait();
+
+            return;
+        }
         
         if(user.getDateNaissance().after(Date.valueOf("2006-01-01"))){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -203,6 +215,7 @@ UserDAO userDAO=new UserDAO();
 
             return;
         }
+        
         
         //controle de saisie
         

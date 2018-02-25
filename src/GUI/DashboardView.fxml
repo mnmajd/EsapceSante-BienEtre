@@ -81,7 +81,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <image>
-                        <Image url="@../../images/Shutdown.png" />
+                        <Image url="GUI/Images/Shutdown.png" />
                      </image>
                      <HBox.margin>
                         <Insets right="50.0" top="15.0" />

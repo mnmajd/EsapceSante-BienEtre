@@ -9,6 +9,7 @@ package Service;
 import interfaces.IUserDAO;
 
 import Entite.User;
+import GUI.EspaceSanteBienEtre;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -154,6 +155,34 @@ public class UserDAO implements IUserDAO{
     }
 
     
+    public void update2(User user) {
+        
+
+        String sql = "UPDATE `user` SET "
+                + "`login`=?,"
+                + "`password`=?,"
+                + "`email`=?,"
+                + "`nom`=?,"
+                + "`prenom`=?,"
+                + "`adress`=?,"
+                + "`telephone`=?"              
+                + "WHERE `id_user`= ?";
+        try (PreparedStatement statement = Database.getConnection().prepareStatement(sql)) {
+            int columnIndex = 0;
+            statement.setString(++columnIndex, user.getUsername());
+            statement.setString(++columnIndex, user.getPassword());
+            statement.setString(++columnIndex, user.getEmail());
+            statement.setString(++columnIndex, user.getFirstname());
+            statement.setString(++columnIndex, user.getLastname());
+            statement.setString(++columnIndex, user.getAdress());
+            statement.setString(++columnIndex, user.getTelephone());
+            statement.setInt(++columnIndex,EspaceSanteBienEtre.currentUser.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
    
 
 
@@ -334,6 +363,37 @@ public class UserDAO implements IUserDAO{
     }
     
     
+    
+   
+    public boolean checkUseremail(String email) {
+        return checkUseremail(email, null);
+    }
+    
+ 
+    public boolean checkUseremail(String email, Integer id) {
+        String sql = "SELECT count(*) FROM `user` "
+                + "WHERE `email` = ?"
+                + (id != null ? " AND `id_user` != ?" : "");
+
+        boolean result = false;
+        try (PreparedStatement statement = Database.getConnection().prepareStatement(sql)) {
+
+            statement.setString(1, email);
+            if (id != null) {
+                statement.setInt(2, id);
+            }
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                if (resultSet.getInt(1) > 0) {
+                    result = true;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return result;
+    }   
     
      public ObservableList<User>findAll2(String login) {
         ObservableList<User> users=FXCollections.observableArrayList();
