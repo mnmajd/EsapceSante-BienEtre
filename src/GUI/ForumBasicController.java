@@ -34,6 +34,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -62,12 +63,15 @@ public class ForumBasicController implements Initializable {
      @FXML
     private TabPane TabeCat;
     @FXML
+    
     private Button Questionbtn;
     static int id_question;// pour recupurer l'id du question a modifié
+     static String CurrentActiveTab;
 
     @Override
    
     public void initialize(URL url, ResourceBundle rb) {
+        
         QuestionService.getInstance().UpdateLikes();
               List<String> p  =  Service.ServiceCategorieForum.ReadCategorie();
 
@@ -76,17 +80,18 @@ public class ForumBasicController implements Initializable {
         p
         
         );
-        for (Object cat : CategorieForum) {
+            for (Object cat : CategorieForum) {
         TabeCat.getTabs().add(new Tab((String) cat));
-                    }
-//        System.out.println(TabeCat.getSelectionModel().getSelectedItem().getText());
         
+                    }
+            CurrentActiveTab= TabeCat.getSelectionModel().getSelectedItem().getText();
+            TabeCat.setBorder(Border.EMPTY);
         ObservableList<Question> data = FXCollections.observableArrayList(
-             QuestionService.getInstance().FilterByCat(TabeCat.getSelectionModel().getSelectedItem().getText())
+             QuestionService.getInstance().FilterByCat(CurrentActiveTab)
                   
             
           );
-            
+           
           list.getItems().addAll(data);
           
           rechecherTxt.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -200,13 +205,17 @@ public class ForumBasicController implements Initializable {
    TabeCat.getSelectionModel().selectedItemProperty().addListener(
     new ChangeListener<Tab>() {
         @Override
+        
         public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
                list.getItems().clear();
+               CurrentActiveTab= TabeCat.getSelectionModel().getSelectedItem().getText();
               ObservableList<Question> data = FXCollections.observableArrayList(
-             QuestionService.getInstance().FilterByCat(TabeCat.getSelectionModel().getSelectedItem().getText())
+             QuestionService.getInstance().FilterByCat(CurrentActiveTab)
+                      
                   
             
           );
+            
           list.getItems().addAll(data);
           list.setCellFactory(new Callback<ListView<Question>, ListCell<Question>>()
                   {
@@ -219,7 +228,7 @@ public class ForumBasicController implements Initializable {
                           super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                        if ( item != null)
                        {
- 
+                            System.out.println(CurrentActiveTab);
                        Circle c = new Circle();
                  ImageView editIcon = new ImageView();
                    Image editimg = new Image("/GUI/Images/edit.png") ;
@@ -314,10 +323,12 @@ public class ForumBasicController implements Initializable {
                   
     }
 );
+  
    list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Question> () {
                   @Override
                   public void changed(ObservableValue<? extends Question> observable, Question oldValue, Question newValue) {
                        try {
+                           CurrentActiveTab= TabeCat.getSelectionModel().getSelectedItem().getText();
                            FXMain.id = newValue.getId_question();
                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReponseUI.fxml"));
                             Parent root = (Parent) fxmlLoader.load();

@@ -22,6 +22,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -40,6 +43,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -87,6 +91,7 @@ public class ReponseUIController implements Initializable {
    static int id_rep ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(ForumBasicController.CurrentActiveTab);
         UpBox.setSpacing(10);
         try {
         
@@ -107,6 +112,8 @@ public class ReponseUIController implements Initializable {
       
       Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             img.setImage(image);
+                              img.setFitHeight(200);
+                            img.setFitWidth(700);
                            
      // Remplissage de la lise qui suit
     
@@ -173,6 +180,7 @@ public class ReponseUIController implements Initializable {
                     c.setRadius(30.0);
                     c.setFill(Paint.valueOf("#097D99"));
                          Text text = new Text (String.valueOf(item.getNbr_aime_rep()));
+                         text.setTextAlignment(TextAlignment.CENTER);
                          StackPane stack = new StackPane();
                         stack.setLayoutX(30);
                         stack.setLayoutY(30);
@@ -184,7 +192,7 @@ public class ReponseUIController implements Initializable {
                             ImageView imv =new ImageView(image);
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);   
-                            
+                   
 
                          
                        edit.setOnAction((event) -> {
@@ -229,19 +237,30 @@ public class ReponseUIController implements Initializable {
                           
                            
                        });
-                         
-                  VBox vbox1 = new VBox(imv , new Text(item.getNom()+" "+item.getPrenom()));
+                    Text NP = new Text(item.getNom()+" "+item.getPrenom());
+               
+                   NP.setTextOrigin(VPos.CENTER);
+                  VBox vbox1 = new VBox(imv , NP);
+                  vbox1.setAlignment(Pos.CENTER);
                   vbox1.setSpacing(8);
                   Text contenu = new Text(item.getContenu_rep());
+                  contenu.setLayoutX(20);
                   contenu.setWrappingWidth(750);
                  
-                  VBox vbox2 = new VBox(contenu, new Text("id reponse"+id_rep),new Text(item.getDate_pub()));
+                  VBox vbox2 = new VBox(contenu,new Text(item.getDate_pub()));
+                  
+                  
                   vbox2.setSpacing(25);
+                  
                   VBox vbox3 = new VBox(likeBtn,edit,delete);
                   vbox3.setSpacing(30);
-                  
-                  VBox vbox4 = new VBox(stack,new Text("Likes")); 
+                 Text likes =  new Text("Likes");
+                 
+                 likes.setTextAlignment(TextAlignment.CENTER);
+                  VBox vbox4 = new VBox(stack,likes); 
+                  vbox4.setAlignment(Pos.CENTER);
                   vbox4.setSpacing(8);
+                  
                   HBox ImgTxt = new HBox(vbox1,vbox2);  
                   ImgTxt.setSpacing(15);
                     HBox LikeButtons = new HBox(vbox3,vbox4);     
