@@ -7,14 +7,9 @@ package GUI;
 
 import java.io.IOException;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -23,30 +18,30 @@ import javafx.stage.Stage;
  */
 public class NewFXMain extends Application {
     
-//    @Override
-//    public void start(Stage stage) {
-//        try {
-//            Parent root = FXMLLoader.load(getClass().getResource("interface_ajouter.fxml"));
-//         
-//            Scene scene = new Scene(root) ;
-//            stage.setScene(scene);
-//            stage.show();
+static Stage stage;
     
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Interface_prestatére.fxml"));
-         
+            this.stage=stage;
+            Parent root = FXMLLoader.load(getClass().getResource("interface_prestatére.fxml"));
             Scene scene = new Scene(root) ;
             stage.setScene(scene);
-            stage.show();
-
-            
+            stage.show();       
         } catch (IOException e) {
             System.out.println(e);
         }
-     
-    
+  
+        
+        
+//        try {
+//            Parent root = FXMLLoader.load(getClass().getResource("interface_membre.fxml"));
+//            Scene scene = new Scene(root) ;
+//            stage.setScene(scene);
+//            stage.show();       
+//        } catch (IOException e) {
+//            System.out.println(e);
+//        }
     }
 
     /**
