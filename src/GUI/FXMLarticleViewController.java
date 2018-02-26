@@ -39,12 +39,13 @@ public class FXMLarticleViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        titrev.setText(LST.t);
-//      categv.setText(LST.a);
-//     sujetv.setText(LST.s);
-//       datev.setText(LST.d);
-//         conten.setText(LST.c);
-//         imgv.setImage(LST.b);
+        titrev.setText(LST.t);
+      categv.setText(LST.catr);
+     sujetv.setText(LST.sujet);
+       datev.setText(LST.d);
+         conten.setText(LST.c);
+         
+         //imgv.setImage(LST.b);
 //         
          
          

@@ -56,8 +56,9 @@ public class FXMLmembreViewController implements Initializable {
  static String c ;
  static String d ;
  static String sujet ;
- static String a ;
+ //static String a ;
  static String b ;
+  static String catr;
  
     @FXML
     private ListView<Article> list;
@@ -118,7 +119,7 @@ data.addAll(0, servBlog);
                        int categid = (item.getId_cat());
                        String categorie = caa.GetNameGateg(categid);
                        Text categText = new Text(categorie);
-                       a = categorie ;
+                       catr = categorie ;
                           //  System.out.println(categid);
                          
 //                        Text categText = new Text(item.getId_cat());
@@ -235,12 +236,12 @@ data.addAll(0, servBlog);
             @Override
             public void changed(ObservableValue<? extends Article> observable, Article oldValue, Article newValue) {
                                 try {
-                                LST.s=newValue.getContenu_article();
-                                LST.a=newValue.getTitre_article();
-                               // LST.b=newValue.get
-                                //LST.c=newValue.getDate_pub();
-                                LST.d=newValue.getImg_artc();
-                              //  LST.s=newValue.getc
+//                                LST.s=newValue.getContenu_article();
+//                                LST.a=newValue.getTitre_article();
+//                              //  LST.b=newValue.get
+//                                LST.c=newValue.getDate_pub();
+//                                LST.d=newValue.getImg_artc();
+                              //LST.s=newValue.getc
                                 
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLarticleView.fxml"));
             Parent root = (Parent) fxmlLoader.load();

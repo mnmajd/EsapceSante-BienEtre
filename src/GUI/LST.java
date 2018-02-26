@@ -18,12 +18,14 @@ import javafx.stage.Stage;
  */
 public class LST extends Application {
     static Stage stg;
-    static String s;
-     static String a;
-      static String b;
+    static String t;
+     static String d;
+      static String sujet;
        static String c;
-       static String d;
-         static Image f;
+       static String b;
+        // static Image f;
+           static String catr;
+    
     
     @Override
     public void start(Stage stage) throws Exception {
