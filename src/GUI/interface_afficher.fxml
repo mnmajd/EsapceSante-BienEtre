@@ -27,8 +27,8 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="414.0" prefWidth="417.0">
                <children>
-                  <Button layoutX="233.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleDeleteAnnonce" text="delate" />
-                  <Button fx:id="modifier" layoutX="117.0" layoutY="535.0" mnemonicParsing="false" onAction="#modifierAnnonce" text="Modifier" />
+                  <Button layoutX="233.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleDeleteAnnonce" text="delate" textFill="#962c6c" />
+                  <Button fx:id="modifier" layoutX="117.0" layoutY="535.0" mnemonicParsing="false" onAction="#modifierAnnonce" text="Modifier" textFill="#962c6c" />
                   <TextField fx:id="image" layoutX="252.0" layoutY="447.0" prefHeight="25.0" prefWidth="149.0" />
                   <Button fx:id="img" layoutX="117.0" layoutY="447.0" mnemonicParsing="false" onAction="#ajouterimage" text="Ajouter une image" />
                   <TextField fx:id="add" layoutX="249.0" layoutY="321.0" />
