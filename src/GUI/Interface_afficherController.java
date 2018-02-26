@@ -5,76 +5,126 @@
  */
 package GUI;
 
-import Annonce.AnnonceUser;
+import Service.AnnonceUser;
 import Entite.Annonce;
+import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import static Annonce.AnnonceUser.deleteAnnonce;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.stage.FileChooser;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
 public class Interface_afficherController implements Initializable {
 
+    static int id;
     @FXML
     private TableView<Annonce> tableV;
+
     @FXML
     private TableColumn<Annonce, String> tableC;
+
     @FXML
     private TableColumn<Annonce, String> tableCid;
-    @FXML
-    private Label titre;
-    @FXML
-    private Label description;
-    @FXML
-    private Label date;
-    @FXML
-    private Label tel;
-    @FXML
-    private Label add;
-    @FXML
-    private Label image;
-    @FXML
-    private Label choix;
+
     @FXML
     private Button modifier;
 
+    @FXML
+    private TextField image;
+
+    @FXML
+    private Button img;
+
+    @FXML
+    private TextField add;
+
+    @FXML
+    private TextField tel;
+
+    @FXML
+    private TextField description;
+
+    @FXML
+    private TextField titre;
+
+    @FXML
+    private DatePicker date;
+
+    @FXML
+    private ComboBox<String> choix;
+
+
+  private String imageUrl;
+    @FXML
+    private Button retour;
+
+    
+   @FXML
+    private void ajouterimage(ActionEvent event) {
+  
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            try {
+                imageUrl = file.toURI().toURL().toExternalForm();
+                //Image image = new Image(imageUrl);
+                //pic.setImage(image);
+                image.setText(imageUrl);
+                
+
+            } catch (MalformedURLException ex) {
+                throw new IllegalStateException(ex);
+
+            }
+
+        }
+
+    }
+//    
     private void showAnnonceDetails(Annonce Annonce) {
 
         if (Annonce != null) {
             Annonce.getId_annonce();
-            choix.setText(Annonce.getType_annonce());
+            choix.setPromptText(Annonce.getType_annonce());
             titre.setText(Annonce.getTitre_annonce());
             description.setText(Annonce.getDesc_annonce());
-            date.setText(Annonce.getDate_annonce());
-            tel.setText(Integer.toString(Annonce.getTel_annonce()));
+            date.setPromptText(Annonce.getDate_annonce());
             add.setText(Annonce.getAddr_annonce());
+            tel.setText(Integer.toString(Annonce.getTel_annonce()));
             image.setText(Annonce.getImg_annonce());
 
         } else {
 
-            choix.setText("");
+            choix.setPromptText("");
             titre.setText("");
             description.setText("");
-            date.setText("");
-            tel.setText("");
+            date.setPromptText("dd-MM-yyyy");       
             add.setText("");
+            tel.setText("");
             image.setText("");
         }
 
@@ -84,6 +134,16 @@ public class Interface_afficherController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+         ObservableList options
+                = FXCollections.observableArrayList(
+                        "Offres d'emplois",
+                        "Evenements"
+                );
+
+        choix.setPromptText("Select Type annonce");
+        choix.setItems(options);
+        
 
         tableV.getItems().clear();
         List<Annonce> annc = AnnonceUser.selectAnnonce1();
@@ -94,13 +154,14 @@ public class Interface_afficherController implements Initializable {
         tableV.setItems(title);
 
         //System.out.println(MedDATA);
-        showAnnonceDetails(null);
+      showAnnonceDetails(null);
 
         tableV.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showAnnonceDetails(newValue));
 
     }
 
+    
     @FXML
     private void handleDeleteAnnonce(ActionEvent event) throws IOException {
 
@@ -109,8 +170,13 @@ public class Interface_afficherController implements Initializable {
 
             AnnonceUser.deleteAnnonce(tableV.getSelectionModel().getSelectedItem().getId_annonce());
             tableV.getItems().remove(id);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Votre Annonce");
+                alert.setHeaderText(null);
+                alert.setContentText("Annonce Supprimée");
+                alert.showAndWait();
         } else {
-            // Nothing selected.
+            
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("No Selection");
             alert.setHeaderText("No Person Selected");
@@ -119,14 +185,49 @@ public class Interface_afficherController implements Initializable {
         }
     }
 
+    
     @FXML
-    private void modifierAnnonce(ActionEvent event) throws IOException {
+    public void modifierAnnonce()  {
+        try {
+            
+            id = tableV.getSelectionModel().getSelectedItem().getId_annonce();
+               System.out.println(id);
+      Annonce AN = new Annonce(choix.getSelectionModel().getSelectedItem(),titre.getText(),description.getText(),date.getValue().toString(),add.getText(),Integer.parseInt(tel.getText()),image.getText());
+           
+       AnnonceUser.updateAnnonce(AN, id);
+        
+       Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Votre Annonce");
+                alert.setHeaderText(null);
+                alert.setContentText("votre annonce a été modifié avec succés");
+                alert.showAndWait();
+        } catch (Exception e) {
+            System.out.println(e);
+       // System.out.println(id);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface_modifier.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
+        }
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        
+           try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface_prestatére.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            NewFXMain.stage.close();
+            NewFXMain.stage = stage;
+
+        } catch (IOException ex) {
+            Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        
+        
     }
 
 }

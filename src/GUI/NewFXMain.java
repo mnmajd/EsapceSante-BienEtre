@@ -24,7 +24,7 @@ static Stage stage;
     public void start(Stage stage) {
         try {
             this.stage=stage;
-            Parent root = FXMLLoader.load(getClass().getResource("interface_prestatére.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("interface_membre.fxml"));
             Scene scene = new Scene(root) ;
             stage.setScene(scene);
             stage.show();       

@@ -2,9 +2,11 @@ package Entite;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import javafx.scene.control.Label;
 
 public class Annonce {
 
+   
     public int id_annonce;
     public String type_annonce;
     public String titre_annonce;
@@ -29,12 +31,14 @@ public class Annonce {
         this.tel_annonce = tel_annonce;
         this.img_annonce = img_annonce;
     }
+    
+   
 
     public Annonce(String titre_annonce) {
         this.titre_annonce = titre_annonce;
     }
 
-    public Annonce(String type_annonce, String titre_annonce, String date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce) {
+    public Annonce(String type_annonce, String titre_annonce,String desc_annonce, String date_annonce,  String addr_annonce, int tel_annonce, String img_annonce) {
         
         this.type_annonce = type_annonce;
         this.titre_annonce = titre_annonce;
@@ -45,7 +49,7 @@ public class Annonce {
         this.img_annonce = img_annonce;
     }
     public Annonce(String type_annonce, String titre_annonce, String date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce, int id_user) {
-
+        
         this.id_user = id_user;
         this.type_annonce = type_annonce;
         this.titre_annonce = titre_annonce;
@@ -55,7 +59,21 @@ public class Annonce {
         this.tel_annonce = tel_annonce;
         this.img_annonce = img_annonce;
     }
-//
+
+    public Annonce(int id_annonce,String type_annonce, String titre_annonce, String date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce, int id_user) {
+       
+        this.id_annonce = id_annonce;
+        this.id_user = id_user;
+        this.type_annonce = type_annonce;
+        this.titre_annonce = titre_annonce;
+        this.date_annonce = date_annonce;
+        this.desc_annonce = desc_annonce;
+        this.addr_annonce = addr_annonce;
+        this.tel_annonce = tel_annonce;
+        this.img_annonce = img_annonce;
+    }
+
+    
 //    public Annonce(int id_annonce, String type_annonce, String titre_annonce, String date_annonce, String desc_annonce, String addr_annonce, int tel_annonce, String img_annonce) {
 //        this.id_annonce = id_annonce;
 //        this.type_annonce = type_annonce;

@@ -1,65 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_afficherController">
+<AnchorPane id="AnchorPane" prefHeight="594.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_afficherController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" layoutX="-22.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="592.0" prefWidth="140.0">
                <children>
-                  <TableView fx:id="tableV" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0">
+                  <TableView fx:id="tableV" layoutY="24.0" prefHeight="569.0" prefWidth="217.0">
                      <columns>
-                        <TableColumn fx:id="tableC" prefWidth="175.0" text="Les Titres des Annonce" />
-                        <TableColumn fx:id="tableCid" minWidth="0.0" prefWidth="0.0" text="Column X" />
+                        <TableColumn fx:id="tableC" prefWidth="217.0" text="Les Titres des Annonce" />
+                        <TableColumn fx:id="tableCid" minWidth="0.0" prefWidth="16.0" />
                      </columns>
                   </TableView>
+                  <Button fx:id="retour" mnemonicParsing="false" onAction="#retour" prefHeight="25.0" prefWidth="49.0" text="&lt;&lt;=" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="414.0" prefWidth="417.0">
                <children>
-                  <GridPane layoutX="20.0" layoutY="34.0" prefHeight="255.0" prefWidth="377.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="51.203125" />
-                        <Label fx:id="choix" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="titre" prefHeight="17.0" prefWidth="118.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="description" prefHeight="17.0" prefWidth="95.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="date" GridPane.rowIndex="3" />
-                        <Label fx:id="date" prefHeight="17.0" prefWidth="110.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="tel" GridPane.rowIndex="4" />
-                        <Label fx:id="tel" prefHeight="17.0" prefWidth="118.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="adresse" GridPane.rowIndex="5" />
-                        <Label fx:id="add" prefHeight="17.0" prefWidth="118.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="image" GridPane.rowIndex="6" />
-                        <Label fx:id="image" prefHeight="17.0" prefWidth="110.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="titre" GridPane.rowIndex="1" />
-                     </children>
-                  </GridPane>
-                  <Button layoutX="184.0" layoutY="359.0" mnemonicParsing="false" onAction="#handleDeleteAnnonce" text="delate" />
-                  <Button fx:id="modifier" layoutX="112.0" layoutY="359.0" mnemonicParsing="false" onAction="#modifierAnnonce" text="Modifier" />
+                  <Button layoutX="233.0" layoutY="535.0" mnemonicParsing="false" onAction="#handleDeleteAnnonce" text="delate" />
+                  <Button fx:id="modifier" layoutX="117.0" layoutY="535.0" mnemonicParsing="false" onAction="#modifierAnnonce" text="Modifier" />
+                  <TextField fx:id="image" layoutX="252.0" layoutY="447.0" prefHeight="25.0" prefWidth="149.0" />
+                  <Button fx:id="img" layoutX="117.0" layoutY="447.0" mnemonicParsing="false" onAction="#ajouterimage" text="Ajouter une image" />
+                  <TextField fx:id="add" layoutX="249.0" layoutY="321.0" />
+                  <TextField fx:id="tel" layoutX="249.0" layoutY="385.0" />
+                  <TextField fx:id="description" layoutX="249.0" layoutY="202.0" />
+                  <TextField fx:id="titre" layoutX="249.0" layoutY="135.0" />
+                  <DatePicker fx:id="date" layoutX="252.0" layoutY="263.0" prefHeight="25.0" prefWidth="149.0" />
+                  <ComboBox fx:id="choix" layoutX="249.0" layoutY="66.0" prefWidth="150.0" />
+                  <Text layoutX="21.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+                  <Text layoutX="19.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="titre" />
+                  <Text layoutX="29.0" layoutY="464.0" strokeType="OUTSIDE" strokeWidth="0.0" text="logo" />
+                  <Text layoutX="25.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse" />
+                  <Text layoutX="21.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="votre telephone " />
+                  <Text layoutX="28.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date" />
+                  <Text layoutX="20.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" wrappingWidth="51.203125" />
                </children></AnchorPane>
         </items>
       </SplitPane>

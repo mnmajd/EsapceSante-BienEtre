@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.NewFXMain.stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,6 +47,8 @@ public class Interface_prestatéreController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));  
             stage.show(); 
+             NewFXMain.stage.close();
+             NewFXMain.stage=stage;
     }
 
     @FXML
@@ -55,6 +58,8 @@ public class Interface_prestatéreController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));  
             stage.show(); 
+             NewFXMain.stage.close();
+             NewFXMain.stage=stage;
     }
     
 }

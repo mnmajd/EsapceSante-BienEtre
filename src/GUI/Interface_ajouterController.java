@@ -6,13 +6,17 @@
 package GUI;
 
 import Entite.Annonce;
-import Annonce.AnnonceUser;
-import java.awt.Insets;
+import Service.AnnonceUser;
+import static GUI.NewFXMain.stage;
 import java.io.File;
-import static java.lang.Integer.parseInt;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,12 +24,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import java.sql.Date;
-import java.time.LocalDate;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -62,6 +69,8 @@ public class Interface_ajouterController implements Initializable {
     private Button image;
     @FXML
     private Button button;
+    @FXML
+    private Button retour;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,6 +85,7 @@ public class Interface_ajouterController implements Initializable {
         choix.setItems(options);
 
     }
+
 
     
      @FXML
@@ -100,12 +110,16 @@ public class Interface_ajouterController implements Initializable {
             }
 
         }
-
     }
+       
+  
+    
     
     
     @FXML
     private void ajouter() {
+         Pattern p = Pattern.compile("[0-9]+");
+        Matcher m = p.matcher(tel.getText());
          if (titre.getText().equals("") )
         {
             
@@ -126,6 +140,16 @@ public class Interface_ajouterController implements Initializable {
            alert.showAndWait();
            
           }
+        
+         else if (!((m.find() && m.group().equals(tel.getText())) ))
+        {
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setTitle("Validate Mobile Number");
+                alert.setHeaderText(null);
+                alert.setContentText("Please Enter Valid Mobile Number");
+                alert.showAndWait();
+           
+          }
         else if (adresse.getText().equals("") )
         {
             
@@ -142,12 +166,40 @@ public class Interface_ajouterController implements Initializable {
                AnnonceUser.inserAnnonce(pp);
                
                System.out.println("tres bien");
-    
+               
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Votre Annonce");
+                alert.setHeaderText(null);
+                alert.setContentText("Annonce publiée");
+                alert.showAndWait();
+                
         } catch (Exception e)
         {
     System.out.println(e);
         }
+       
                 }
+        
+    }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        
+               try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface_prestatére.fxml"));
+            Parent root = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            NewFXMain.stage.close();
+            NewFXMain.stage = stage;
+
+        } catch (IOException ex) {
+            Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
    
 

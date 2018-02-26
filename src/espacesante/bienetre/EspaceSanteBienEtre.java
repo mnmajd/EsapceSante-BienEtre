@@ -2,7 +2,7 @@
 package espacesante.bienetre;
 
 import Entite.Annonce;
-import Annonce.AnnonceUser;
+import Service.AnnonceUser;
 import java.sql.Date;
 import java.sql.SQLException;
 
@@ -15,15 +15,17 @@ public class EspaceSanteBienEtre {
           
 //*******************************
 //         
-  AnnonceUser s = new AnnonceUser();
-         s.deleteAnnonce(49);
+        // s.deleteAnnonce(49);
 //       s.selectAnnonce();
 //        
 //        Annonce an ;
-//         an = new Annonce("test","testm",new Date(2017-1900,9-1,27),"abidgan","3ou3ouuu",52216789,"evenement",1);
-//         s.updateAnnonce(an,16);
-//          
+//         an = new Annonce("test","testm","mm","abidgan","3ou3ouuu",52216789,"evenement");
+//         AnnonceUser.updateAnnonce(an,55);
+          
 //*******************************
+
+//AnnonceUser.afficheroffre();
+//           System.out.println("couocu");
 
 
 

@@ -1,11 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package GUI;
 
-import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
-import com.itextpdf.text.Document;
 import com.itextpdf.text.Anchor;
+import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-//import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -27,11 +29,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-//import javafx.scene.image.Image;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class Interface_detail_offreController implements Initializable {
+/**
+ * FXML Controller class
+ *
+ * @author tarek
+ */
+public class Interface_detail_evenementController implements Initializable {
 
+    @FXML
+    private Button retour2E;
     @FXML
     private Label titre;
     @FXML
@@ -40,37 +50,34 @@ public class Interface_detail_offreController implements Initializable {
     private Label date;
     @FXML
     private Label adresse;
-
-    @FXML
-    private Button telecharger;
     @FXML
     private Label tel;
     @FXML
-    private Button retour2;
-    @FXML
     private ImageView logo;
+    @FXML
+    private Button telechargerE;
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         
-        Image img = new Image(Main_offre.chimg,true);
+          Image img = new Image(Main_evenement.chimg,true);
         logo.setImage(img);
         logo.setFitHeight(130);
         logo.setFitWidth(120);
+        
+        titre.setText(Main_evenement.chtitre);
+        Description.setText(Main_evenement.chdescription);
+        date.setText(Main_evenement.chdate);
+        tel.setText(Main_evenement.chtel);
+        adresse.setText(Main_evenement.chadress);
+        
+    }    
 
-
-        titre.setText(Main_offre.chtitre);
-        Description.setText(Main_offre.chdescription);
-        date.setText(Main_offre.chdate);
-        tel.setText(Main_offre.chtel);
-        adresse.setText(Main_offre.chadress);
-
-    }
 
     @FXML
-    private void telecharger(ActionEvent event) {
-        try {
+    private void telechargerE(ActionEvent event) {
+         try {
 
             Document doc = new Document(PageSize.A4, 50, 50, 50, 50);
             try {
@@ -80,7 +87,7 @@ public class Interface_detail_offreController implements Initializable {
             }
 
             doc.open();
-
+            
             String titre1 = titre.getText();
             String titre2 = Description.getText();
             String titre3 = date.getText();
@@ -90,17 +97,18 @@ public class Interface_detail_offreController implements Initializable {
 
             Anchor anchorTarget = new Anchor("test field.");
 
-            String P1 = ("titre de l'offre : " + titre1);
+           
+            String P1 = ("titre de l'Evenement : " + titre1);
             P1 += "\n";
-            String P2 = ("description de l'offre : " + titre2);
+            String P2 = ("description de l'Evenement : " + titre2);
             P2 += "\n";
-            String P3 = ("la date de l'offre: " + titre3);
+            String P3 = ("la date de l'Evenement: " + titre3);
             P3 += "\n";
             String P4 = ("numero de téléphone : " + titre4);
             P4 += "\n";
-            String P5 = ("l'adresse du local : " + titre5);
+            String P5 = ("l'adresse de l'Evenement : " + titre5);
             P5 += "\n";
-            String P6 = ("logo : " + titre6);
+            String  P6 = ("logo : " + titre6);
 
             anchorTarget.setName("BackToTop");
 
@@ -110,6 +118,7 @@ public class Interface_detail_offreController implements Initializable {
             Paragraph paragraph4 = new Paragraph();
             Paragraph paragraph5 = new Paragraph();
             Paragraph paragraph6 = new Paragraph();
+         
 
             paragraph1.setSpacingBefore(50);
             paragraph2.setSpacingBefore(50);
@@ -117,6 +126,7 @@ public class Interface_detail_offreController implements Initializable {
             paragraph4.setSpacingBefore(50);
             paragraph5.setSpacingBefore(50);
             paragraph6.setSpacingBefore(50);
+     
 
             paragraph1.add(P1);
             paragraph1.add(P2);
@@ -124,6 +134,7 @@ public class Interface_detail_offreController implements Initializable {
             paragraph1.add(P4);
             paragraph1.add(P5);
             paragraph1.add(P6);
+        
 
             doc.add(paragraph1);
             doc.add(paragraph2);
@@ -131,6 +142,7 @@ public class Interface_detail_offreController implements Initializable {
             doc.add(paragraph4);
             doc.add(paragraph5);
             doc.add(paragraph6);
+           
 
             doc.close();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -141,23 +153,24 @@ public class Interface_detail_offreController implements Initializable {
             Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @FXML
-    private void retour2(ActionEvent event) {
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface_afficher_offre.fxml"));
+     @FXML
+    private void retour2E(ActionEvent event) {
+    try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface_afficher_evenement.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
             NewFXMain.stage.close();
-            NewFXMain.stage = stage;
-            Main_offre.stage.close();
+            NewFXMain.stage=stage;
+            Main_evenement.st.close();
 
         } catch (IOException ex) {
             Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        
     }
-}
+    }
+    
+
