@@ -1,0 +1,32 @@
+
+
+.background{
+    -fx-background-image: url("../Images/AjouCat.jpg");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+
+
+}
+.background2{
+    -fx-background-image: url("../Images/MajdVQ.jpg");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+
+
+}
+.background3{
+    -fx-background-image: url("../Images/EditQuestion.jpg");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+
+
+}

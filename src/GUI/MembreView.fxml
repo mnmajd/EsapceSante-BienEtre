@@ -35,7 +35,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Label>
-                  <Label fx:id="currentUser" alignment="CENTER_RIGHT" layoutX="397.0" layoutY="393.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="260.0" text="currentuser" textAlignment="RIGHT" textFill="#d01616">
+                  <Label fx:id="currentUser" alignment="CENTER_RIGHT" layoutX="360.0" layoutY="393.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="260.0" text="currentuser" textAlignment="RIGHT" textFill="#d01616">
                      <font>
                         <Font size="28.0" />
                      </font>

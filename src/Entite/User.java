@@ -68,9 +68,18 @@ public class User implements java.io.Serializable {
         this.lastname = lastname;
         this.adress = adress;
         this.telephone = telephone;
-        
         this.status = status;
     }
+
+    public User(String password, String email, String firstname, String lastname, String telephone) {
+        this.password = password;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.telephone = telephone;
+    }
+    
+    
 
     public Date getDateNaissance() {
         return dateNaissance;

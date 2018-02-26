@@ -32,6 +32,7 @@ public class FXMain extends Application {
              this.stg=stage;
                 Parent root = FXMLLoader.load(getClass().getResource("ForumBasic.fxml"));
             Scene scene = new Scene(root);
+       
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {

@@ -350,7 +350,7 @@ public class ForgetPasswordController implements Initializable {
                     + "					<td width=\"500\" colspan=\"3\" align=\"center\" style=\"padding-bottom:10px;padding-top:25px;\">\n"
                     + "						<div class=\"contentEditableContainer contentImageEditable\">\n"
                     + "			                <div class=\"contentEditable\">\n"
-                    + "			                   <img src=\"/Users/oualha/NetBeansProjects/e_shop/src/images/doc.png\" data-default=\"placeholder\" data-max-width=\"500\">\n"
+                    + "			                   <img src=\"/Users/oualha/NetBeansProjects/EspaceSante&BienEtre/src/images/doc.png\" data-default=\"placeholder\" data-max-width=\"500\">\n"
                     + "			                </div>\n"
                     + "			            </div>\n"
                     + "					</td>\n"

@@ -8,7 +8,7 @@
 <AnchorPane id="AnchorPane" prefHeight="660.0" prefWidth="1145.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLstatController">
    <children>
       <PieChart fx:id="PieChart1" layoutX="51.0" layoutY="53.0" legendSide="RIGHT" prefHeight="478.0" prefWidth="495.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0" />
-      <Label fx:id="status" layoutX="47.0" layoutY="360.0" prefHeight="64.0" prefWidth="252.0" text="status" textFill="#276fc6">
+      <Label fx:id="status" layoutX="12.0" layoutY="376.0" prefHeight="53.0" prefWidth="132.0" text="status" textFill="#276fc6">
          <font>
             <Font size="36.0" />
          </font>

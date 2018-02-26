@@ -32,14 +32,14 @@ public class EspaceSanteBienEtre  extends Application {
     public static Scene signupScene;
     
     public static User currentUser;
+  
 
     static Stage stageprim, stage1, stage2, stage4, stage3, stage5, stage6,stage7;
     public String clinicName = "";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        this.stage = primaryStage;
-//        splashWindow();
+
         this.stage = primaryStage;
         loginWindow();
     }

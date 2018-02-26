@@ -49,13 +49,20 @@ public class FXMLstatController implements Initializable {
              new PieChart.Data("Homme", service.statistiquehomme()),
              new PieChart.Data("Femme", service.statistiquefemme())
          );
-        //PieChart1.setData(pieChartData);
+       // PieChart1.setData(pieChartData);
         for(final PieChart.Data data : PieChart1.getData() )
         {
         data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
             @Override
             public void handle(MouseEvent event) {
-                status.setText(String.valueOf(data.getPieValue())+"%");
+                status.setText(data.getPieValue()+"%");
+               
+                
+                
+                 ObservableList<PieChart.Data> pieChartData = 
+                FXCollections.observableArrayList();
+        PieChart1.setTitle("");
+        PieChart1.setData(pieChartData);
             }
         
         

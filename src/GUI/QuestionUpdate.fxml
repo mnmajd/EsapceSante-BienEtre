@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="605.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.QuestionUpdateController">
+<AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="754.0" styleClass="background3" stylesheets="GUI/Css/AjoutCat.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.QuestionUpdateController">
    <children>
-      <Label layoutX="48.0" layoutY="26.0" prefHeight="42.0" prefWidth="229.0" text="Edit Question">
+      <TextArea fx:id="contenu" layoutX="312.0" layoutY="113.0" prefHeight="253.0" prefWidth="318.0" />
+      <Button layoutX="512.0" layoutY="377.0" mnemonicParsing="false" onAction="#UpdateQuestion" text="Update">
          <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Label layoutX="135.0" layoutY="165.0" text="Contenu" />
-      <TextArea fx:id="contenu" layoutX="310.0" layoutY="157.0" prefHeight="253.0" prefWidth="318.0" />
-      <Button layoutX="557.0" layoutY="480.0" mnemonicParsing="false" onAction="#UpdateQuestion" text="Update" />
-      <Button layoutX="190.0" layoutY="480.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+            <Font name="Comic Sans MS Bold" size="14.0" />
+         </font></Button>
+      <Button layoutX="385.0" layoutY="376.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
+         <font>
+            <Font name="Comic Sans MS Bold" size="14.0" />
+         </font></Button>
    </children>
 </AnchorPane>

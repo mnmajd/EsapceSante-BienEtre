@@ -7,10 +7,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="504.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VerifyQuestionAdminController">
+<AnchorPane id="AnchorPane" prefHeight="516.0" prefWidth="736.0" styleClass="background2" stylesheets="GUI/Css/AjoutCat.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VerifyQuestionAdminController">
    <children>
-      <Label layoutX="54.0" layoutY="32.0" text="Verify Question Admin" />
       <SplitPane dividerPositions="0.359781121751026" layoutX="3.0" layoutY="72.0" prefHeight="431.0" prefWidth="733.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="327.0">
@@ -18,14 +18,20 @@
                   <ListView fx:id="listQuestion" layoutX="19.0" layoutY="14.0" prefHeight="429.0" prefWidth="263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-26.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="429.0" prefWidth="447.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="402.0" prefWidth="451.0">
                <children>
-                  <Button layoutX="330.0" layoutY="369.0" mnemonicParsing="false" onAction="#ApproveQuestion" text="Accept question" />
+                  <Button layoutX="321.0" layoutY="368.0" mnemonicParsing="false" onAction="#ApproveQuestion" text="Accept question">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                   <Label layoutX="45.0" layoutY="87.0" text="Sujet" />
                   <Label layoutX="44.0" layoutY="146.0" text="contenu" />
                   <TextField fx:id="sujetTxt" layoutX="171.0" layoutY="90.0" />
                   <TextArea fx:id="ContenuQuestion" layoutX="171.0" layoutY="146.0" prefHeight="200.0" prefWidth="270.0" />
-                  <Button layoutX="52.0" layoutY="369.0" mnemonicParsing="false" onAction="#DeclineQuestion" prefHeight="26.0" prefWidth="90.0" text="Decline" />
+                  <Button layoutX="52.0" layoutY="367.0" mnemonicParsing="false" onAction="#DeclineQuestion" prefHeight="26.0" prefWidth="90.0" text="Decline">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
         </items>
