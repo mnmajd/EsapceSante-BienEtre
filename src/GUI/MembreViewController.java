@@ -42,14 +42,14 @@ public class MembreViewController implements Initializable {
     @FXML
     private ImageView mark;
 
-
+  public static int currentUserId;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //mark.setVisible(false);
-        
+      
         currentUser.setText(EspaceSanteBienEtre.currentUser.getFirstname()+"  "+EspaceSanteBienEtre.currentUser.getLastname());
         chnager.setOnMouseEntered((MouseEvent event)->
                 {
