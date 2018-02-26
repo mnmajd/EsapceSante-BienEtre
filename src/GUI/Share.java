@@ -14,24 +14,30 @@ import com.restfb.types.FacebookType;
 import com.restfb.types.User;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 /**
  *
  * @author TAQWA
  */
-public class Share implements Initializable {
+public class Share {
    String t = FXMLmembreViewController.t ;
+   String c = FXMLmembreViewController.c ;
+   String d = FXMLmembreViewController.d;
+   String sujet = FXMLmembreViewController.sujet ;
    
 
 
       
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+//    @Override
+//    public void initialize(URL location, ResourceBundle resources) {
+public void shre(){
+
         
-        
-         
-        String accessToken = "EAACEdEose0cBABFFUTn5gZCVZAVKMa76pXTh45mvCZAqc5ACI3vlDAEfDUb7zsK7SXhZCHmKJqPRZC9aLUBJeWs6kwDgcZArYrdUSVmQZBNqQTjzPkLN1ZBd1Y0PtZB4YbzjeYQvQRgSFHlXP3zb8Jlq4CAItUOXf7tagcHqmlPbmoEZBYM0aOAmVuJGSL7HNIJMnjaVy6ry5ztQZDZD";
+     
+
+        String accessToken = "EAACEdEose0cBAINBHvMomb0EdUvCRzClNstWD9JZAvQrdsjIRTp4ejPv4epzH2UKsYCJyZCeJhqZCtLOWCJoET1HYsOfSenrt4cJAvIsvwQP6xTRyK8PxopFJAnVYzZC8E9oAvaJTYwM6EEECu0m7bNbZCZCI4Llfc1hgvpH2JSBN5B7tseNg6ZAsvowTxSA81oEOc7LLWFFgZDZD";
         // TODO code application logic here
       
         FacebookClient fbClient = new DefaultFacebookClient(accessToken, Version.VERSION_2_5);
@@ -40,7 +46,8 @@ public class Share implements Initializable {
        // System.out.println(me.getLanguages());
        
      // FacebookType response =  fbClient.publish("me/feed", FacebookType.class,com.restfb.Parameter.with("message", "JAVA Graph API Test"));
-      FacebookType response = fbClient.publish("me/feed",FacebookType.class,com.restfb.Parameter.with("message", t));
+      FacebookType response = fbClient.publish("me/feed",FacebookType.class,com.restfb.Parameter.with("message", t +"\n \n "+"Sujet : "+
+              sujet+"\n \n"+c+"\n \n"+"Publier le  "+d+"  Par Espace Santé et bien etre"));
         System.out.println("fb.com/"+response.getId());
 
     }

@@ -10,9 +10,13 @@ import Entite.Blog;
 import Service.Article_Service;
 import Service.Blog_Service;
 import Service.Categ_Service;
+import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +44,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 
 /**
  * FXML Controller class
@@ -48,6 +53,12 @@ import javafx.util.Callback;
  */
 public class FXMLmembreViewController implements Initializable {
  static String t  ;
+ static String c ;
+ static String d ;
+ static String sujet ;
+ static String a ;
+ static String b ;
+ 
     @FXML
     private ListView<Article> list;
     @FXML
@@ -63,14 +74,28 @@ static String tx ;
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Categ_Service caa = new Categ_Service();
+       List<String> listeCateg = caa.afficherCateg();
+       
+       ObservableList catego = FXCollections.observableArrayList(
+        listeCateg 
+        );
+   
+       combofind.setItems(catego);
+    
+                        
+        
+        
          //  private ListView<Article> liste;
       Article_Service ss = new Article_Service();
       ObservableList<Article> data = FXCollections.observableArrayList();
        
-         ObservableList<Article> serviceM = ss.afficherArticle();
+         ObservableList<Article> servBlog = ss.afficherArticle();
+
+         
      // data.addAll(new Article());
       
-data.addAll(0, serviceM);   
+data.addAll(0, servBlog);   
 
         list.getItems().addAll(data);
         list.setCellFactory(new Callback<ListView<Article>, ListCell<Article>>() {
@@ -88,15 +113,32 @@ data.addAll(0, serviceM);
                         Text txt1 = new Text(item.getTitre_article());
                         t = item.getTitre_article() ;
                         txt1.setFont(Font.font ("Verdana", 20));
+                        
+                       // Text txtc = new Text(String.valueOf(item.getId_cat()));
+                       int categid = (item.getId_cat());
+                       String categorie = caa.GetNameGateg(categid);
+                       Text categText = new Text(categorie);
+                       a = categorie ;
+                          //  System.out.println(categid);
+                         
+//                        Text categText = new Text(item.getId_cat());
+//                         System.out.println("this is : "+categName
+//                            );
+                          
+                          
                         HBox hBoxT = new HBox();
                         Text txt2 = new Text(String.valueOf(item.getDate_pub()));
-                        
+                        d = String.valueOf(item.getDate_pub());
                         
                         Image imgT = new Image("/image/calendar.png", 35, 35, false, false);
                         ImageView time = new ImageView(imgT);
                         
                         Text txt3 = new Text(item.getSujet_article());
                         txt3.setFont(Font.font ("Verdana", 20));
+                        
+                        sujet = item.getSujet_article();
+                        c = item.getContenu_article();
+                        b = item.getImg_artc();
                     //    Text txt4 = new Text(item.getContenu_article());
  
                            
@@ -109,6 +151,8 @@ data.addAll(0, serviceM);
                               fb.setGraphic(new ImageView(imFB));
                               fb.setOnMouseClicked(evt -> {
                                 t = item.getTitre_article();
+                              Share sh = new Share() ;
+                            sh.shre();
                               
                                
                      
@@ -161,6 +205,7 @@ data.addAll(0, serviceM);
                           hBoxT.getChildren().add(txt2);
                           
                           vBox.getChildren().add(txt1);
+                         vBox.getChildren().add(categText);
                           vBox.getChildren().add(txt3);
                           
                           hBox.getChildren().add(like);
@@ -200,8 +245,20 @@ data.addAll(0, serviceM);
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLarticleView.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+             String image = getClass().getResource("/image/article-background.jpg").toExternalForm();
+              
+              
+              
+root.setStyle("-fx-background-image: url('" + image + "'); " +
+        "-fx-background-size: cover ;"+
+        "-fx-background-size: 900 600;"+
+           "-fx-background-position: center center; " +
+           "-fx-background-repeat: stretch;");
+
             stage.setScene(new Scene(root));  
             stage.show();
+            
+            
             LST.stg.close();
             LST.stg = stage;
     } catch(IOException e) {
@@ -215,13 +272,13 @@ data.addAll(0, serviceM);
 //    public void init() {
 //        this.searchInstruments.addAll(this.session.getInstruments());
 
-        txtrech.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-              ss.getBlogByCategorie(txtrech.getText());
-              list.getItems().addAll(data);
-            }
-        });
+//        txtrech.textProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//              ss.getBlogByCategorie(txtrech.getText());
+//              list.getItems().addAll(data);
+//            }
+//        });
     
     //
 //     txtrech.onKeyPressedProperty()
@@ -238,14 +295,164 @@ data.addAll(0, serviceM);
 ////            }
 //        });
 //    
-    }
+   
+       
+          new AutoCompletionTextFieldBinding(txtrech, new Callback<AutoCompletionBinding.ISuggestionRequest, Collection>() {
+  // rechercher howa esm el text field mte3i
+                        @Override
+                        public Collection call(AutoCompletionBinding.ISuggestionRequest param) {
 
-    @FXML
-    private void reche(KeyEvent event) {
-        Categ_Service servC = new Categ_Service();
-        Blog_Service blog = new Blog_Service() ;
-        list.getItems().clear();
-        list.refresh();
+                            List<String> nom = new ArrayList<>();
+                         Article_Service as = new Article_Service();
+                            List<Article> liste = as.getBlogByTitre(txtrech.getText());
+                            // khoudh el texte eli fl texte field w aba3tthou fi argument fi methode rechercher
+
+                            for (Article e : liste) {
+                                nom.add(e.getTitre_article());
+                            }
+
+                            return nom;
+                            //nom hiya el liste de string eli bch tektabli ml louta
+
+                        }
+                    });
+                    
+ txtrech.textProperty().addListener((observable,oldValue, newValue) -> {
+           Article_Service as = new Article_Service();
+          // list.getItems().clear();
+          list.setItems(FXCollections.observableArrayList(as.getBlogByTitre(txtrech.getText())));
+         // list.refresh();
+    
+  list.setCellFactory(new Callback<ListView<Article>, ListCell<Article>>() {
+
+
+                     @Override
+            public ListCell<Article> call(ListView<Article> arg0) {
+                return new ListCell<Article>() {
+
+                    @Override
+                    protected void updateItem(Article item, boolean bln) {
+                        super.updateItem(item, bln);
+                        if (item != null) {
+      
+                        VBox vBox = new VBox();
+                        Text txt1 = new Text(item.getTitre_article());
+                        t = item.getTitre_article() ;
+                        txt1.setFont(Font.font ("Verdana", 20));
+                        
+                       // Text txtc = new Text(String.valueOf(item.getId_cat()));
+                       int categid = (item.getId_cat());
+                       String categorie = caa.GetNameGateg(categid);
+                       Text categText = new Text(categorie);
+              
+                          
+                        HBox hBoxT = new HBox();
+                        Text txt2 = new Text(String.valueOf(item.getDate_pub()));
+                        d = String.valueOf(item.getDate_pub());
+                        
+                        Image imgT = new Image("/image/calendar.png", 35, 35, false, false);
+                        ImageView time = new ImageView(imgT);
+                        
+                        Text txt3 = new Text(item.getSujet_article());
+                        txt3.setFont(Font.font ("Verdana", 20));
+                        
+                        sujet = item.getSujet_article();
+                        c = item.getContenu_article();
+                    //    Text txt4 = new Text(item.getContenu_article());
+ 
+                           
+                                HBox hBox = new HBox(10);
+                                
+                               ImageView i = new ImageView();
+                               Button fb = new Button();
+                               Image imFB = new Image("/image/fb.png", 35, 35, false, false);
+                              i.setImage(imFB);
+                              fb.setGraphic(new ImageView(imFB));
+                              fb.setOnMouseClicked(evt -> {
+                                t = item.getTitre_article();
+                              Share sh = new Share() ;
+                            sh.shre();
+                              
+                               
+                     
+                              } );
+                          
+                          
+                          ImageView imga = new ImageView();
+                          
+                          ToggleButton like = new ToggleButton();
+                          Image i3 = new Image("/image/dislike.png", 38, 38, false, false);
+                          Image i4 = new Image("/image/like.png", 39, 36, false, false);
+                          imga.setImage(i3);
+                          like.setGraphic(new ImageView(i3));
+                          
+                          like.setOnMouseClicked(evt -> {
+                              if (like.isSelected()) {
+                                  imga.setImage(i4);
+                                  like.setGraphic(new ImageView(i4));
+                                  Blog bb1 = null ;
+                                  Blog_Service bs = new Blog_Service();
+                                  try {
+                                      bs.augmenterLike(bb1);
+                                  } catch (SQLException ex) {
+                                      Logger.getLogger(FXMLmembreViewController.class.getName()).log(Level.SEVERE, null, ex);
+                                  }
+                                  
+                                  
+                                  
+                              }
+                              else {
+                                  imga.setImage(i3);
+                                  like.setGraphic(new ImageView(i3));
+                                  Blog bb2 = null ;
+                                  Blog_Service bs = new Blog_Service();
+                                  try {
+                                      bs.DimuDislike(bb2);
+                                  } catch (SQLException ex) {
+                                      Logger.getLogger(FXMLmembreViewController.class.getName()).log(Level.SEVERE, null, ex);
+                                  }
+                              }
+                              
+                              
+                          });
+                          
+                          
+                          
+                          
+                          
+                          hBoxT.getChildren().add(time);
+                          hBoxT.getChildren().add(txt2);
+                          
+                          vBox.getChildren().add(txt1);
+                         vBox.getChildren().add(categText);
+                          vBox.getChildren().add(txt3);
+                          
+                          hBox.getChildren().add(like);
+                          hBox.getChildren().add(fb);
+                          HBox hBoxV = new HBox(vBox);
+                          vBox.setPrefSize(50,50);
+                          hBoxV.setPrefSize(50,50);
+                          
+                          VBox vBox1 = new VBox(hBoxT,hBox);
+                          
+                          HBox hBoxG = new HBox(vBox1,hBox,hBoxV);
+                          hBoxG.setSpacing(30);
+                          setGraphic(hBoxG);
+                        
+                          
+                      }
+                    }
+                    
+
+                };
+            }
+
+        });
+    
+ 
+ 
+ 
+ });
       //  list.getItems().addAll(servC.
     }
     

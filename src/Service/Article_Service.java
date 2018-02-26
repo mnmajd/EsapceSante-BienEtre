@@ -97,45 +97,47 @@ public class Article_Service {
  
 
     public  ObservableList<Article> afficherArticle() {
-     //  data.addAll(new Article
-       
+      
         ObservableList<Article> data = FXCollections.observableArrayList();
+        
     
-        //List<Article> listeArticle = new ArrayList<>();
-        ResultSet rs ;
+        
+       ResultSet rs ;
         
         String req = "SELECT * FROM article";
-      
+       PreparedStatement ps;
        
        try {
-          Statement statement = ds.createStatement();
-            rs = statement.executeQuery(req);
+                  Statement statement = ds.createStatement();
+                  rs = statement.executeQuery(req);
+
+          
+//          Statement statement = ds.createStatement();
+//            rs = statement.executeQuery(req);
      
        
-     
          while (rs.next()) {
              
-          Article A = new Article(
+         Article a = new Article(
                  rs.getInt("id_article"),
                  rs.getString("titre_article"),
                  rs.getString("sujet_article"),
-                 rs.getString("contenu_article"),
-                 rs.getDate("date_pub"),
-                 rs.getString("img_artc"));
-                                 
-       data.add(A);
-         
-       
-         
+                                 rs.getString("contenu_article"),
+                                 rs.getDate("date_pub"),
+                              rs.getString("img_artc"),
+                               rs.getInt("id_user"),
+                               rs.getInt("id_cat"));
+                  data.add(a);
+        
+      
            
-       //   System.out.println("---"+titre_article);
          } return data ;
-         
        } catch (SQLException ex) {
            Logger.getLogger(Article_Service.class.getName()).log(Level.SEVERE, null, ex);
-           return null ;
+         
        }
-       
+        return null;
+     
     }
      public ObservableList<Article> getArticleUser(int id_user) {
         
@@ -312,48 +314,90 @@ public class Article_Service {
      
     }
        
- public ObservableList<Article> getBlogByCategorie(String tittre) {
+ public List<Article> getBlogByTitre(String tittre) {
         
     
-        ObservableList<Article> data = FXCollections.observableArrayList();
-        
-       ResultSet rs ;
-        
-        String req = "SELECT * FROM article where titre_article="+tittre ;
-       PreparedStatement ps;
+        List<Article> data = new ArrayList<>();
      
         
       
        
        try {
-          
-                  Statement statement = ds.createStatement();
-            rs = statement.executeQuery(req);
+             
+       ResultSet rs ;
+        
+        String req = "SELECT * FROM article where titre_article LIKE ? " ;
+       PreparedStatement ps;
+     
+                  PreparedStatement ste= ds.prepareStatement(req);
+                  ste.setString(1, "%"+tittre.toLowerCase()+"%");
+                  
+            rs = ste.executeQuery();
+            
 
 
        
          while (rs.next()) {
              
-         Article a = new Article(
+         data.add(new Article(
                  rs.getInt("id_article"),
                  rs.getString("titre_article"),
                  rs.getString("sujet_article"),
                  rs.getString("contenu_article"),
                  rs.getDate("date_pub"),
-                 rs.getString("img_artc"));
-                                 
-       data.add(a);
-         
-       
-         
-           
-         } 
-          return data ;
+                 rs.getString("img_artc")));
+         }
        } catch (SQLException ex) {
            Logger.getLogger(Article_Service.class.getName()).log(Level.SEVERE, null, ex);
          
        }
-        return null;
+        return data ;
+     
+    }
+ 
+ 
+ public List<Article> getBlogByCategorie(int categ) {
+        
+    
+        List<Article> data = new ArrayList<>();
+     
+        
+      
+       
+       try {
+             
+       ResultSet rs ;
+        
+        String req = "SELECT * FROM article where id_cat LIKE ? " ;
+       PreparedStatement ps;
+     
+                  PreparedStatement ste= ds.prepareStatement(req);
+                  
+                  
+            rs = ste.executeQuery();
+            
+
+
+       
+         while (rs.next()) {
+             
+         data.add(new Article(
+                 rs.getInt("id_article"),
+                 rs.getString("titre_article"),
+                 rs.getString("sujet_article"),
+                 rs.getString("contenu_article"),
+                 rs.getDate("date_pub"),
+                 rs.getString("img_artc"),
+                  rs.getInt("id_user"),
+                rs.getInt("id_cat"))
+         
+         );
+         }
+       } catch (SQLException ex) {
+           Logger.getLogger(Article_Service.class.getName()).log(Level.SEVERE, null, ex);
+         
+       }
+        return data ;
      
     }
 

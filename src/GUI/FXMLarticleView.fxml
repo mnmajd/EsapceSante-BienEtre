@@ -10,26 +10,31 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLarticleViewController">
    <children>
-      <Text fx:id="titrev" layoutX="165.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="titrev" layoutX="41.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="544.70703125">
          <font>
             <Font name="Broadway" size="27.0" />
          </font>
       </Text>
-      <Text fx:id="conten" layoutX="48.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="210.13671875">
+      <Text fx:id="conten" layoutX="31.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="552.13671875">
          <font>
             <Font name="Andalus" size="15.0" />
          </font></Text>
-      <Text fx:id="categv" layoutX="165.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="categv" layoutX="153.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
          <font>
             <Font name="Berlin Sans FB Demi Bold" size="15.0" />
          </font>
       </Text>
-      <Text fx:id="sujetv" layoutX="47.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="398.13671875">
+      <Text fx:id="sujetv" layoutX="47.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="530.13671875">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Text>
-      <Text fx:id="datev" layoutX="25.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+      <Text fx:id="datev" layoutX="62.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="56.13671875" />
       <ImageView fx:id="imgv" fitHeight="150.0" fitWidth="200.0" layoutX="400.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="dateimaage" fitHeight="37.0" fitWidth="38.0" layoutX="14.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="23.0" fitWidth="28.0" layoutX="118.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Desktop/list.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>

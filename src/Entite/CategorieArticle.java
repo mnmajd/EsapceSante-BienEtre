@@ -24,6 +24,11 @@ public class CategorieArticle {
         this.nom_cat = nom_cat;
     }
 
+    
+  public CategorieArticle(int id_cat) {
+        this.id_cat = id_cat;
+  }
+  
     public CategorieArticle(int id_cat, String nom_cat) {
         this.id_cat = id_cat;
         this.nom_cat = nom_cat;

@@ -171,20 +171,14 @@ public class FXMLmodifController implements Initializable {
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
+            liste.getItems().clear();
+            liste.getItems().addAll(0,serv.getArticleUser(2));
+              
+                                liste.refresh();
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("FXMain.fxml")));
             stage.setScene(scene);
             stage.show();
 
-//    
-//list.getItems().clear();
-//      list.getItems().addAll(serv.getArticleUser(2));
-////                     
-//                                list.refresh();
- liste.getItems().clear();
-      liste.getItems().addAll(serv.getArticleUser(2));
-//                         data.addAll(0, serviceM);
-                       // data.addAll(FXCollections.observableArrayList(ss.getArticleUser(2)));
-                                liste.refresh();
      
                    }
                                 

@@ -31,18 +31,23 @@ public class FXMLarticleViewController implements Initializable {
     private Text datev;
     @FXML
     private ImageView imgv;
+    @FXML
+    private ImageView dateimaage;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        titrev.setText(LST.a);
-       // categv.setText(LST.);
-      //  sujetv.setText(LST.);
-      //  datev.setText(LST)
-         conten.setText(LST.s);
-         imgv.setImage(LST.f);
+//        titrev.setText(LST.t);
+//      categv.setText(LST.a);
+//     sujetv.setText(LST.s);
+//       datev.setText(LST.d);
+//         conten.setText(LST.c);
+//         imgv.setImage(LST.b);
+//         
+         
+         
     }    
     
 }

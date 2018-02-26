@@ -271,12 +271,12 @@ data.addAll(0, serviceM);
              
             stage.setScene(new Scene(root));  
             stage.show();
- 
+  
            
                             } catch (IOException ex) {
                                 Logger.getLogger(AjouBlogController.class.getName()).log(Level.SEVERE, null, ex);
                             }
-            
+           
             
       
                             //  root = fxmlLoader.setLocation(getClass().getResource("FXMLmodif.fxml"));
@@ -460,11 +460,11 @@ data.addAll(0, serviceM);
          
             
             serv.insererArticle(article);
-          int xx = serv.insererArticle(article);
+//          int xx = serv.insererArticle(article);
+//           
+//            Blog lg = new Blog(id_cat,xx);
            
-            Blog lg = new Blog(id_cat,xx);
-           
-            bs.insererBlog(lg);
+//            bs.insererBlog(lg);
              Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Blog");
             alert.setContentText("Bien publié ! ");

@@ -29,19 +29,35 @@ public class Article{
 
     public Article(int id_article, 
             String titre_article, String sujet_article,
-            String contenu_article,  String img_artc, int id_user, int id_cat) {
+            String contenu_article, Date date_pub, String img_artc, int id_user, int id_cat) {
         
         this.id_article = id_article;
         this.titre_article = titre_article;
         this.sujet_article = sujet_article;
         this.contenu_article = contenu_article;
-       // this.date_pub = date_pub ;
+     this.date_pub = date_pub ;
         this.img_artc = img_artc;
        
         this.id_user = id_user;
         this.id_cat = id_cat;
     }
 
+     public Article(int id_article, 
+            String titre_article, String sujet_article,
+            String contenu_article, String img_artc, int id_user, int id_cat) {
+        
+        this.id_article = id_article;
+        this.titre_article = titre_article;
+        this.sujet_article = sujet_article;
+        this.contenu_article = contenu_article;
+        //this.date_pub = date_pub ;
+        this.img_artc = img_artc;
+       
+        this.id_user = id_user;
+        this.id_cat = id_cat;
+    }
+    
+    
 //    public Article(String titr, String sujet, String contenu, Date dateobj, String imaage, int i, int i0, int i1) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
