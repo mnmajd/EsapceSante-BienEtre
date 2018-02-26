@@ -33,20 +33,28 @@ public class ModifierController implements Initializable {
     private TextField nom;
     @FXML
     private TextField password2;
-
+    public static int CurrentuserId ;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         nom.setText(EspaceSanteBienEtre.currentUser.getFirstname());
-        prenom.setText(EspaceSanteBienEtre.currentUser.getLastname());
-        mail.setText(EspaceSanteBienEtre.currentUser.getEmail());
-        tel.setText(EspaceSanteBienEtre.currentUser.getTelephone());
-        password.setText(EspaceSanteBienEtre.currentUser.getPassword());
-        password2.setText(EspaceSanteBienEtre.currentUser.getPassword());
-      
-        System.out.println(EspaceSanteBienEtre.currentUser.getAvatar());
+        UserDAO UserDAO =  new UserDAO();
+//         nom.setText(EspaceSanteBienEtre.currentUser.getFirstname());
+//        prenom.setText(EspaceSanteBienEtre.currentUser.getLastname());
+//        mail.setText(EspaceSanteBienEtre.currentUser.getEmail());
+//        tel.setText(EspaceSanteBienEtre.currentUser.getTelephone());
+//        password.setText(EspaceSanteBienEtre.currentUser.getPassword());
+//        password2.setText(EspaceSanteBienEtre.currentUser.getPassword());
+        CurrentuserId=EspaceSanteBienEtre.currentUser.getId();
+       User u =  UserDAO.findById(CurrentuserId);
+       nom.setText(u.getFirstname());
+        prenom.setText(u.getLastname());
+        mail.setText(u.getEmail());
+        tel.setText(u.getTelephone());
+        password.setText(u.getPassword());
+        password2.setText(u.getPassword());
+        System.out.println(u.getAvatar());
  
     }    
 
