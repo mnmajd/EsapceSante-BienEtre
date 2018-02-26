@@ -103,8 +103,7 @@ public class ManageUserController implements Initializable {
         role.setItems(FXCollections.observableArrayList(
                 "Choisissez un role...",
                 "Membre",
-                "Medecin",
-                "Coach",
+                "Prestataire",
                 "Admin"
         ));
         
