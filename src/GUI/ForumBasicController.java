@@ -6,10 +6,13 @@
 package GUI;
 
 import Entite.Question;
+import Entite.Reponse;
 import Service.QuestionService;
+import Service.ReponseService;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
@@ -30,6 +34,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -58,12 +63,15 @@ public class ForumBasicController implements Initializable {
      @FXML
     private TabPane TabeCat;
     @FXML
+    
     private Button Questionbtn;
     static int id_question;// pour recupurer l'id du question a modifié
+     static String CurrentActiveTab;
 
     @Override
    
     public void initialize(URL url, ResourceBundle rb) {
+        
         QuestionService.getInstance().UpdateLikes();
               List<String> p  =  Service.ServiceCategorieForum.ReadCategorie();
 
@@ -72,17 +80,18 @@ public class ForumBasicController implements Initializable {
         p
         
         );
-        for (Object cat : CategorieForum) {
+            for (Object cat : CategorieForum) {
         TabeCat.getTabs().add(new Tab((String) cat));
-                    }
-//        System.out.println(TabeCat.getSelectionModel().getSelectedItem().getText());
         
+                    }
+            CurrentActiveTab= TabeCat.getSelectionModel().getSelectedItem().getText();
+            TabeCat.setBorder(Border.EMPTY);
         ObservableList<Question> data = FXCollections.observableArrayList(
-             QuestionService.getInstance().FilterByCat(TabeCat.getSelectionModel().getSelectedItem().getText())
+             QuestionService.getInstance().FilterByCat(CurrentActiveTab)
                   
             
           );
-            
+           
           list.getItems().addAll(data);
           
           rechecherTxt.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -107,6 +116,15 @@ public class ForumBasicController implements Initializable {
                        {
                        
                    Circle c = new Circle();
+                 ImageView editIcon = new ImageView();
+                   Image editimg = new Image("/GUI/Images/edit.png") ;
+                   editIcon.setImage(editimg);
+                   
+                   ImageView deleteicon = new ImageView();
+                   Image deleteimg = new Image("/GUI/Images/rubbish.png") ;
+                   deleteicon.setImage(deleteimg);
+                   
+                              
                     
     
                     c.setCenterX(50.0);
@@ -117,18 +135,27 @@ public class ForumBasicController implements Initializable {
                          Text text = new Text (String.valueOf(item.getNbr_rep()));
                          StackPane stack = new StackPane();
                         stack.getChildren().addAll(c, text);
-                         Button edit = new Button("edit");  
-                         Button delete = new Button("delete");  
+                         Button edit = new Button();  
+                         Button delete = new Button();  
                         stack.setLayoutX(30);
                         stack.setLayoutY(30);
                         
+                        edit.setGraphic(editIcon);
+                        delete.setGraphic(deleteicon);
                         
                       VBox vbox0 = new VBox(stack , new Text("Reponse"),edit,delete);
                       vbox0.setSpacing(8);
                            delete.setOnAction((event) -> {
                           
-                          DeleteQuestion(item.getId_question());
-                          list.refresh();
+                          
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Information");
+                                     alert.setContentText("Vous Voulez Vraiment supprimer cette question?  ");
+                                   Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == ButtonType.OK){
+                               
+                                    DeleteQuestion(item.getId_question());
+                                }  
                          
                       });
                       
@@ -178,13 +205,17 @@ public class ForumBasicController implements Initializable {
    TabeCat.getSelectionModel().selectedItemProperty().addListener(
     new ChangeListener<Tab>() {
         @Override
+        
         public void changed(ObservableValue<? extends Tab> ov, Tab t, Tab t1) {
                list.getItems().clear();
+               CurrentActiveTab= TabeCat.getSelectionModel().getSelectedItem().getText();
               ObservableList<Question> data = FXCollections.observableArrayList(
-             QuestionService.getInstance().FilterByCat(TabeCat.getSelectionModel().getSelectedItem().getText())
+             QuestionService.getInstance().FilterByCat(CurrentActiveTab)
+                      
                   
             
           );
+            
           list.getItems().addAll(data);
           list.setCellFactory(new Callback<ListView<Question>, ListCell<Question>>()
                   {
@@ -197,31 +228,50 @@ public class ForumBasicController implements Initializable {
                           super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                        if ( item != null)
                        {
- 
+                            System.out.println(CurrentActiveTab);
                        Circle c = new Circle();
+                 ImageView editIcon = new ImageView();
+                   Image editimg = new Image("/GUI/Images/edit.png") ;
+                   editIcon.setImage(editimg);
+                   
+                   ImageView deleteicon = new ImageView();
+                   Image deleteimg = new Image("/GUI/Images/rubbish.png") ;
+                   deleteicon.setImage(deleteimg);
+                   
+                              
                     
     
                     c.setCenterX(50.0);
                     c.setCenterY(125.0);
                     c.setRadius(30.0);
                     c.setFill(Paint.valueOf("#097D99"));
+                    
                          Text text = new Text (String.valueOf(item.getNbr_rep()));
                          StackPane stack = new StackPane();
                         stack.getChildren().addAll(c, text);
-
-                        Button edit = new Button("edit");  
-                         Button delete = new Button("delete");  
+                         Button edit = new Button();  
+                         Button delete = new Button();  
                         stack.setLayoutX(30);
                         stack.setLayoutY(30);
                         
+                        edit.setGraphic(editIcon);
+                        delete.setGraphic(deleteicon);
+                    
                       VBox vbox0 = new VBox(stack , new Text("Reponse"),edit,delete);
                       vbox0.setSpacing(8);
                       
-                      delete.setOnAction((event) -> {
+                         delete.setOnAction((event) -> {
                           
-                          DeleteQuestion(item.getId_question());
                           
-                          list.refresh();
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Information");
+                                     alert.setContentText("Vous Voulez Vraiment supprimer cette question?  ");
+                                   Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == ButtonType.OK){
+                               
+                                    DeleteQuestion(item.getId_question());
+                                }  
+                         
                       });
                       
                       edit.setOnAction((event) -> {
@@ -273,10 +323,12 @@ public class ForumBasicController implements Initializable {
                   
     }
 );
+  
    list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Question> () {
                   @Override
                   public void changed(ObservableValue<? extends Question> observable, Question oldValue, Question newValue) {
                        try {
+                           CurrentActiveTab= TabeCat.getSelectionModel().getSelectedItem().getText();
                            FXMain.id = newValue.getId_question();
                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ReponseUI.fxml"));
                             Parent root = (Parent) fxmlLoader.load();

@@ -1,3 +1,6 @@
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,18 +14,22 @@ import Entite.Reponse;
 import Service.QuestionService;
 import Service.ReponseService;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -36,9 +43,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import org.controlsfx.control.Rating;
+
 
 /**
  * FXML Controller class
@@ -83,6 +91,7 @@ public class ReponseUIController implements Initializable {
    static int id_rep ;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        System.out.println(ForumBasicController.CurrentActiveTab);
         UpBox.setSpacing(10);
         try {
         
@@ -103,6 +112,8 @@ public class ReponseUIController implements Initializable {
       
       Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             img.setImage(image);
+                              img.setFitHeight(200);
+                            img.setFitWidth(700);
                            
      // Remplissage de la lise qui suit
     
@@ -120,55 +131,69 @@ public class ReponseUIController implements Initializable {
                         super.updateItem(item, empty); //To change body of generated methods, choose Tools | Templates.
                      if ( item != null)
                      {
-                       
-                        id_rep = item.getId_rep();
-                        Button edit = new Button("edit");  
-                         Button delete = new Button("delete"); 
-                         ToggleButton likeBtn = new ToggleButton();
-                        
-              likeBtn.setSelected(ReponseService.getInstance().CurrentUserLikedReponse(id_rep,current_user_id));
                          
+                         ImageView likeicon = new ImageView();
+                   Image likeimg = new Image("/GUI/Images/like.png") ;
+                   likeicon.setImage(likeimg);
+                   ImageView dislikeicon = new ImageView();
+                   Image dislikeimg = new Image("/GUI/Images/dislike.png") ;
+                   dislikeicon.setImage(dislikeimg);
+                   
+                   ImageView editIcon = new ImageView();
+                   Image editimg = new Image("/GUI/Images/edit.png") ;
+                   editIcon.setImage(editimg);
+                   
+                   ImageView deleteicon = new ImageView();
+                   Image deleteimg = new Image("/GUI/Images/rubbish.png") ;
+                   deleteicon.setImage(deleteimg);
+                        id_rep = item.getId_rep();
+                        Button edit = new Button();  
+                         Button delete = new Button(); 
+                         ToggleButton likeBtn = new ToggleButton();
+                         likeBtn.setGraphic(likeicon);
+                         edit.setGraphic(editIcon);
+                         delete.setGraphic(deleteicon);
+             
+              likeBtn.setGraphic(likeicon);   
+              
+      
+//                      
+//              if (likeBtn.isSelected())
+//              {
+//               likeBtn.setGraphic(dislikeicon);   
+//              }
+//              else if (likeBtn.isSelected() == false)
+//              {
+//                  likeBtn.setGraphic(likeicon);   
+//                       
+                      
+              
+              
+              
+              
+              
+              
+              
                      Circle c = new Circle();
                     c.setCenterX(50.0);
                     c.setCenterY(125.0);
                     c.setRadius(30.0);
                     c.setFill(Paint.valueOf("#097D99"));
                          Text text = new Text (String.valueOf(item.getNbr_aime_rep()));
+                         text.setTextAlignment(TextAlignment.CENTER);
                          StackPane stack = new StackPane();
                         stack.setLayoutX(30);
                         stack.setLayoutY(30);
                         stack.getChildren().addAll(c, text);
 
                       
-                     
+   
                             Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             ImageView imv =new ImageView(image);
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);   
-                         
-                      likeBtn.setOnMouseClicked((event) -> {
-                        if (likeBtn.isSelected())  
-                        {
-                            try {
-                                
-                                ReponseService.getInstance().LikeReponse(id_rep);
-                                ReponseService.getInstance().AddLikedQuestion(id_rep,current_user_id);
-                             
-                            } catch (Exception e) {
-                                System.out.println(e);
-                            }
-                        }
-                        else 
-                        {
-                           try {
-                                ReponseService.getInstance().DislikeReponse(id_rep);
-                                ReponseService.getInstance().DeleteLikedQuestion(id_rep,current_user_id);
-                             
-                            } catch (Exception e) {
-                                System.out.println(e);
-                            }                                      
-                        }                                  
-                      });
+                   
+
                          
                        edit.setOnAction((event) -> {
                            try {
@@ -190,11 +215,19 @@ public class ReponseUIController implements Initializable {
                            try {
                                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                     alert.setTitle("Information");
-                                         alert.setContentText("Vous Voulez Vraiment supprimer cette reponse?  ");
-                                             alert.showAndWait();
-                                ReponseService.getInstance().DeleteReponse(item.getId_rep());
+                                     alert.setContentText("Vous Voulez Vraiment supprimer cette reponse?  ");
+                                   Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == ButtonType.OK){
+                                         ReponseService.getInstance().DeleteReponse(item.getId_rep());
+                                Reponselist.getItems().clear();
                                  ObservableList<Reponse> dataList = FXCollections.observableArrayList(ReponseService.getInstance().FiltredReponse(FXMain.id));
                                  Reponselist.getItems().addAll(dataList);
+  
+                                } else {
+                                            
+                                                }
+                                     
+                               
                                 
                                 
                            } catch (Exception e) {
@@ -204,26 +237,67 @@ public class ReponseUIController implements Initializable {
                           
                            
                        });
-                         
-                  VBox vbox1 = new VBox(imv , new Text(item.getNom()+" "+item.getPrenom()));
+                    Text NP = new Text(item.getNom()+" "+item.getPrenom());
+               
+                   NP.setTextOrigin(VPos.CENTER);
+                  VBox vbox1 = new VBox(imv , NP);
+                  vbox1.setAlignment(Pos.CENTER);
                   vbox1.setSpacing(8);
                   Text contenu = new Text(item.getContenu_rep());
+                  contenu.setLayoutX(20);
                   contenu.setWrappingWidth(750);
                  
-                  VBox vbox2 = new VBox(contenu, new Text(item.getDate_pub()));
+                  VBox vbox2 = new VBox(contenu,new Text(item.getDate_pub()));
+                  
+                  
                   vbox2.setSpacing(25);
+                  
                   VBox vbox3 = new VBox(likeBtn,edit,delete);
                   vbox3.setSpacing(30);
-                  VBox vbox4 = new VBox(stack,new Text("Likes")); 
+                 Text likes =  new Text("Likes");
+                 
+                 likes.setTextAlignment(TextAlignment.CENTER);
+                  VBox vbox4 = new VBox(stack,likes); 
+                  vbox4.setAlignment(Pos.CENTER);
                   vbox4.setSpacing(8);
+                  
                   HBox ImgTxt = new HBox(vbox1,vbox2);  
                   ImgTxt.setSpacing(15);
-                  HBox LikeButtons = new HBox(vbox3,vbox4);     
-                  LikeButtons.setSpacing(15);
+                    HBox LikeButtons = new HBox(vbox3,vbox4);     
+                    LikeButtons.setSpacing(10);
                   HBox principale = new HBox(ImgTxt,LikeButtons);
                   principale.setSpacing(300);
                     setGraphic(principale);
-                       
+                     likeBtn.setSelected(ReponseService.CurrentUserLikedReponse(id_rep, current_user_id));
+                       likeBtn.setOnMouseClicked((event) -> {
+                        if (likeBtn.isSelected())  
+                        {
+                            try {
+                                
+                                ReponseService.getInstance().LikeReponse(item.getId_rep());
+                              ReponseService.getInstance().AddLikedQuestion(item.getId_rep(),current_user_id);
+                            
+                                  
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }
+                        }
+                        else 
+                        {
+                           try {
+                               
+                                ReponseService.getInstance().DislikeReponse(item.getId_rep());
+                              ReponseService.getInstance().DeleteLikedQuestion(item.getId_rep(),current_user_id);
+                  
+                                
+                                 
+                                 
+                            } catch (Exception e) {
+                                System.out.println(e);
+                            }                                      
+                        }                                  
+                      });
+              
      
                             
 
@@ -258,9 +332,7 @@ public class ReponseUIController implements Initializable {
             Reponse r = new Reponse(ContenuRep.getText(),FXMain.id);
             ReponseService.getInstance().AddReponse(r);
         
-            
-           
-           
+           Reponselist.getItems().clear();
         ObservableList<Reponse> dataList = FXCollections.observableArrayList(ReponseService.getInstance().FiltredReponse(FXMain.id));
         Reponselist.getItems().addAll(dataList);
   

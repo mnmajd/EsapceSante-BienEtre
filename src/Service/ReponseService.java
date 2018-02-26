@@ -119,6 +119,7 @@ public class ReponseService {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
              ste.setInt(1, id);
              ste.executeUpdate();
+             System.out.println(" you liked a reponse"+id);
         } catch (SQLException ex) {
              System.out.println(ex);
         }
@@ -131,6 +132,7 @@ public class ReponseService {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
              ste.setInt(1, id);
              ste.executeUpdate();
+             System.out.println(" you disliked a reponse a reponse"+id);
         } catch (SQLException ex) {
              System.out.println(ex);
         }
@@ -141,7 +143,7 @@ public class ReponseService {
  public static List<Reponse> FiltredReponse( int id)
       {
           List<Reponse> p = new ArrayList<>();
-          String req = "SELECT r.id_rep,r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=? ORDER BY r.Date_publication DESC";
+          String req = "SELECT r.id_rep,r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=? ";
          
         
          try {
