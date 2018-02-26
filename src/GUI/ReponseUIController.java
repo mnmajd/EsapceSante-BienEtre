@@ -108,7 +108,7 @@ public class ReponseUIController implements Initializable {
         contenu.setText(q.getContenu_question());
         sujet.setText(q.getSujet_question());
         nomprenom.setText(q.getNom()+" "+q.getPrenom());
-        dare.setText(q.getDate_publication());
+        dare.setText(q.getDate_publication().substring(0, 16));
       
       Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             img.setImage(image);
@@ -247,13 +247,13 @@ public class ReponseUIController implements Initializable {
                   contenu.setLayoutX(20);
                   contenu.setWrappingWidth(750);
                  
-                  VBox vbox2 = new VBox(contenu,new Text(item.getDate_pub()));
+                  VBox vbox2 = new VBox(contenu,new Text(item.getDate_pub().substring(0, 16)));
                   
                   
                   vbox2.setSpacing(25);
                   
                   VBox vbox3 = new VBox(likeBtn,edit,delete);
-                  vbox3.setSpacing(30);
+                  vbox3.setSpacing(10);
                  Text likes =  new Text("Likes");
                  
                  likes.setTextAlignment(TextAlignment.CENTER);
@@ -276,7 +276,9 @@ public class ReponseUIController implements Initializable {
                                 
                                 ReponseService.getInstance().LikeReponse(item.getId_rep());
                               ReponseService.getInstance().AddLikedQuestion(item.getId_rep(),current_user_id);
-                            
+                                     Reponselist.getItems().clear();
+                                 ObservableList<Reponse> dataList = FXCollections.observableArrayList(ReponseService.getInstance().FiltredReponse(FXMain.id));
+                                    Reponselist.getItems().addAll(dataList);
                                   
                             } catch (Exception e) {
                                 System.out.println(e);
@@ -288,7 +290,9 @@ public class ReponseUIController implements Initializable {
                                
                                 ReponseService.getInstance().DislikeReponse(item.getId_rep());
                               ReponseService.getInstance().DeleteLikedQuestion(item.getId_rep(),current_user_id);
-                  
+                                       Reponselist.getItems().clear();
+                                        ObservableList<Reponse> dataList = FXCollections.observableArrayList(ReponseService.getInstance().FiltredReponse(FXMain.id));
+                                      Reponselist.getItems().addAll(dataList);
                                 
                                  
                                  

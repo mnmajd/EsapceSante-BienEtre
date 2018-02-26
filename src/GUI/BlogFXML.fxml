@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.BlogFXMLController">
+   <children>
+      <Text fx:id="txt2" layoutX="24.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="277.13671875" GridPane.rowIndex="1" />
+      <ImageView fx:id="imgblog" fitHeight="228.0" fitWidth="242.0" layoutX="335.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
+      <Text fx:id="area" layoutX="24.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="260.13671875" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Text fx:id="txt1" layoutX="25.0" layoutY="62.94921875" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="273.13671875" />
+   </children>
+</AnchorPane>
