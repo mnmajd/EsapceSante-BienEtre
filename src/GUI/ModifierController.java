@@ -67,8 +67,7 @@ public class ModifierController implements Initializable {
             user.setTelephone(tel.getText());
             user.setStatus(EspaceSanteBienEtre.currentUser.getStatus());
             userDAO.update2(user);
-           
-          
+            
             
             System.out.println(user.getEmail());
           
