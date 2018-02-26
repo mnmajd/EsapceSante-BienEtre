@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
@@ -22,13 +23,16 @@
                       <children>
                         <VBox prefHeight="255.0" prefWidth="214.0">
                            <children>
-                              <ImageView fx:id="img" fitHeight="208.0" fitWidth="224.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
-                              <Text fx:id="nomprenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="141.7294921875">
+                              <ImageView fx:id="img" fitHeight="208.0" fitWidth="300.0" nodeOrientation="INHERIT"  pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" left="55.0" right="10.0" top="5.0" />
+                                 </VBox.margin></ImageView>
+                              <Text fx:id="nomprenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="252.7294921875">
                                  <font>
-                                    <Font name="KacstPoster" size="18.0" />
+                                    <Font name="Gentium Basic Bold" size="18.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="dare" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="244.7294921875" />
+                              <Text fx:id="dare" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="244.7294921875" />
                               
                            </children>
                         </VBox>

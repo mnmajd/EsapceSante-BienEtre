@@ -1,3 +1,6 @@
+
+import Service.ReponseService;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -74,7 +77,7 @@ public class EspaceSanteBienEtre {
 
        
 
-
+        System.out.println(ReponseService.getInstance().CurrentUserLikedReponse(4,3));
 
 
         
