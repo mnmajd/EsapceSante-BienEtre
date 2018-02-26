@@ -31,7 +31,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Label layoutX="423.0" layoutY="443.0" onMouseClicked="#apropo" prefHeight="59.0" prefWidth="227.0">
+                  <Label layoutX="423.0" layoutY="443.0" onMouseClicked="#apropo"  prefHeight="59.0" prefWidth="227.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Label>
