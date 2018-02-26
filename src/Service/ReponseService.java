@@ -143,7 +143,8 @@ public class ReponseService {
  public static List<Reponse> FiltredReponse( int id)
       {
           List<Reponse> p = new ArrayList<>();
-          String req = "SELECT r.id_rep,r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=? ";
+          String req = "SELECT r.id_rep,r.contenu_rep , r.Date_publication ,r.nbr_aime_rep , u.nom , u.prenom from reponse r join user u ON r.id_user = u.id_user join question q on r.id_question = q.id_question where q.id_question=? order by r.Date_publication desc"
+                  + "  ";
          
         
          try {

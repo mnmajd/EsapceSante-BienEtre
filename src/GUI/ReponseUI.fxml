@@ -23,9 +23,9 @@
                       <children>
                         <VBox prefHeight="255.0" prefWidth="214.0">
                            <children>
-                              <ImageView fx:id="img" fitHeight="208.0" fitWidth="300.0" nodeOrientation="INHERIT"  pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="img" fitHeight="208.0" fitWidth="300.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
-                                    <Insets bottom="10.0" left="55.0" right="10.0" top="5.0" />
+                                    <Insets bottom="10.0" left="55.0" right="15.0" top="10.0" />
                                  </VBox.margin></ImageView>
                               <Text fx:id="nomprenom" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="252.7294921875">
                                  <font>
