@@ -7,7 +7,6 @@ package GUI;
 
 import Service.AnnonceUser;
 import Entite.Annonce;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -49,7 +48,12 @@ public class Interface_afficher_evenementController implements Initializable {
     private Button retourE;
     @FXML
     private TextField rechercher;
-
+    static String chtitre;
+    static String chdescription;
+    static String chtel;
+    static String chdate;
+    static String chimg;
+    static String chadress;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -95,13 +99,13 @@ public class Interface_afficher_evenementController implements Initializable {
             public void changed(ObservableValue<? extends Annonce> observable, Annonce oldValue, Annonce newValue) {
 
                 try {
-                    Main_evenement.chtitre = newValue.getTitre_annonce();
-                    Main_evenement.chdescription = newValue.getDesc_annonce();
-                    Main_evenement.chdate = newValue.getDate_annonce();
-                    Main_evenement.chadress = newValue.getAddr_annonce();
+                    chtitre = newValue.getTitre_annonce();
+                    chdescription = newValue.getDesc_annonce();
+                    chdate = newValue.getDate_annonce();
+                    chadress = newValue.getAddr_annonce();
                     String val2 = Integer.toString(newValue.getTel_annonce());
-                    Main_evenement.chtel = val2;
-                    Main_evenement.chimg = newValue.getImg_annonce();
+                    chtel = val2;
+                    chimg = newValue.getImg_annonce();
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface_detail_evenement.fxml"));
                     Parent root = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
@@ -109,7 +113,6 @@ public class Interface_afficher_evenementController implements Initializable {
                     stage.show();
                     NewFXMain.stage.close();
                     NewFXMain.stage = stage;
-                    Main_evenement.st = stage;
 
                 } catch (IOException ex) {
                     Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,5 +1,11 @@
 package GUI;
 
+import static GUI.Interface_afficher_offreController.chadress;
+import static GUI.Interface_afficher_offreController.chdate;
+import static GUI.Interface_afficher_offreController.chdescription;
+import static GUI.Interface_afficher_offreController.chimg;
+import static GUI.Interface_afficher_offreController.chtel;
+import static GUI.Interface_afficher_offreController.chtitre;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 import com.itextpdf.text.Document;
@@ -54,17 +60,17 @@ public class Interface_detail_offreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         
-        Image img = new Image(Main_offre.chimg,true);
+        Image img = new Image(chimg,true);
         logo.setImage(img);
         logo.setFitHeight(130);
         logo.setFitWidth(120);
 
 
-        titre.setText(Main_offre.chtitre);
-        Description.setText(Main_offre.chdescription);
-        date.setText(Main_offre.chdate);
-        tel.setText(Main_offre.chtel);
-        adresse.setText(Main_offre.chadress);
+        titre.setText(chtitre);
+        Description.setText(chdescription);
+        date.setText(chdate);
+        tel.setText(chtel);
+        adresse.setText(chadress);
 
     }
 
@@ -153,7 +159,7 @@ public class Interface_detail_offreController implements Initializable {
             stage.show();
             NewFXMain.stage.close();
             NewFXMain.stage = stage;
-            Main_offre.stage.close();
+        
 
         } catch (IOException ex) {
             Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);

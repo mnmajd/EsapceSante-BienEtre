@@ -191,6 +191,48 @@ public class AnnonceUser {
         return list;
     }
 
+    
+    public int statistiqueOffre() {
+        try {
+            
+            String req = "SELECT COUNT(*) AS Offres d'emplois from Annonce where Type_annonce like 'Offres d'emplois";
+            PreparedStatement statement = ds.getConnection().prepareStatement(req);
+            ResultSet result=statement.executeQuery();
+            while(result.next())
+            {
+                return result.getInt("Offres d'emplois");    
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error on DB connection Offre");
+            System.out.println(e.getMessage());      
+        }
+        return -1;
+    }
+
+        public int statistiqueEvenement() {
+        try {
+            String req = "SELECT COUNT(*) AS Evenements from Annonce where Type_annonce like 'Evenements'";
+            PreparedStatement statement = ds.getConnection().prepareStatement(req);
+            ResultSet result=statement.executeQuery();
+            while(result.next())
+            {
+                return result.getInt("Evenements");
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error on DB connection femme");
+            System.out.println(e.getMessage());      
+        }
+        return -1;
+    }
+    
+    
+    
+    
+    
+    
+    
 
 
     }
