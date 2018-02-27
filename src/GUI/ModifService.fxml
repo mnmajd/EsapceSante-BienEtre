@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="607.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ModifServiceController">
+   <children>
+      <TableView fx:id="TableMedecins" layoutX="14.0" layoutY="89.0" onMouseClicked="#get_selected_item" prefHeight="227.0" prefWidth="1215.0">
+        <columns>
+          <TableColumn fx:id="photo" prefWidth="244.0" text="Photo" />
+          <TableColumn fx:id="nom" minWidth="3.0" prefWidth="79.0" text="Nom" />
+            <TableColumn fx:id="prenom" prefWidth="101.0" text="Prénom" />
+            <TableColumn fx:id="specialite" prefWidth="144.0" text="Specialité" />
+            <TableColumn fx:id="adresse" prefWidth="134.0" text="Adresse" />
+            <TableColumn fx:id="prix" prefWidth="141.0" text="Prix de la consultation" />
+            <TableColumn fx:id="mode" prefWidth="233.0" text="Mode de réglement" />
+            <TableColumn fx:id="id" prefWidth="233.0" text="id" />
+        </columns>
+      </TableView>
+      <TextField fx:id="rech" layoutX="43.0" layoutY="28.0" prefHeight="25.0" prefWidth="284.0" promptText="Spécialité" />
+      <TextField fx:id="rechnom" layoutX="402.0" layoutY="28.0" prefHeight="25.0" prefWidth="231.0" promptText="Nom du docteur" />
+   </children>
+</AnchorPane>

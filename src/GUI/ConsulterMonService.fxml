@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ConsulterMonServiceController">
+   <children>
+      <AnchorPane layoutY="-1.0" prefHeight="710.0" prefWidth="266.0" style="-fx-background-color: #85e0e0;">
+         <children>
+            <Button fx:id="modif" layoutX="1.0" layoutY="137.0" mnemonicParsing="false" onAction="#modifierservice" prefHeight="59.0" prefWidth="266.0" text="Modifier informations" />
+            <Button fx:id="delete" layoutY="207.0" mnemonicParsing="false" onAction="#deleteservice" prefHeight="46.0" prefWidth="266.0" text="Supprimer service" />
+            <Text fill="#b56666" layoutX="27.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Docteur" textAlignment="CENTER" wrappingWidth="184.0615234375">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Text>
+            <Button fx:id="consulte" layoutY="265.0" mnemonicParsing="false" onAction="#consulterservice" prefHeight="59.0" prefWidth="266.0" text="Consulter les services" />
+            <Label fx:id="nom" layoutX="65.0" layoutY="73.0" prefHeight="17.0" prefWidth="42.0" text="Label" />
+            <Label fx:id="prenom" layoutX="120.0" layoutY="73.0" prefHeight="17.0" prefWidth="42.0" text="Label" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="267.0" layoutY="-8.0" prefHeight="710.0" prefWidth="1095.0">
+         <children>
+            <Pane layoutY="3.0" prefHeight="59.0" prefWidth="1043.0" style="-fx-background-color: #0a2929;">
+               <children>
+                  <Text fill="#fff4f4" layoutX="966.0" layoutY="32.0" stroke="#fcf6f6" strokeType="OUTSIDE" strokeWidth="0.0" text="LogOut" wrappingWidth="62.650390625">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Text>
+               </children>
+            </Pane>
+            <Text fill="#e85353" layoutX="298.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qualification professionnelle">
+               <font>
+                  <Font name="System Italic" size="21.0" />
+               </font>
+            </Text>
+            <Accordion layoutX="75.0" layoutY="155.0" />
+            <Accordion layoutX="201.0" layoutY="169.0" />
+            <Separator layoutX="306.0" layoutY="101.0" prefHeight="3.0" prefWidth="258.0" />
+            <Label layoutX="299.0" layoutY="112.0" text="Spécialités">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Label layoutX="301.0" layoutY="157.0" text="Diplomes">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Label layoutX="303.0" layoutY="202.0" text="Langues parlées">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Label layoutX="405.0" layoutY="241.0" text="Ouverture">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Label layoutX="613.0" layoutY="241.0" text="Fermeture">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Text fill="#e85353" layoutX="307.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horaire ">
+               <font>
+                  <Font name="System Italic" size="21.0" />
+               </font>
+            </Text>
+            <Separator layoutX="300.0" layoutY="258.0" prefHeight="3.0" prefWidth="72.0" />
+            <Text fill="#e85353" layoutX="311.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations pratiques">
+               <font>
+                  <Font name="System Italic" size="21.0" />
+               </font>
+            </Text>
+            <Separator layoutX="309.0" layoutY="307.0" prefHeight="3.0" prefWidth="215.0" />
+            <Label layoutX="310.0" layoutY="324.0" text="Modes de règlement">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Text fill="#e85353" layoutX="299.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informations de contact">
+               <font>
+                  <Font name="System Italic" size="21.0" />
+               </font>
+            </Text>
+            <Label layoutX="297.0" layoutY="561.0" text="Télephone">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Label layoutX="297.0" layoutY="501.0" text="Adresse">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Label layoutX="302.0" layoutY="615.0" text="E_mail">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Label layoutX="305.0" layoutY="372.0" text="Tarif">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Label layoutX="298.0" layoutY="412.0" text="Convontionné avec la CNAM?">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Label>
+            <Separator layoutX="295.0" layoutY="473.0" prefHeight="3.0" prefWidth="225.0" />
+            <Label fx:id="spec" layoutX="470.0" layoutY="112.0" prefHeight="17.0" prefWidth="103.0" text="Label" />
+            <Label text="Label" />
+            <Label fx:id="promotion" layoutX="479.0" layoutY="161.0" prefHeight="17.0" prefWidth="103.0" text="Label" />
+            <Label fx:id="lang" layoutX="489.0" layoutY="202.0" prefHeight="17.0" prefWidth="111.0" text="Label" />
+            <Label fx:id="ouvet" layoutX="530.0" layoutY="241.0" text="Label" />
+            <Label fx:id="ferme" layoutX="732.0" layoutY="241.0" text="Label" />
+            <Label fx:id="reglement" layoutX="502.0" layoutY="324.0" text="Label" />
+            <Label fx:id="tarif" layoutX="415.0" layoutY="372.0" text="Label" />
+            <Label fx:id="cnam" layoutX="558.0" layoutY="412.0" text="Label" />
+            <Label fx:id="tel" layoutX="419.0" layoutY="561.0" text="Label" />
+            <Label fx:id="adr" layoutX="418.0" layoutY="506.0" text="Label" />
+            <Label fx:id="mail" layoutX="419.0" layoutY="615.0" text="Label" />
+            <TextField fx:id="id" layoutX="572.0" layoutY="100.0" />
+            <ImageView fx:id="image" fitHeight="189.0" fitWidth="205.0" layoutX="51.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="retour" layoutX="909.0" layoutY="650.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
