@@ -164,9 +164,41 @@ public class AnnonceUser {
 
     public static List<Annonce> rech(String Titre) throws SQLException {
         List<Annonce> list = new ArrayList<>();
-        String req = "SELECT * FROM Annonce WHERE Titre_annonce like '%" +Titre+"%'";
+        String req = "SELECT * FROM Annonce WHERE Titre_annonce like '%" +Titre+"%'AND  Type_annonce = ?";
         try (PreparedStatement ste = ds.getConnection().prepareStatement(req)) {        
+          ste.setString(1, "Offres d'emplois");
+
         
+        ResultSet result = ste.executeQuery();
+        while (result.next()) {
+            Annonce annonce = new Annonce();
+            
+
+                annonce.setType_annonce(result.getString("Type_annonce"));
+                annonce.setTitre_annonce(result.getString("Titre_annonce"));
+                annonce.setDate_annonce(result.getString("Date_annonce"));
+                annonce.setAddr_annonce(result.getString("Addr_annonce"));
+                annonce.setDesc_annonce(result.getString("Desc_annonce"));
+                annonce.setTel_annonce(result.getInt("Tel_annonce"));
+                annonce.setImg_annonce(result.getString("Img_annonce"));
+                
+                  list.add(annonce);
+            }
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return list;
+    }
+
+    
+     public static List<Annonce> rech2(String Titre) throws SQLException {
+        List<Annonce> list = new ArrayList<>();
+        String req = "SELECT * FROM Annonce WHERE Titre_annonce like '%" +Titre+"%'AND  Type_annonce = ?";
+        try (PreparedStatement ste = ds.getConnection().prepareStatement(req)) {        
+          ste.setString(1, "Evenements");
+
         
         ResultSet result = ste.executeQuery();
         while (result.next()) {
@@ -195,17 +227,16 @@ public class AnnonceUser {
     public int statistiqueOffre() {
         try {
             
-            String req = "SELECT COUNT(*) AS Offres d'emplois from Annonce where Type_annonce like 'Offres d'emplois";
-            PreparedStatement statement = ds.getConnection().prepareStatement(req);
-            ResultSet result=statement.executeQuery();
+            String req = "SELECT COUNT(*) AS Offres  from Annonce where Type_annonce = ?";
+            PreparedStatement ste = ds.getConnection().prepareStatement(req);
+             ste.setString(1, "Offres d'emplois ");
+            ResultSet result=ste.executeQuery();
             while(result.next())
             {
-                return result.getInt("Offres d'emplois");    
-            }
-            
-        } catch (Exception e) {
-            System.out.println("Error on DB connection Offre");
-            System.out.println(e.getMessage());      
+                return result.getInt("Offres ");    
+            }   
+        } catch (Exception e) {    
+            System.out.println(e);      
         }
         return -1;
     }
@@ -213,18 +244,18 @@ public class AnnonceUser {
         public int statistiqueEvenement() {
         try {
             String req = "SELECT COUNT(*) AS Evenements from Annonce where Type_annonce like 'Evenements'";
-            PreparedStatement statement = ds.getConnection().prepareStatement(req);
-            ResultSet result=statement.executeQuery();
+            PreparedStatement ste = ds.getConnection().prepareStatement(req);
+            ResultSet result=ste.executeQuery();
             while(result.next())
             {
                 return result.getInt("Evenements");
             }
             
-        } catch (Exception e) {
-            System.out.println("Error on DB connection femme");
-            System.out.println(e.getMessage());      
+        } catch (Exception e) {          
+            System.out.println(e);      
         }
         return -1;
+        
     }
     
     

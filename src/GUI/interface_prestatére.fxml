@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_prestatéreController">
+<AnchorPane id="AnchorPane" prefHeight="398.0" prefWidth="777.0" styleClass="background1" stylesheets="@../css/fxml.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_prestatéreController">
    <children>
-      <Button fx:id="ajouterannonce" layoutX="84.0" layoutY="321.0" mnemonicParsing="false" onAction="#ajouterannonce" text="Ajouter une annonce" />
-      <Button fx:id="consulterannonce" layoutX="337.0" layoutY="321.0" mnemonicParsing="false" onAction="#consulterannonce" text="consulter vos annonce" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="597.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/statt.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="305.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/parametre.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="48.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/ajoutannonce.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="84.0" layoutY="287.0" text="Ajouter Annonce" />
+      <Label layoutX="329.0" layoutY="287.0" text="Consulter Annonce" />
+      <Label layoutX="640.0" layoutY="287.0" text="Statistique" />
+      <Label layoutX="84.0" layoutY="126.0" onMouseClicked="#ajouterannonce" prefHeight="127.0" prefWidth="99.0" />
+      <Label layoutX="324.0" layoutY="126.0" onMouseClicked="#consulterannonce" prefHeight="127.0" prefWidth="113.0" />
+      <Label layoutX="608.0" layoutY="136.0" onMouseClicked="#statistique" prefHeight="127.0" prefWidth="129.0" />
    </children>
 </AnchorPane>

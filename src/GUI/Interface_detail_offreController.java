@@ -60,6 +60,32 @@ public class Interface_detail_offreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         
+         //retourner en arriére
+        Image image = new Image("\\image\\retour.png");
+         ImageView iv1 = new ImageView();
+         iv1.setImage(image);
+         retour2.setGraphic(iv1);
+         iv1.setFitWidth(35);
+         iv1.setPreserveRatio(true);
+         iv1.setSmooth(true);
+         iv1.setCache(true);
+        
+        
+        
+         
+         //boutton telecharger
+        Image im = new Image("\\image\\icon-download-pdf.png");
+         ImageView iv2 = new ImageView();
+         iv2.setImage(im);
+         telecharger.setGraphic(iv2);
+         iv2.setFitWidth(45);
+         iv2.setPreserveRatio(true);
+         iv2.setSmooth(true);
+         iv2.setCache(true);
+         
+         
+         
+        
         Image img = new Image(chimg,true);
         logo.setImage(img);
         logo.setFitHeight(130);
@@ -80,7 +106,7 @@ public class Interface_detail_offreController implements Initializable {
 
             Document doc = new Document(PageSize.A4, 50, 50, 50, 50);
             try {
-                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("C:\\pdf java\\annonce.pdf"));
+                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("C:\\pdf java\\"+chtitre+".pdf"));
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -97,15 +123,15 @@ public class Interface_detail_offreController implements Initializable {
             Anchor anchorTarget = new Anchor("test field.");
 
             String P1 = ("titre de l'offre : " + titre1);
-            P1 += "\n";
+            P1 += "\n\n";
             String P2 = ("description de l'offre : " + titre2);
-            P2 += "\n";
+            P2 += "\n\n";
             String P3 = ("la date de l'offre: " + titre3);
-            P3 += "\n";
+            P3 += "\n\n";
             String P4 = ("numero de téléphone : " + titre4);
-            P4 += "\n";
+            P4 += "\n\n";
             String P5 = ("l'adresse du local : " + titre5);
-            P5 += "\n";
+            P5 += "\n\n";
             String P6 = ("logo : " + titre6);
 
             anchorTarget.setName("BackToTop");

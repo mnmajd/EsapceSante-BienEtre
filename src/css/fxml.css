@@ -1,0 +1,35 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.background {  -fx-background-image: url("../image/Omar1.jpg");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+
+}
+
+.background1 {  -fx-background-image: url("../image/Omar2.jpg");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+
+}
+.background2 {  -fx-background-image: url("../image/Omar3.jpg");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+}
+.background3 {  -fx-background-image: url("../image/omar5.png");
+-fx-background-size:100% auto;
+-fx-background-attachment: fixed;
+-fx-overflow-x:hidden;
+fx-background-position: center center;
+-fx-background-repeat: no-repeat;
+}

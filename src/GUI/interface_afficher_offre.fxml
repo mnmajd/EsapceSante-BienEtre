@@ -8,27 +8,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="575.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_afficher_offreController">
+<AnchorPane id="AnchorPane" prefHeight="620.0" prefWidth="754.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_afficher_offreController">
    <children>
-      <SplitPane dividerPositions="0.1518324607329843" layoutX="154.0" layoutY="31.0" orientation="VERTICAL" prefHeight="575.0" prefWidth="742.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="187.0" prefWidth="740.0">
+      <SplitPane dividerPositions="0.1518324607329843" layoutX="164.0" layoutY="36.0" orientation="VERTICAL" prefHeight="620.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="187.0" prefWidth="740.0" styleClass="background1" stylesheets="@../css/fxml.css">
                <children>
-                  <Button fx:id="retour" layoutX="21.0" layoutY="21.0" mnemonicParsing="false" onAction="#retour" text="return" />
-                  <Text fill="#1abbd3" layoutX="208.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La Liste des offres d'emplois" wrappingWidth="287.537109375">
+                  <Button fx:id="retour" layoutX="6.0" layoutY="5.0" mnemonicParsing="false" onAction="#retour" />
+                  <Text fill="#ff6666" layoutX="225.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des offres d'emplois" wrappingWidth="287.537109375">
                      <font>
-                        <Font size="22.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="recherche" layoutX="563.0" layoutY="31.0" onKeyReleased="#rechercher" promptText="rechercher" />
+                  <TextField fx:id="rechercher" layoutX="583.0" layoutY="31.0" onKeyReleased="#rechercher" promptText="Rechercher" />
+                  
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="740.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="740.0">
                <children>
                   <ListView fx:id="listview" layoutX="250.0" layoutY="-180.0" prefHeight="462.0" prefWidth="740.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-        </items>
+         </items>
       </SplitPane>
    </children>
 </AnchorPane>

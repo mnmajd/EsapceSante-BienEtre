@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,6 +34,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class Interface_afficherController implements Initializable {
@@ -74,37 +79,31 @@ public class Interface_afficherController implements Initializable {
     @FXML
     private ComboBox<String> choix;
 
-
-  private String imageUrl;
+    private String imageUrl;
     @FXML
     private Button retour;
+    @FXML
+    private Button supprimer;
 
-    
-   @FXML
+    @FXML
     private void ajouterimage(ActionEvent event) {
-  
+
         FileChooser fileChooser = new FileChooser();
 
-        //Set extension filter
-        //Show open file dialog
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
             try {
                 imageUrl = file.toURI().toURL().toExternalForm();
-                //Image image = new Image(imageUrl);
-                //pic.setImage(image);
                 image.setText(imageUrl);
-                
 
             } catch (MalformedURLException ex) {
                 throw new IllegalStateException(ex);
 
             }
-
         }
-
     }
-//    
+   
+
     private void showAnnonceDetails(Annonce Annonce) {
 
         if (Annonce != null) {
@@ -122,7 +121,7 @@ public class Interface_afficherController implements Initializable {
             choix.setPromptText("");
             titre.setText("");
             description.setText("");
-            date.setPromptText("dd-MM-yyyy");       
+            date.setPromptText("dd-MM-yyyy");
             add.setText("");
             tel.setText("");
             image.setText("");
@@ -135,7 +134,49 @@ public class Interface_afficherController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-         ObservableList options
+        
+         //retourner en arriére
+        Image image = new Image("\\image\\retour.png");
+         ImageView iv1 = new ImageView();
+         iv1.setImage(image);
+         retour.setGraphic(iv1);
+         iv1.setFitWidth(25);
+         iv1.setPreserveRatio(true);
+         iv1.setSmooth(true);
+         iv1.setCache(true);
+        
+       //icon supprimer
+        Image im = new Image("\\image\\suppr.png");
+         ImageView iv2 = new ImageView();
+         iv2.setImage(im);
+         supprimer.setGraphic(iv2);
+         iv2.setFitWidth(35);
+         iv2.setPreserveRatio(true);
+         iv2.setSmooth(true);
+         iv2.setCache(true);
+        
+        //icon modifier
+        Image imgg = new Image("\\image\\modifier.png");
+         ImageView iv = new ImageView();
+         iv.setImage(imgg);
+         modifier.setGraphic(iv);
+         iv.setFitWidth(70);
+         iv.setPreserveRatio(true);
+         iv.setSmooth(true);
+         iv.setCache(true);
+        
+            //ajout img
+        Image imge = new Image("\\image\\ppp.png");
+         ImageView iv5 = new ImageView();
+         iv5.setImage(imge);
+         img.setGraphic(iv5);
+         iv5.setFitWidth(30);
+         iv5.setPreserveRatio(true);
+         iv5.setSmooth(true);
+         iv5.setCache(true);
+        
+
+        ObservableList options
                 = FXCollections.observableArrayList(
                         "Offres d'emplois",
                         "Evenements"
@@ -143,7 +184,6 @@ public class Interface_afficherController implements Initializable {
 
         choix.setPromptText("Select Type annonce");
         choix.setItems(options);
-        
 
         tableV.getItems().clear();
         List<Annonce> annc = AnnonceUser.selectAnnonce1();
@@ -153,15 +193,12 @@ public class Interface_afficherController implements Initializable {
         tableCid.setVisible(false);
         tableV.setItems(title);
 
-        //System.out.println(MedDATA);
-      showAnnonceDetails(null);
+        showAnnonceDetails(null);
 
         tableV.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showAnnonceDetails(newValue));
-
     }
 
-    
     @FXML
     private void handleDeleteAnnonce(ActionEvent event) throws IOException {
 
@@ -171,12 +208,12 @@ public class Interface_afficherController implements Initializable {
             AnnonceUser.deleteAnnonce(tableV.getSelectionModel().getSelectedItem().getId_annonce());
             tableV.getItems().remove(id);
             Alert alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Votre Annonce");
-                alert.setHeaderText(null);
-                alert.setContentText("Annonce Supprimée");
-                alert.showAndWait();
+            alert.setTitle("Votre Annonce");
+            alert.setHeaderText(null);
+            alert.setContentText("Annonce Supprimée");
+            alert.showAndWait();
         } else {
-            
+
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("No Selection");
             alert.setHeaderText("No Person Selected");
@@ -185,33 +222,33 @@ public class Interface_afficherController implements Initializable {
         }
     }
 
-    
     @FXML
-    public void modifierAnnonce()  {
+    public void modifierAnnonce() {
         try {
-            
+
             id = tableV.getSelectionModel().getSelectedItem().getId_annonce();
-               System.out.println(id);
-      Annonce AN = new Annonce(choix.getSelectionModel().getSelectedItem(),titre.getText(),description.getText(),date.getValue().toString(),add.getText(),Integer.parseInt(tel.getText()),image.getText());
-           
-       AnnonceUser.updateAnnonce(AN, id);
-        
-       Alert alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Votre Annonce");
-                alert.setHeaderText(null);
-                alert.setContentText("votre annonce a été modifié avec succés");
-                alert.showAndWait();
+            System.out.println(id);
+            Annonce AN = new Annonce(choix.getSelectionModel().getSelectedItem(), titre.getText(), description.getText(), date.getValue().toString(), add.getText(), Integer.parseInt(tel.getText()), image.getText());
+
+            AnnonceUser.updateAnnonce(AN, id);
+
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Votre Annonce");
+            alert.setHeaderText(null);
+            alert.setContentText("votre annonce a été modifié avec succés");
+            alert.showAndWait();
         } catch (Exception e) {
             System.out.println(e);
-       // System.out.println(id);
+            // System.out.println(id);
 
         }
     }
 
+
+
     @FXML
     private void retour(ActionEvent event) {
-        
-           try {
+          try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface_prestatére.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -223,11 +260,7 @@ public class Interface_afficherController implements Initializable {
 
         } catch (IOException ex) {
             Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
-        
-        
+        }     
     }
 
 }

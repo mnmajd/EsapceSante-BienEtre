@@ -7,7 +7,6 @@ package GUI;
 
 import Entite.Annonce;
 import Service.AnnonceUser;
-import static GUI.NewFXMain.stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -31,6 +30,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -66,14 +69,30 @@ public class Interface_ajouterController implements Initializable {
     @FXML
     private TextField tel;
     @FXML
-    private Button image;
+    private ImageView image;
     @FXML
     private Button button;
     @FXML
     private Button retour;
+    @FXML
+    private Label plus;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        //retourner en arriére
+        Image image = new Image("\\image\\retour.png");
+         ImageView iv1 = new ImageView();
+         iv1.setImage(image);
+         retour.setGraphic(iv1);
+         iv1.setFitWidth(30);
+         iv1.setPreserveRatio(true);
+         iv1.setSmooth(true);
+         iv1.setCache(true);
+        //
+        
+        
 
         ObservableList options
                 = FXCollections.observableArrayList(
@@ -86,35 +105,7 @@ public class Interface_ajouterController implements Initializable {
 
     }
 
-
-    
-     @FXML
-    private void ajouterimage(ActionEvent event) {
-
-        FileChooser fileChooser = new FileChooser();
-
-        //Set extension filter
-        //Show open file dialog
-        File file = fileChooser.showOpenDialog(null);
-        if (file != null) {
-            try {
-                imageUrl = file.toURI().toURL().toExternalForm();
-                //Image image = new Image(imageUrl);
-                //pic.setImage(image);
-                testimg.setText(imageUrl);
-                
-
-            } catch (MalformedURLException ex) {
-                throw new IllegalStateException(ex);
-
-            }
-
-        }
-    }
-       
-  
-    
-    
+   
     
     @FXML
     private void ajouter() {
@@ -182,10 +173,11 @@ public class Interface_ajouterController implements Initializable {
         
     }
 
+ 
+
     @FXML
     private void retour(ActionEvent event) {
-        
-               try {
+         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("interface_prestatére.fxml"));
             Parent root = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
@@ -197,9 +189,30 @@ public class Interface_ajouterController implements Initializable {
 
         } catch (IOException ex) {
             Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
+        }     
+    }
+
+    @FXML
+    private void ajouterimage(MouseEvent event) {
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            try {
+                imageUrl = file.toURI().toURL().toExternalForm();
+                //Image image = new Image(imageUrl);
+                //pic.setImage(image);
+                testimg.setText(imageUrl);
+                
+
+            } catch (MalformedURLException ex) {
+                throw new IllegalStateException(ex);
+
+            }
+
         }
-        
-        
     }
    
 

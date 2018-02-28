@@ -29,8 +29,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -44,7 +44,7 @@ public class Interface_afficher_offreController implements Initializable {
     @FXML
     private Button retour;
     @FXML
-    private TextField recherche;
+    private TextField rechercher;
     static String chtitre;
     static String chdescription;
     static String chtel;
@@ -53,6 +53,18 @@ public class Interface_afficher_offreController implements Initializable {
     static String chadress;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //retourner en arriére
+        Image img = new Image("\\image\\retour.png");
+         ImageView iv1 = new ImageView();
+         iv1.setImage(img);
+        retour.setGraphic(iv1);
+        iv1.setFitWidth(35);
+         iv1.setPreserveRatio(true);
+         iv1.setSmooth(true);
+         iv1.setCache(true);
+         
+         
+         
         ObservableList<Annonce> data = FXCollections.observableArrayList();
 
         List<Annonce> serviceOffre = AnnonceUser.selectAnnonce2();
@@ -62,18 +74,21 @@ public class Interface_afficher_offreController implements Initializable {
         listview.setCellFactory((ListView<Annonce> param) -> new ListCell<Annonce>() {
             @Override
             protected void updateItem(Annonce item, boolean empty) {
-                super.updateItem(item, empty);
+                super.updateItem(item, empty); 
                 if (item != null) {
+                    // Text text = new Text ("eeee");
 
                     ImageView img = new ImageView(item.getImg_annonce());
                     img.setFitHeight(130);
                     img.setFitWidth(120);
-                    Text text1 = new Text("Titre Offre d'emploi :     "+item.getTitre_annonce());
-                    Text text2 = new Text("Titre Offre d'emploi :     "+item.getDate_annonce());
+                    
+                    Text text1 = new Text("Nom de l'offre d'emploi:                 "+item.getTitre_annonce());
+                    Text text2 = new Text("Date de l'offre d'emploi :        "+item.getDate_annonce());
                     Text text3 = new Text(item.getAddr_annonce());
                     Text text4 = new Text(item.getDesc_annonce());
                     String val = Integer.toString(item.getTel_annonce());
                     Text text5 = new Text(val);
+                    Text text6 = new Text(item.getImg_annonce());
 
                     VBox vbox = new VBox(text1, text2);
                     vbox.setAlignment(Pos.CENTER);
@@ -106,7 +121,6 @@ public class Interface_afficher_offreController implements Initializable {
                     stage.show();
                     NewFXMain.stage.close();
                     NewFXMain.stage = stage;
-                    
 
                 } catch (IOException ex) {
                     Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,18 +150,51 @@ public class Interface_afficher_offreController implements Initializable {
 
     }
 
+
     @FXML
-    private void rechercher(KeyEvent event) {
-        
-         try {
+    private void rechercher(javafx.scene.input.KeyEvent event) throws SQLException {
+          
             listview.getItems().clear();
             listview.refresh();
-            listview.getItems().addAll(AnnonceUser.rech(recherche.getText()));
-        } catch (SQLException ex) {
-            Logger.getLogger(Interface_afficher_evenementController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+            listview.getItems().addAll(AnnonceUser.rech2(rechercher.getText()));
+       
+            listview.setCellFactory((ListView<Annonce> param) -> new ListCell<Annonce>() {
+            @Override
+            protected void updateItem(Annonce item, boolean empty) {
+                super.updateItem(item, empty); 
+                if (item != null) {
+                    // Text text = new Text ("eeee");
+
+                    ImageView img = new ImageView(item.getImg_annonce());
+                    img.setFitHeight(130);
+                    img.setFitWidth(120);
+                    
+                    Text text1 = new Text("Nom de l'offre d'emploi :                 "+item.getTitre_annonce());
+                    Text text2 = new Text("Date de l'offre d'emploi :        "+item.getDate_annonce());
+                    Text text3 = new Text(item.getAddr_annonce());
+                    Text text4 = new Text(item.getDesc_annonce());
+                    String val = Integer.toString(item.getTel_annonce());
+                    Text text5 = new Text(val);
+                    Text text6 = new Text(item.getImg_annonce());
+
+                    VBox vbox = new VBox(text1, text2);
+                    vbox.setAlignment(Pos.CENTER);
+                    vbox.setSpacing(20);
+                    HBox h = new HBox(img, vbox);
+                    h.setSpacing(100);
+                    setGraphic(h);
+
+                }
+            }
+        ;
+        });
+    
         
     }
+
 }
+   
+
+
+
+  

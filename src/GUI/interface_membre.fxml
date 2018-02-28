@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_membreController">
+<AnchorPane id="AnchorPane" prefHeight="454.0" prefWidth="800.0" styleClass="background" stylesheets="@../css/fxml.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Interface_membreController">
    <children>
-      <Button fx:id="offre" layoutX="82.0" layoutY="45.0" mnemonicParsing="false" onAction="#Offres_emplois" prefHeight="25.0" prefWidth="138.0" text="Offres d'emlois" />
-      <Button fx:id="event" layoutX="379.0" layoutY="45.0" mnemonicParsing="false" onAction="#Evenements" prefHeight="25.0" prefWidth="138.0" text="Evenements" />
+      <ImageView fitHeight="159.0" fitWidth="173.0" layoutX="507.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/evenement.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="evnt" layoutX="512.0" layoutY="198.0" onMouseClicked="#Evenements" prefHeight="128.0" prefWidth="156.0" />
+      <ImageView fitHeight="138.0" fitWidth="247.0" layoutX="118.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/offre_emploi.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="offre" layoutX="132.0" layoutY="202.0" onMouseClicked="#Offres_emplois" prefHeight="120.0" prefWidth="216.0" />
    </children>
 </AnchorPane>

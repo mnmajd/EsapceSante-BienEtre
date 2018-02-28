@@ -12,12 +12,12 @@
    <children>
       <SplitPane dividerPositions="0.1518324607329843" layoutX="164.0" layoutY="36.0" orientation="VERTICAL" prefHeight="620.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="187.0" prefWidth="740.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="187.0" prefWidth="740.0" styleClass="background1" stylesheets="@../css/fxml.css">
                <children>
-                  <Button fx:id="retourE" layoutX="21.0" layoutY="21.0" mnemonicParsing="false" onAction="#retourE" text="return" />
-                  <Text fill="#1abbd3" layoutX="208.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La Liste des evenements" wrappingWidth="287.537109375">
+                  <Button fx:id="retourE" layoutX="6.0" layoutY="5.0" mnemonicParsing="false" onAction="#retourE" />
+                  <Text fill="#ff6666" layoutX="208.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La Liste des evenements" wrappingWidth="287.537109375">
                      <font>
-                        <Font size="22.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </Text>
                   <TextField fx:id="rechercher" layoutX="583.0" layoutY="31.0" onKeyReleased="#rechercher" promptText="Rechercher" />
