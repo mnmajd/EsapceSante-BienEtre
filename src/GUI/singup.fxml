@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="1400.0" style="-fx-background-color: #e3e3e3;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SingupController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="1400.0" style="-fx-background-color: #ccf2ff;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SingupController">
    <children>
       <Pane layoutY="13.0" opacity="0.89" prefHeight="678.0" prefWidth="580.0" style="-fx-background-color: #ffffff; -fx-border-color: #f38534; -fx-border-width: 5; -fx-border-radius: 3;" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="410.0" AnchorPane.topAnchor="13.0">
          <children>

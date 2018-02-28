@@ -1,4 +1,5 @@
 
+import Service.QuestionService;
 import Service.ReponseService;
 
 /*
@@ -77,9 +78,9 @@ public class EspaceSanteBienEtre {
 
        
 
-        System.out.println(ReponseService.getInstance().CurrentUserLikedReponse(4,3));
+        
        
-
+        System.out.println(QuestionService.getInstance().GetPhoneNumber(3)) ;
         
     }
     

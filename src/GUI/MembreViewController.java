@@ -50,7 +50,7 @@ public class MembreViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //mark.setVisible(false);
       
-        currentUser.setText(EspaceSanteBienEtre.currentUser.getFirstname()+"  "+EspaceSanteBienEtre.currentUser.getLastname());
+        currentUser.setText(FXMain.currentUser.getFirstname()+"  "+FXMain.currentUser.getLastname());
         chnager.setOnMouseEntered((MouseEvent event)->
                 {
                     chnager.setVisible(true);
@@ -68,7 +68,7 @@ public class MembreViewController implements Initializable {
                     chnager.setVisible(false);
                 });
        
-    File file = new File("C:\\Users\\said hmidi\\Desktop\\Piedev\\EspaceSante&BienEtre\\image\\"+EspaceSanteBienEtre.currentUser.getAvatar());
+    File file = new File("C:\\Users\\said hmidi\\Desktop\\Piedev\\EspaceSante&BienEtre\\image\\"+FXMain.currentUser.getAvatar());
     Image image = new Image(file.toURI().toString());
     photo.setImage(image);
     
@@ -102,7 +102,7 @@ public class MembreViewController implements Initializable {
             WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
             photo.setImage(image);
             up.upload(file);
-            userDAO.update_photo(file.getName(), EspaceSanteBienEtre.currentUser.getId());
+            userDAO.update_photo(file.getName(), FXMain.currentUser.getId());
         } catch (IOException ex) {
            
         } 
@@ -126,7 +126,7 @@ public class MembreViewController implements Initializable {
     
     @FXML
     private void logout(MouseEvent event) {
-         EspaceSanteBienEtre.logout(); 
+         FXMain.logout(); 
     }
     
 }

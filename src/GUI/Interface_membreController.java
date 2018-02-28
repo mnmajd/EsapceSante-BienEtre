@@ -43,8 +43,8 @@ public class Interface_membreController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-            NewFXMain.stage.close();
-            NewFXMain.stage = stage;
+             FXMain.stg.close();
+             FXMain.stg = stage;
         } catch (IOException ex) {
             Logger.getLogger(Interface_membreController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,8 +60,8 @@ public class Interface_membreController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-            NewFXMain.stage.close();
-            NewFXMain.stage = stage;
+            FXMain.stg.close();
+            FXMain.stg = stage;
         } catch (IOException ex) {
             Logger.getLogger(Interface_membreController.class.getName()).log(Level.SEVERE, null, ex);
         }

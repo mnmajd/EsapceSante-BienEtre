@@ -7,38 +7,40 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="685.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ForumBasicController">
+<AnchorPane id="AnchorPane" prefHeight="916.0" prefWidth="1373.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ForumBasicController">
    <children>
-      <AnchorPane layoutX="-5.0" layoutY="73.0" prefHeight="733.0" prefWidth="1158.0">
+      <AnchorPane layoutX="-5.0" layoutY="73.0" prefHeight="733.0" prefWidth="1384.0">
          <children>
-            <SplitPane dividerPositions="0.6423357664233577" orientation="VERTICAL" prefHeight="139.0" prefWidth="1158.0" AnchorPane.bottomAnchor="594.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <SplitPane dividerPositions="0.6423357664233577" layoutY="-4.0" orientation="VERTICAL" prefHeight="139.0" prefWidth="1390.0" AnchorPane.bottomAnchor="594.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="256.0" prefWidth="1088.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="1408.0">
                      <children>
-                        <HBox alignment="CENTER" layoutX="129.0" layoutY="-17.0" prefHeight="65.0" prefWidth="1156.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox alignment="CENTER" layoutX="129.0" layoutY="-17.0" prefHeight="84.0" prefWidth="1386.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-230.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <TabPane fx:id="TabeCat" prefHeight="40.0" prefWidth="1156.0" tabClosingPolicy="UNAVAILABLE" />
+                              <TabPane fx:id="TabeCat" prefHeight="84.0" prefWidth="1852.0" styleClass="textarea" stylesheets="@Css/style.css" tabClosingPolicy="UNAVAILABLE" />
                            </children>
                         </HBox>
                      </children>
                   </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="404.0" prefWidth="1156.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="45.0" prefWidth="1374.0" />
               </items>
             </SplitPane>
-            <ListView fx:id="list" layoutX="338.0" layoutY="76.0" prefHeight="581.0" prefWidth="1158.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0" />
+            <ListView fx:id="list" layoutX="338.0" layoutY="76.0" prefHeight="667.0" prefWidth="1374.0" styleClass="list-cell" stylesheets="@Css/styleli.css" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="76.0" />
          </children></AnchorPane>
-      <HBox layoutX="2.0" layoutY="-3.0" prefHeight="44.0" prefWidth="971.0">
+      <HBox layoutX="2.0" layoutY="-3.0" prefHeight="67.0" prefWidth="1386.0" styleClass="background" stylesheets="@Css/style.css">
          <children>
-            <Label prefHeight="44.0" prefWidth="505.0" text="Forum Espace sante" textFill="#ee380a">
+            <Label prefHeight="67.0" prefWidth="677.0" styleClass="SujetText" stylesheets="@Css/style.css" text="Forum Espace sante" textFill="#ee380a">
                <font>
                   <Font name="Comic Sans MS" size="48.0" />
                </font>
             </Label>
-            <Button fx:id="Questionbtn" mnemonicParsing="false" onAction="#GoToQuestion" prefHeight="42.0" prefWidth="185.0" text="Posez votre Question" textFill="#228a9a">
+            <Button fx:id="Questionbtn" mnemonicParsing="false" onAction="#GoToQuestion" prefHeight="42.0" prefWidth="209.0" styleClass="custom-button" stylesheets="@Css/style.css" text="Posez votre Question" textFill="#228a9a">
                <font>
                   <Font name="Comic Sans MS Bold" size="14.0" />
                </font>
@@ -49,11 +51,22 @@
                   <Insets top="13.0" />
                </HBox.margin>
             </Button>
-            <Label prefHeight="44.0" prefWidth="169.0" />
+            <Label prefHeight="44.0" prefWidth="117.0" />
             <TextField fx:id="rechecherTxt" prefHeight="45.0" prefWidth="200.0" promptText="Recherche Par sujet">
                <HBox.margin>
-                  <Insets top="13.0" />
-               </HBox.margin></TextField>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="13.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></TextField>
+            <ImageView fitHeight="57.0" fitWidth="71.0" onMouseClicked="#BackHome" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/home-icon.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="35.0" right="10.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
          </children>
       </HBox>
    </children>

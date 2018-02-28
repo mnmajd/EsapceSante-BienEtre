@@ -21,6 +21,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -121,6 +122,7 @@ public class VerifyQuestionAdminController implements Initializable {
 			String message = "&message=" + ""+nomPrenom+" Votre Message dans notre espace santé est acceptée";
 			String sender = "&sender=" + "Espace Santé";
 			String numbers = "&numbers=" + "00216"+tel+"";
+                        
 			
 			// Send data
 			HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
@@ -143,9 +145,40 @@ public class VerifyQuestionAdminController implements Initializable {
 //			return "Error "+e;
 		}
               
+              try {
+                
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Acceptation");
+              alert.setHeaderText("La question a été bien accepté" );
+           
+              alert.showAndWait();
+     } catch (Exception e) {
+                      System.out.println("e");
+     }
+              
+              try {
+                    try {                        
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DashboardView.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+        } catch (Exception e) {
+       System.out.println(e);
+                    }
+              } catch (Exception e) {
+                  System.out.println(e);
+              }
               
               
-          }  
+              
+              
+             
+              }
+              
+            
      public void DeclineQuestion()
      {
             try {
@@ -179,8 +212,49 @@ public class VerifyQuestionAdminController implements Initializable {
 			System.out.println("Error SMS "+e);
 //			return "Error "+e;
 		}
+            try {
+                
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Refus");
+              alert.setHeaderText("La question a été bin refusée" );
+           
+              alert.showAndWait();
+     } catch (Exception e) {
+                      System.out.println("e");
+     }
+              
+              try {
+                    try {                        
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DashboardView.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+        } catch (Exception e) {
+       System.out.println(e);
+                    }
+              } catch (Exception e) {
+                  System.out.println(e);
+              }
               
          
      }
+     public void GoBack()
+     {
+         try {
+             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DashboardView.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+        } catch (Exception e) {
+       System.out.println(e);
+                    }
+         }
+     }
     
-}
+

@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 
 
 
-import GUI.EspaceSanteBienEtre;
+import GUI.FXMain;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +42,8 @@ import javax.swing.text.Position;
 import org.controlsfx.control.Notifications;
 
 import Service.UserDAO;
-import static GUI.EspaceSanteBienEtre.stage;
+
+import static GUI.FXMain.stg;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 import Utils.AnimationGenerator;
@@ -129,8 +130,8 @@ public class LoginController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Welcome to Espace sante");
                 alert.setHeaderText("Welcome!");
-                EspaceSanteBienEtre.currentUser = user;
-                System.out.println("Current logged in user role: " + EspaceSanteBienEtre.currentUser.getRole());
+                FXMain.currentUser = user;
+                System.out.println("Current logged in user role: " + FXMain.currentUser.getRole());
                     animateWhenLoginSuccess();
               
              //  Notifications  notification=Notifications.create()
@@ -159,20 +160,20 @@ public class LoginController implements Initializable {
             VBox temp = new VBox(imageView, wrong);
             temp.setAlignment(Pos.CENTER);
 
-            animationGenerator.applyFadeAnimationOn(EspaceSanteBienEtre.loginWindow, 500, 1.0f, 0f, event -> {
+            animationGenerator.applyFadeAnimationOn(FXMain.loginWindow, 500, 1.0f, 0f, event -> {
                 temp.setOpacity(0f);
 
-                double oldWidth = EspaceSanteBienEtre.stage.getWidth();
-                double oldHeight = EspaceSanteBienEtre.stage.getHeight();
+                double oldWidth = FXMain.stg.getWidth();
+                double oldHeight = FXMain.stg.getHeight();
 
-                EspaceSanteBienEtre.stage.setScene(new Scene(temp, oldWidth , oldHeight));
+                FXMain.stg.setScene(new Scene(temp, oldWidth , oldHeight));
                 animationGenerator.applyFadeAnimationOn(temp, 1000, 0f, 1.0f, event1 -> {
                     animationGenerator.applyFadeAnimationOn(temp, 1000, 1, 0f, null);
-                    EspaceSanteBienEtre.loginWindow.setOpacity(0f);
+                    FXMain.loginWindow.setOpacity(0f);
                     PauseTransition pause = new PauseTransition(Duration.millis(2000));
                     pause.setOnFinished(ev -> {
-                        EspaceSanteBienEtre.stage.setScene(EspaceSanteBienEtre.loginScene);
-                        animationGenerator.applyFadeAnimationOn(EspaceSanteBienEtre.loginWindow, 500, 0f, 1.0f, null);
+                        FXMain.stg.setScene(FXMain.loginScene);
+                        animationGenerator.applyFadeAnimationOn(FXMain.loginWindow, 500, 0f, 1.0f, null);
                     });
                     pause.play();
                 });
@@ -185,7 +186,7 @@ public class LoginController implements Initializable {
         try {
             final Parent dashboard;
 
-            switch (EspaceSanteBienEtre.currentUser.getRole().toLowerCase()) {
+            switch (FXMain.currentUser.getRole().toLowerCase()) {
                 case "admin":
                     
                     dashboard = FXMLLoader.load(getClass().getResource("DashboardView.fxml"));
@@ -208,14 +209,14 @@ public class LoginController implements Initializable {
 
             animationGenerator.applyFadeAnimationOn(AnchorPane, 1000, 1.0f, 0f, event -> {
                 temp.setOpacity(0);
-                double oldWidth = EspaceSanteBienEtre.stage.getWidth();
-                double oldHeight = EspaceSanteBienEtre.stage.getHeight();
+                double oldWidth = FXMain.stg.getWidth();
+                double oldHeight = FXMain.stg.getHeight();
 
-                EspaceSanteBienEtre.stage.setScene(new Scene(temp, oldWidth, oldHeight));
+                FXMain.stg.setScene(new Scene(temp, oldWidth, oldHeight));
                 animationGenerator.applyFadeAnimationOn(temp, 1000, 0f, 1.0f, event1 -> {
                     animationGenerator.applyFadeAnimationOn(temp, 1000, 1.0f, 0f, event2 -> {
-                        EspaceSanteBienEtre.stage.setScene(new Scene(dashboard, 1400, 850));
-                       EspaceSanteBienEtre.stage.centerOnScreen();
+                        FXMain.stg.setScene(new Scene(dashboard, 1400, 850));
+                       FXMain.stg.centerOnScreen();
                       // Pidev.stage.setFullScreen(true);
 
                         animationGenerator.applyFadeAnimationOn(dashboard, 1000, 0f, 1.0f, null);
@@ -232,37 +233,75 @@ public class LoginController implements Initializable {
         tray.showAndWait();
         
     }
+       public void backToHome()
+       {
+            try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+        } catch (Exception e) {
+       System.out.println(e);
+                    }
+                     }
+     
+       
+       
+       
 //        public void keypress(KeyEvent keyEvent) {
 //        if (keyEvent.getCode().equals(KeyCode.ENTER)) {
 //            login();
 //        }
 //    }
 
-  public void signup() throws IOException {
-        EspaceSanteBienEtre.signupWindow = FXMLLoader.load(getClass().getResource("singup.fxml"));
-
-        animationGenerator.applyTranslateAnimationOn(EspaceSanteBienEtre.loginWindow, 1000, 0, -1000);
-        animationGenerator.applyFadeAnimationOn(EspaceSanteBienEtre.loginWindow, 500, 1.0f, 0f, event -> {
-            double oldWidth = EspaceSanteBienEtre.stage.getWidth();
-            double minHeight = EspaceSanteBienEtre.stage.getHeight();
-            EspaceSanteBienEtre.signupScene = new Scene(EspaceSanteBienEtre.signupWindow, oldWidth - 20, minHeight);
-            EspaceSanteBienEtre.stage.setScene(EspaceSanteBienEtre.signupScene);
-            EspaceSanteBienEtre.stage.setMinHeight(minHeight);
-            EspaceSanteBienEtre.stage.setMinHeight(800);
-            EspaceSanteBienEtre.stage.centerOnScreen();
-            
-            EspaceSanteBienEtre.signupWindow.setOpacity(1f);
-            EspaceSanteBienEtre.signupWindow.setTranslateX(1000);
-
-            EspaceSanteBienEtre.loginWindow.toBack();
-            EspaceSanteBienEtre.signupWindow.toFront();
-
-            animationGenerator.applyTranslateAnimationOn(EspaceSanteBienEtre.signupWindow, 500, 1000, 0);
-            animationGenerator.applyFadeAnimationOn(EspaceSanteBienEtre.signupWindow, 500, 0f, 1.0f, null);
-        });
-
+//  public void signup()  {
+//      
+//      try {
+//            FXMain.signupWindow = FXMLLoader.load(getClass().getResource("singup.fxml"));
+//
+//            animationGenerator.applyTranslateAnimationOn(FXMain.loginWindow, 1000, 0, -1000);
+//            animationGenerator.applyFadeAnimationOn(FXMain.loginWindow, 500, 1.0f, 0f, event -> {
+//            double oldWidth = FXMain.stg.getWidth();
+//            double minHeight = FXMain.stg.getHeight();
+//            FXMain.signupScene = new Scene(FXMain.signupWindow, oldWidth - 20, minHeight);
+//            FXMain.stg.setScene(FXMain.signupScene);
+//            FXMain.stg.setMinHeight(minHeight);
+//            FXMain.stg.setMinHeight(800);
+//            FXMain.stg.centerOnScreen();
+//            
+//            FXMain.signupWindow.setOpacity(1f);
+//            FXMain.signupWindow.setTranslateX(1000);
+//
+//            FXMain.loginWindow.toBack();
+//            FXMain.signupWindow.toFront();
+//
+//            animationGenerator.applyTranslateAnimationOn(FXMain.signupWindow, 500, 1000, 0);
+//            animationGenerator.applyFadeAnimationOn(FXMain.signupWindow, 500, 0f, 1.0f, null);
+//        });
+//      } catch (Exception e) {
+//          System.out.println(e);
+//      }
+//
+//    }
+public void signup()
+    {
+     try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("singup.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+  } catch (Exception e) {
+       System.out.println(e);
+  }
     }
-
     
 
     @FXML
@@ -303,12 +342,12 @@ public class LoginController implements Initializable {
         dashboard = FXMLLoader.load(getClass().getResource("ForgetPassword.fxml"));
 
          animationGenerator.applyFadeAnimationOn(AnchorPane, 1000, 1.0f, 0f, event1 -> {
-                double oldWidth = EspaceSanteBienEtre.stage.getWidth();
-                double oldHeight = EspaceSanteBienEtre.stage.getHeight();
+                double oldWidth = FXMain.stg.getWidth();
+                double oldHeight = FXMain.stg.getHeight();
 
                
-                        EspaceSanteBienEtre.stage.setScene(new Scene(dashboard, 1350, 750));
-                        EspaceSanteBienEtre.stage.centerOnScreen();
+                        FXMain.stg.setScene(new Scene(dashboard, 1350, 750));
+                        FXMain.stg.centerOnScreen();
                       // Pidev.stage.setFullScreen(true);
 
                         animationGenerator.applyFadeAnimationOn(dashboard, 1000, 0f, 1.0f, null);

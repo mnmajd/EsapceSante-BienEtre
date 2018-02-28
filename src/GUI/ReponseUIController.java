@@ -110,7 +110,7 @@ public class ReponseUIController implements Initializable {
         nomprenom.setText(q.getNom()+" "+q.getPrenom());
         dare.setText(q.getDate_publication().substring(0, 16));
       
-      Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
+      Image  image  = new Image("/GUI/Images/majdpic.jpg", true); 
                             img.setImage(image);
                               img.setFitHeight(200);
                             img.setFitWidth(700);
@@ -135,9 +135,8 @@ public class ReponseUIController implements Initializable {
                          ImageView likeicon = new ImageView();
                    Image likeimg = new Image("/GUI/Images/like.png") ;
                    likeicon.setImage(likeimg);
-                   ImageView dislikeicon = new ImageView();
-                   Image dislikeimg = new Image("/GUI/Images/dislike.png") ;
-                   dislikeicon.setImage(dislikeimg);
+                  
+                 
                    
                    ImageView editIcon = new ImageView();
                    Image editimg = new Image("/GUI/Images/edit.png") ;
@@ -155,7 +154,11 @@ public class ReponseUIController implements Initializable {
                          delete.setGraphic(deleteicon);
              
               likeBtn.setGraphic(likeicon);   
-              
+              if (current_user_id == 0)
+              {
+                  likeBtn.setVisible(false);
+              }
+                    
       
 //                      
 //              if (likeBtn.isSelected())
@@ -188,7 +191,7 @@ public class ReponseUIController implements Initializable {
 
                       
    
-                            Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
+                            Image  image  = new Image("/GUI/Images/majdpic.jpg", true); 
                             ImageView imv =new ImageView(image);
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);   

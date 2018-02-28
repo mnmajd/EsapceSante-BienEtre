@@ -4,12 +4,14 @@
 }
 
 .list-cell {
-    -fx-border-color: grey;
-    -fx-padding:10px ;
-    -fx-background-color: transparent, -fx-background ;
-    -fx-background-insets: 0px, 2px ;
-    -fx-border-style: dashed;
-}
+        -fx-border-color: grey;
+        -fx-padding:10px ;
+        -fx-background-color: transparent, -fx-background ;
+        -fx-background-insets: 0px, 2px ;
+        -fx-border-style: solid;
+        -fx-font: 16px "Comic Sans MS", "cursive" ,"sans-serif"	
+;
+    }
 
 .list-cell:empty {
     -fx-padding: 20px ;

@@ -2,32 +2,21 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="602.0" prefWidth="1004.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddQuestionController">
+<AnchorPane id="AnchorPane" prefHeight="622.0" prefWidth="1004.0" styleClass="editquestion" stylesheets="@Css/style.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddQuestionController">
    <children>
-      <TextField fx:id="Subject" layoutX="446.0" layoutY="120.0" />
-      <TextArea fx:id="contenutext" layoutX="447.0" layoutY="250.0" prefHeight="228.0" prefWidth="390.0" />
-      <Label layoutX="232.0" layoutY="120.0" prefHeight="26.0" prefWidth="96.0" text="Subjet" />
-      <Label layoutX="232.0" layoutY="184.0" text="Categorie" />
-      <Label layoutX="231.0" layoutY="263.0" text="Contenu question" />
-      <Text fill="#33b1cd" layoutX="35.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Poser votre question">
-         <font>
-            <Font name="STIXMath-Regular" size="27.0" />
-         </font>
-      </Text>
-      <Button layoutX="763.0" layoutY="539.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="26.0" prefWidth="155.0" text="Ajouter Question" />
-      <ComboBox fx:id="ListCat" layoutX="446.0" layoutY="171.0" prefHeight="26.0" prefWidth="171.0">
+      <TextField fx:id="Subject" layoutX="434.0" layoutY="135.0" />
+      <TextArea fx:id="contenutext" layoutX="435.0" layoutY="275.0" prefHeight="228.0" prefWidth="390.0" />
+      <Button layoutX="763.0" layoutY="539.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="40.0" prefWidth="175.0" styleClass="custom-button" stylesheets="@Css/style.css" text="Ajouter Question" />
+      <ComboBox fx:id="ListCat" layoutX="434.0" layoutY="205.0" prefHeight="26.0" prefWidth="171.0">
           
         
 
           
       </ComboBox>
-      <Button fx:id="Backbtn" layoutX="55.0" layoutY="540.0" mnemonicParsing="false" onAction="#BackToForum" text="Back To Forum" />
+      <Button fx:id="Backbtn" layoutX="55.0" layoutY="540.0" mnemonicParsing="false" onAction="#BackToForum" styleClass="custom-button" stylesheets="@Css/style.css" text="Back To Forum" />
    </children>
 </AnchorPane>

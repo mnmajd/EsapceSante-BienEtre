@@ -5,6 +5,12 @@
  */
 package GUI;
 
+import static GUI.Interface_afficher_evenementController.chdate;
+import static GUI.Interface_afficher_evenementController.chadress;
+import static GUI.Interface_afficher_evenementController.chdescription;
+import static GUI.Interface_afficher_evenementController.chimg;
+import static GUI.Interface_afficher_evenementController.chtel;
+import static GUI.Interface_afficher_evenementController.chtitre;
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -33,11 +39,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author tarek
- */
+ 
+
 public class Interface_detail_evenementController implements Initializable {
 
     @FXML
@@ -61,98 +64,95 @@ public class Interface_detail_evenementController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-          Image img = new Image(Main_evenement.chimg,true);
+          Image img = new Image("/GUI/Images/majdpic.jpg",true);
         logo.setImage(img);
         logo.setFitHeight(130);
         logo.setFitWidth(120);
         
-        titre.setText(Main_evenement.chtitre);
-        Description.setText(Main_evenement.chdescription);
-        date.setText(Main_evenement.chdate);
-        tel.setText(Main_evenement.chtel);
-        adresse.setText(Main_evenement.chadress);
+        titre.setText(chtitre);
+        Description.setText(chdescription);
+        date.setText(chdate);
+        tel.setText(chtel);
+        adresse.setText(chadress);
         
     }    
 
 
-    @FXML
+   @FXML
     private void telechargerE(ActionEvent event) {
-         try {
-
-            Document doc = new Document(PageSize.A4, 50, 50, 50, 50);
-            try {
-                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("/home/majd/Desktop/omar"));
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            doc.open();
-            
-            String titre1 = titre.getText();
-            String titre2 = Description.getText();
-            String titre3 = date.getText();
-            String titre4 = tel.getText();
-            String titre5 = adresse.getText();
-            Image titre6 = logo.getImage();
-
-            Anchor anchorTarget = new Anchor("test field.");
-
-           
-            String P1 = ("titre de l'Evenement : " + titre1);
-            P1 += "\n";
-            String P2 = ("description de l'Evenement : " + titre2);
-            P2 += "\n";
-            String P3 = ("la date de l'Evenement: " + titre3);
-            P3 += "\n";
-            String P4 = ("numero de téléphone : " + titre4);
-            P4 += "\n";
-            String P5 = ("l'adresse de l'Evenement : " + titre5);
-            P5 += "\n";
-            String  P6 = ("logo : " + titre6);
-
-            anchorTarget.setName("BackToTop");
-
-            Paragraph paragraph1 = new Paragraph();
-            Paragraph paragraph2 = new Paragraph();
-            Paragraph paragraph3 = new Paragraph();
-            Paragraph paragraph4 = new Paragraph();
-            Paragraph paragraph5 = new Paragraph();
-            Paragraph paragraph6 = new Paragraph();
-         
-
-            paragraph1.setSpacingBefore(50);
-            paragraph2.setSpacingBefore(50);
-            paragraph3.setSpacingBefore(50);
-            paragraph4.setSpacingBefore(50);
-            paragraph5.setSpacingBefore(50);
-            paragraph6.setSpacingBefore(50);
-     
-
-            paragraph1.add(P1);
-            paragraph1.add(P2);
-            paragraph1.add(P3);
-            paragraph1.add(P4);
-            paragraph1.add(P5);
-            paragraph1.add(P6);
-        
-
-            doc.add(paragraph1);
-            doc.add(paragraph2);
-            doc.add(paragraph3);
-            doc.add(paragraph4);
-            doc.add(paragraph5);
-            doc.add(paragraph6);
-           
-
-            doc.close();
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Pdf saved");
-            Optional<ButtonType> result = alert.showAndWait();
-
-        } catch (DocumentException ex) {
-            Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        
+//  try {
+//
+//            Document doc = new Document(PageSize.A4, 50, 50, 50, 50);
+//            try {
+//                PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("//home/majd/Desktop/pIDEv/annonce.pdf"));
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//            doc.open();
+//
+//            String titre1 = titre.getText();
+//            String titre2 = Description.getText();
+//            String titre3 = date.getText();
+//            String titre4 = tel.getText();
+//            String titre5 = adresse.getText();
+//            Image titre6 = logo.getImage();
+//
+//            Anchor anchorTarget = new Anchor("test field.");
+//
+//            String P1 = ("titre de l'offre : " + titre1);
+//            P1 += "\n";
+//            String P2 = ("description de l'offre : " + titre2);
+//            P2 += "\n";
+//            String P3 = ("la date de l'offre: " + titre3);
+//            P3 += "\n";
+//            String P4 = ("numero de téléphone : " + titre4);
+//            P4 += "\n";
+//            String P5 = ("l'adresse du local : " + titre5);
+//            P5 += "\n";
+//            String P6 = ("logo : " + titre6);
+//
+//            anchorTarget.setName("BackToTop");
+//
+//            Paragraph paragraph1 = new Paragraph();
+//            Paragraph paragraph2 = new Paragraph();
+//            Paragraph paragraph3 = new Paragraph();
+//            Paragraph paragraph4 = new Paragraph();
+//            Paragraph paragraph5 = new Paragraph();
+//            Paragraph paragraph6 = new Paragraph();
+//
+//            paragraph1.setSpacingBefore(50);
+//            paragraph2.setSpacingBefore(50);
+//            paragraph3.setSpacingBefore(50);
+//            paragraph4.setSpacingBefore(50);
+//            paragraph5.setSpacingBefore(50);
+//            paragraph6.setSpacingBefore(50);
+//
+//            paragraph1.add(P1);
+//            paragraph1.add(P2);
+//            paragraph1.add(P3);
+//            paragraph1.add(P4);
+//            paragraph1.add(P5);
+//            paragraph1.add(P6);
+//
+//            doc.add(paragraph1);
+//            doc.add(paragraph2);
+//            doc.add(paragraph3);
+//            doc.add(paragraph4);
+//            doc.add(paragraph5);
+//            doc.add(paragraph6);
+//
+//            doc.close();
+//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setHeaderText("Pdf saved");
+//            Optional<ButtonType> result = alert.showAndWait();
+//
+//        } catch (DocumentException ex) {
+//            Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
+        
      @FXML
     private void retour2E(ActionEvent event) {
     try {
@@ -161,9 +161,8 @@ public class Interface_detail_evenementController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
-            NewFXMain.stage.close();
-            NewFXMain.stage=stage;
-            Main_evenement.st.close();
+             FXMain.stg.close();
+             FXMain.stg = stage;
 
         } catch (IOException ex) {
             Logger.getLogger(Interface_afficher_offreController.class.getName()).log(Level.SEVERE, null, ex);

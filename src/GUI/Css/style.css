@@ -1,8 +1,97 @@
+
+
+
 .Anchornpane{
     -fx-background-image: url("../Images/1.jpg");
 
     -fx-background-size:cover, auto;
     -fx-background-position: center center;
+}
+.image{
+    
+border-radius: 50px;
+
+}
+.custom-button {
+    -fx-font: 16px "Serif";
+    -fx-padding: 10;
+    -fx-background-color: #ffff99;
+}
+.SujetText
+{
+    color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0; 
+}
+.background{
+    -fx-background-color:  #e6fff7;
+}
+.textarea{
+    width: 600px;
+	height: 120px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat; 
+}
+.tabPane{
+.tab-pane:top *.tab-header-area {
+    -fx-background-insets: 0, 0 0 1 0;
+ /* -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; /* 5 2 0 10 */
+    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em; /* overridden as 5 2 0 0 */
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #e6e6e6;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #3c3c3c;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #96b946;
+}    
+    
+    
+    
+}
+
+.editquestion{
+    -fx-background-image: url("../Images/addquestion.jpg");
+    -fx-background-attachment: fixed;
+    -fx-background-position: center center;
+    -fx-background-size:100% auto;
+
 
 
 }
+.editreponse{
+    -fx-background-image: url("../Images/editreponse.jpg");
+    -fx-background-attachment: fixed;
+    -fx-background-position: center center;
+    -fx-background-size:100% auto;
+}
+
+
+
+
