@@ -261,14 +261,14 @@ public class QuestionService {
          public static int GetPhoneNumber(int id)
          {
              int x =0 ;
-             String req="SELECT tel from user where id_user = ?";
+             String req="SELECT telephone from user where id_user = ?";
              try {
                  PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req); 
              ste.setInt(1, id);
                 ResultSet result = ste.executeQuery();
                 while (result.next())
                 {
-                    x= result.getInt("tel");
+                    x= result.getInt("telephone");
                 }
              } catch (Exception e) {
              }

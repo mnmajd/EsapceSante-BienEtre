@@ -10,38 +10,45 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class Main_offre extends Application {
+/**
+ *
+ * @author majd
+ */
+public class AcceulMain extends Application {
 
-
-    static String chtitre;
-    static String chdescription;
-    static String chtel;
-    static String chdate;
-    static String chimg;
-    static String chadress;
-    static Stage stage;
-  
+    static Stage stg;
+    static int id;
 
     @Override
-    public void start(Stage stage) throws Exception{
-       
-            this.stage = stage;
-            Parent root = FXMLLoader.load(getClass().getResource("interface_detail_offre.fxml"));
+    public void start(Stage stage) {
 
+        try {
+            this.stg = stage;
+            Parent root = FXMLLoader.load(getClass().getResource("Acceuil.fxml"));
             Scene scene = new Scene(root);
 
             stage.setScene(scene);
             stage.show();
-        } 
-    
+        } catch (IOException ex) {
 
+            System.out.println(ex);
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }
+
 }

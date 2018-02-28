@@ -1,11 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package GUI;
 
+package GUI;
+import GUI.FXMain;
+import static GUI.FXMain.loginScene;
+import static GUI.FXMain.loginWindow;
+import static GUI.FXMain.stage;
 import Entite.User;
+import static GUI.FXMain.stg;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -24,10 +24,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.mail.MessagingException;
 import Service.UserDAO;
-import GUI.EspaceSanteBienEtre;
-import static GUI.EspaceSanteBienEtre.loginScene;
-import static GUI.EspaceSanteBienEtre.loginWindow;
-import static GUI.EspaceSanteBienEtre.stage;
+
+
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 import Utils.AnimationGenerator;
@@ -66,11 +64,8 @@ public class ForgetPasswordController implements Initializable {
       
         user = userDAO.findByEmail(email.getText());
        
-      
-        
-        
          System.out.println(user.getId());
-        if( !user.equals(null)  ) {
+        if( !user.equals(null) ) {
            
             buttonError.setText("Veuillez verifier votre boite mail");
         buttonError.setVisible(true);
@@ -350,7 +345,7 @@ public class ForgetPasswordController implements Initializable {
                     + "					<td width=\"500\" colspan=\"3\" align=\"center\" style=\"padding-bottom:10px;padding-top:25px;\">\n"
                     + "						<div class=\"contentEditableContainer contentImageEditable\">\n"
                     + "			                <div class=\"contentEditable\">\n"
-                    + "			                   <img src=\"/Users/oualha/NetBeansProjects/EspaceSante&BienEtre/src/images/doc.png\" data-default=\"placeholder\" data-max-width=\"500\">\n"
+                    + "			                   <img src=\"/Users/oualha/NetBeansProjects/e_shop/src/images/doc.png\" data-default=\"placeholder\" data-max-width=\"500\">\n"
                     + "			                </div>\n"
                     + "			            </div>\n"
                     + "					</td>\n"
@@ -606,7 +601,7 @@ public class ForgetPasswordController implements Initializable {
                     + "                    <td valign=\"top\" align='center'>\n"
                     + "                        <div class=\"contentEditableContainer contentFacebookEditable\">\n"
                     + "                            <div class=\"contentEditable\">\n"
-                    + "                                <img data-default=\"placeholder\"  data-max-width='60' data-customIcon=\"true\" data-noText=\"true\" width='60' height='60'>\n"
+                    + "                                <img data-default=\"placeholder\" src=\"images/facebook.png\" data-max-width='60' data-customIcon=\"true\" data-noText=\"true\" width='60' height='60'>\n"
                     + "                            </div>\n"
                     + "                        </div>\n"
                     + "                        <div class=\"contentEditableContainer contentTextEditable\">\n"
@@ -771,15 +766,15 @@ public class ForgetPasswordController implements Initializable {
     public void cancel()
     {
         AnimationGenerator animationGenerator = new AnimationGenerator();
-        animationGenerator.applyFadeAnimationOn(stage.getScene().getRoot(), 500, 1.0f, 0f, event1 -> {
+        animationGenerator.applyFadeAnimationOn(stg.getScene().getRoot(), 500, 1.0f, 0f, event1 -> {
             try {
-                EspaceSanteBienEtre.currentUser = null;
-                loginWindow = FXMLLoader.load(EspaceSanteBienEtre.class.getResource("/GUI/Login.fxml"));
+                FXMain.currentUser = null;
+                loginWindow = FXMLLoader.load(FXMain.class.getResource("Login.fxml"));
                 loginScene = new Scene(loginWindow);
-                EspaceSanteBienEtre.stage.setScene(loginScene);
-                stage.centerOnScreen();
-                EspaceSanteBienEtre.loginWindow.setOpacity(1f);
-                animationGenerator.applyFadeAnimationOn(EspaceSanteBienEtre.loginWindow, 500, 0f, 1.0f, null);
+                FXMain.stg.setScene(loginScene);
+                stg.centerOnScreen();
+                FXMain.loginWindow.setOpacity(1f);
+                animationGenerator.applyFadeAnimationOn(FXMain.loginWindow, 500, 0f, 1.0f, null);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }

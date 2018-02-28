@@ -9,7 +9,7 @@ package Service;
 import interfaces.IUserDAO;
 
 import Entite.User;
-import GUI.EspaceSanteBienEtre;
+import GUI.FXMain;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,7 +61,7 @@ public class UserDAO implements IUserDAO{
         String sql = "INSERT INTO `user`(`role`, `login`, `password`, "
                 + "`email`, `nom`, `prenom`, `adress`, `telephone`, "
                 + "`status`,`avatar`, `sexe`, `CIN`, `age`, `specialite`,`date_naissance`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        try (PreparedStatement statement = Database.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement statement = Database.getConnection().prepareStatement(sql)) {
             int columnIndex = 0;
             statement.setString(++columnIndex, user.getRole());
             statement.setString(++columnIndex, user.getUsername());
@@ -176,7 +176,7 @@ public class UserDAO implements IUserDAO{
             statement.setString(++columnIndex, user.getLastname());
             statement.setString(++columnIndex, user.getAdress());
             statement.setString(++columnIndex, user.getTelephone());
-            statement.setInt(++columnIndex,EspaceSanteBienEtre.currentUser.getId());
+            statement.setInt(++columnIndex,FXMain.currentUser.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -28,7 +29,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -67,7 +67,7 @@ public class ForumBasicController implements Initializable {
     private Button Questionbtn;
     static int id_question;// pour recupurer l'id du question a modifié
      static String CurrentActiveTab;
-
+     static int CurrentUserId = 3 ;
     @Override
    
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,14 +94,14 @@ public class ForumBasicController implements Initializable {
            
           list.getItems().addAll(data);
           
-          rechecherTxt.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.isEmpty()) {
-               
-                list.getItems().addAll(data);
-            } else {
-                list.setItems(FXCollections.observableArrayList(QuestionService.getInstance().FilterByTopic(rechecherTxt.getText())));
-            }
-        });
+            rechecherTxt.textProperty().addListener((observable, oldValue, newValue) -> {
+              if (newValue.isEmpty()) {
+
+                  list.getItems().addAll(data);
+              } else {
+                  list.setItems(FXCollections.observableArrayList(QuestionService.getInstance().FilterByTopic(rechecherTxt.getText())));
+              }
+          });
           list.setCellFactory(new Callback<ListView<Question>, ListCell<Question>>()
                   {
               @Override
@@ -142,7 +142,10 @@ public class ForumBasicController implements Initializable {
                         
                         edit.setGraphic(editIcon);
                         delete.setGraphic(deleteicon);
-                        
+                     if( !(CurrentUserId == item.getId_user()))  
+                      { edit.setVisible(false);
+                      delete.setVisible(false);
+                      }
                       VBox vbox0 = new VBox(stack , new Text("Reponse"),edit,delete);
                       vbox0.setSpacing(8);
                            delete.setOnAction((event) -> {
@@ -187,10 +190,11 @@ public class ForumBasicController implements Initializable {
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);
                              VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
+                             nbox2.setAlignment(Pos.CENTER);
                             HBox hbox = new HBox (nbox2,vBox);
                             hbox.setSpacing(10);
                             HBox hBox = new HBox(hbox ,vbox0);
-                            hBox.setSpacing(700);
+                            hBox.setSpacing(950);
                             
                             setGraphic(hBox);
                        
@@ -256,7 +260,11 @@ public class ForumBasicController implements Initializable {
                         
                         edit.setGraphic(editIcon);
                         delete.setGraphic(deleteicon);
-                    
+                      if( !(CurrentUserId == item.getId_user()))  
+                      { edit.setVisible(false);
+                      delete.setVisible(false);
+                      }
+                     
                       VBox vbox0 = new VBox(stack , new Text("Reponse"),edit,delete);
                       vbox0.setSpacing(8);
                       
@@ -297,13 +305,16 @@ public class ForumBasicController implements Initializable {
                           
                           Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
                             ImageView imv =new ImageView(image);
+                            
                             imv.setFitHeight(130);
                             imv.setFitWidth(130);
+                            
                              VBox  nbox2 = new VBox( imv , new Text(item.getNom()+" "+item.getPrenom()));
-                            HBox hbox = new HBox (nbox2,vBox);
+                             nbox2.setAlignment(Pos.CENTER);
+                             HBox hbox = new HBox (nbox2,vBox);
                             hbox.setSpacing(10);
                             HBox hBox = new HBox(hbox ,vbox0);
-                            hBox.setSpacing(700);
+                            hBox.setSpacing(950);
                             
                             setGraphic(hBox);
 //*UPDATE question q SET nbr_rep = (select COUNT(*) FROM reponse WHERE id_question = q.id_question ) WHERE 1
@@ -393,16 +404,20 @@ public class ForumBasicController implements Initializable {
      }
  }
      
-     public void List()
-     {
-         ObservableList<Question> data = FXCollections.observableArrayList(
-             QuestionService.getInstance().FilterByCat(TabeCat.getSelectionModel().getSelectedItem().getText())
-                  
-            
-          );
-            
-          list.getItems().addAll(data);
+   public void BackHome()
+   {
+       try {
+          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+//        FXMain.stg.close();
+        FXMain.stg = stage;
+         
+     } catch (Exception e) {
      }
+   }
   
     }
 

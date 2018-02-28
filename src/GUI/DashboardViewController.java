@@ -20,6 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import Utils.AnimationGenerator;
 import Utils.ImageEditor;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
 
@@ -75,7 +77,7 @@ public class DashboardViewController implements Initializable {
 
     @FXML
     private void logout(MouseEvent event) {
-                EspaceSanteBienEtre .logout();
+                FXMain .logout();
 
     }
 
@@ -103,7 +105,22 @@ public class DashboardViewController implements Initializable {
         alert.setContentText("Said Hmidi 3A3 ESPRIT!");
         alert.showAndWait();
     }
-
+    
+   public void VerifyQuestion()
+        {
+                        try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("VerifyQuestionAdmin.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+        } catch (Exception e) {
+       System.out.println(e);
+                    }
+        }
 
    
 @FXML

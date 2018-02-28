@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import static GUI.FXMain.loginScene;
+import static GUI.FXMain.loginWindow;
+import com.jfoenix.controls.JFXButton;
 import Entite.User;
 import Utils.Upload;
 import java.io.File;
@@ -39,9 +42,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import Service.UserDAO;
-import GUI.EspaceSanteBienEtre;
-import static GUI.EspaceSanteBienEtre.loginScene;
-import static GUI.EspaceSanteBienEtre.loginWindow;
+
+
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 import Utils.AnimationGenerator;
@@ -104,7 +106,7 @@ UserDAO userDAO=new UserDAO();
     private Button button1;
     private ListView listviewimg;
     @FXML
-    private Button btnimage;
+    private JFXButton btnimage;
     AnchorPane AnchorPane;
     static int code;
     
@@ -125,6 +127,7 @@ UserDAO userDAO=new UserDAO();
     @FXML
     private PasswordField rePassword;
     //sendMessageCode message= new sendMessageCode();
+        User user = new User();
 
 
     /**
@@ -173,13 +176,7 @@ UserDAO userDAO=new UserDAO();
     
     public void signup() throws IOException {       
         int solde=0;
-        User user = new User(username.getText(), password.getText(), email.getText(), firstname.getText(), lastname.getText(), address.getText(), telephone.getText(), UserStatus.PENDING,solde,"");
-        user.setCIN(cin.getText());
-        user.setSexe(sexe.getValue());
-        user.setAge(Integer.parseInt(age.getText()));
-        user.setRole(role.getValue());
-        user.setDateNaissance(Date.valueOf(dateNaissance.getValue()));
-        System.out.println(user.getRole());
+        
         boolean verif;
 
         if (userDAO.checkUsername(username.getText())) {
@@ -189,28 +186,6 @@ UserDAO userDAO=new UserDAO();
             alert.setTitle("Utilisateur existe deja!");
             alert.setHeaderText(username.getText());
             alert.setContentText("Ce nom d'utilisateur existe deja");
-            alert.showAndWait();
-
-            return;
-        }
-        if(userDAO.checkUseremail(email.getText()))
-        {
-        PseudoClass pseudoClass = PseudoClass.getPseudoClass("error");
-            username.pseudoClassStateChanged(pseudoClass, true);
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Eamil existe deja!");
-            alert.setHeaderText(username.getText());
-            alert.setContentText("Ce mail d'utilisateur existe deja");
-            alert.showAndWait();
-
-            return;
-        }
-        
-        if(user.getDateNaissance().after(Date.valueOf("2006-01-01"))){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(username.getText());
-            alert.setContentText("Vous devez avoir au moins 12 ans!");
             alert.showAndWait();
 
             return;
@@ -234,24 +209,24 @@ UserDAO userDAO=new UserDAO();
         if (        email.getText().isEmpty() 
                         || !email.getText().contains("@") 
                         || !email.getText().contains(".") 
-                      //  || email.getText().indexOf("@", 0) > email.getText().indexOf(".", 0) 
+                       //|| email.getText().indexOf("@", 0) > email.getText().indexOf(".", 0) 
                         || email.getText().indexOf("#", 0) >= 0
                         || email.getText().indexOf("&", 0) >= 0
                         || email.getText().indexOf("(", 0) >= 0
-                        || email.getText().length() - email.getText().replace("@", "").length() > 1
-                    //    || email.getText().length() - email.getText().replace(".", "").length() > 1
-                        || email.getText().indexOf("Â§", 0) >= 0
+                        //| email.getText().length() - email.getText().replace("@", "").length() > 1
+                        //|| email.getText().length() - email.getText().replace(".", "").length() > 1
+                        || email.getText().indexOf("§", 0) >= 0
                         || email.getText().indexOf("!", 0) >= 0
-                        || email.getText().indexOf("Ã§", 0) >= 0
-                        || email.getText().indexOf("Ã ", 0) >= 0
-                        || email.getText().indexOf("Ã©", 0) >= 0
+                        || email.getText().indexOf("ç", 0) >= 0
+                        || email.getText().indexOf("à", 0) >= 0
+                        || email.getText().indexOf("é", 0) >= 0
                         || email.getText().indexOf(")", 0) >= 0
                         || email.getText().indexOf("{", 0) >= 0
                         || email.getText().indexOf("}", 0) >= 0
                         || email.getText().indexOf("|", 0) >= 0
                         || email.getText().indexOf("$", 0) >= 0
                         || email.getText().indexOf("*", 0) >= 0
-                        || email.getText().indexOf("â‚¬", 0) >= 0
+                        || email.getText().indexOf("€", 0) >= 0
                         || email.getText().indexOf("`", 0) >= 0
                         || email.getText().indexOf("\'", 0) >= 0
                         || email.getText().indexOf("\"", 0) >= 0
@@ -264,30 +239,64 @@ UserDAO userDAO=new UserDAO();
                         || email.getText().indexOf(",", 0) >= 0
                         || email.getText().indexOf("?", 0) >= 0
                         || email.getText().indexOf(";", 0) >= 0
-                        || email.getText().indexOf("Â°", 0) >= 0
+                        || email.getText().indexOf("°", 0) >= 0
                         || email.getText().indexOf("<", 0) >= 0
                         || email.getText().indexOf(">", 0) >= 0) 
                 {
                     email.setStyle("-fx-text-box-border: #f44336;");
-                    verif = false;
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez saisir un mail valid");
+                alert.showAndWait();
+                return;
                 }
         
                  if (rePassword.getText().equals(password.getText()) == false || password.getText().isEmpty()) {
                     password.setStyle("-fx-text-box-border: #f44336;");
                     rePassword.setStyle("-fx-text-box-border: #f44336;");
-                    verif = false;
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez selectionnez deux password identique");
+                alert.showAndWait();
+                return;
                 }
         
           if( firstname.getText().isEmpty() ){
                     firstname.setStyle("-fx-text-box-border: #f44336;");
-                    verif = false;
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez selectionnez un nom");
+                alert.showAndWait();
+                return;
                 }
          if( lastname.getText().isEmpty() ){
                     lastname.setStyle("-fx-text-box-border: #f44336;");
-                    verif = false;
-                }
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez selectionnez un prenom");
+                alert.showAndWait();
+                return;                }
         
+        if(address.getText().isEmpty())
+        {
+               address.setStyle("-fx-text-box-border: #f44336;");
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez selectionnez une addresse");
+                alert.showAndWait();
+                return;   
         
+        }
+        if(telephone.getText().isEmpty())
+        {
+               telephone.setStyle("-fx-text-box-border: #f44336;");
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez selectionnez votre telephone");
+                alert.showAndWait();
+                return;   
+        
+        }
         
         switch (role.getValue()) {
             case "Membre":
@@ -306,24 +315,94 @@ UserDAO userDAO=new UserDAO();
                 return;
         }
 
-        if (user != null) 
+       user .setFirstname(firstname.getText());
+       user.setUsername(username.getText());
+       user.setPassword(password.getText());
+       user.setEmail(email.getText());
+       user.setLastname(lastname.getText());
+       user.setAdress(address.getText());
+       user.setTelephone(telephone.getText());
+       user.setStatus(UserStatus.PENDING);
+        user.setCIN(cin.getText());
+        user.setSexe(sexe.getValue());
+        if(age.getText().length()!=0)
+        {
+        user.setAge(Integer.parseInt(age.getText()));
+            
+        }
+        user.setRole(role.getValue());
+        user.setDateNaissance(Date.valueOf(dateNaissance.getValue()));
+        System.out.println(user.getRole());
+        
+        if (user.getCIN() != null) 
         {
 
-            EspaceSanteBienEtre.currentUser=user;
+            FXMain.currentUser=user;
         
+                    if(Date.valueOf(dateNaissance.getValue()).after(Date.valueOf("2006-01-01"))){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(username.getText());
+            alert.setContentText("Vous devez avoir au moins 12 ans!");
+            alert.showAndWait();
+
+            return;
+        }
+
         Files.copy(selectedfile.toPath(), 
-                Paths.get("C:\\Users\\said hmidi\\Desktop\\Piedev\\EspaceSante&BienEtre\\image\\" + selectedfile.getName()));
+                Paths.get("//home//majd//EspaceSante&BienEtre//src//GUI//Images//" + selectedfile.getName()));
            user.setAvatar(selectedfile.getName());
-            userDAO.add(user);
+          
+           
+           userDAO.add(user);
+         
+           
            TrayNotification tray = new TrayNotification("Felicitation!",
                    "Votre demande a ete envoyer au administrateur", NotificationType.SUCCESS);
            tray.showAndWait();
            cancel();
             
         }
+        else 
+        {
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+
+              alert.setTitle("Erreur");
+                alert.setContentText("Vous devez remplir les champs requizes");
+                alert.showAndWait();
+                ;
+        } 
+        
+        
     }
     
-   
+    public void confirmation() throws IOException
+    {
+    final Parent dashboard;       
+    username.clear();
+            password.clear();
+        role.setValue("Choisissez un role...");
+        firstname.clear();
+        lastname.clear();
+        email.clear();
+        address.clear();
+        telephone.clear();
+       
+     
+        dashboard = FXMLLoader.load(getClass().getResource("/GUI/singin/Confirmation.fxml"));
+
+         animationGenerator.applyFadeAnimationOn(AnchorPane, 1000, 1.0f, 0f, event -> {
+                double oldWidth = FXMain.stg.getWidth();
+                double oldHeight = FXMain.stg.getHeight();
+
+               
+                        FXMain.stg.setScene(new Scene(dashboard, 1400, 850));
+                        FXMain.stg.centerOnScreen();
+                      // Pidev.stage.setFullScreen(true);
+
+                        animationGenerator.applyFadeAnimationOn(dashboard, 1000, 0f, 1.0f, null);
+                    });
+    }
 
     public  void cancel() throws IOException {
         username.clear();
@@ -336,25 +415,29 @@ UserDAO userDAO=new UserDAO();
         telephone.clear();
         loginWindow = FXMLLoader.load(getClass().getResource("/GUI/Login.fxml"));
 
-        animationGenerator.applyTranslateAnimationOn(EspaceSanteBienEtre.signupWindow, 1000, 0, 1000);
-        animationGenerator.applyFadeAnimationOn(EspaceSanteBienEtre.signupWindow, 500, 1.0f, 0f, event -> {
+        animationGenerator.applyTranslateAnimationOn(FXMain.signupWindow, 1000, 0, 1000);
+        animationGenerator.applyFadeAnimationOn(FXMain.signupWindow, 500, 1.0f, 0f, event -> {
             loginScene = new Scene(loginWindow);
-            EspaceSanteBienEtre.stage.setScene(loginScene);
+            FXMain.stg.setScene(loginScene);
 
-            EspaceSanteBienEtre.loginWindow.setOpacity(1f);
-            EspaceSanteBienEtre.loginWindow.setTranslateX(-1000);
+            FXMain.loginWindow.setOpacity(1f);
+            FXMain.loginWindow.setTranslateX(-1000);
 
-            EspaceSanteBienEtre.signupWindow.toBack();
-            EspaceSanteBienEtre.loginWindow.toFront();
+            FXMain.signupWindow.toBack();
+            FXMain.loginWindow.toFront();
 
-            animationGenerator.applyTranslateAnimationOn(EspaceSanteBienEtre.loginWindow, 500, -1000, 0);
-            animationGenerator.applyFadeAnimationOn(EspaceSanteBienEtre.loginWindow, 500, 0f, 1.0f, null);
+            animationGenerator.applyTranslateAnimationOn(FXMain.loginWindow, 500, -1000, 0);
+            animationGenerator.applyFadeAnimationOn(FXMain.loginWindow, 500, 0f, 1.0f, null);
         });
     }
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         signup();
+        
+        
+        
+        
        
     }
 
@@ -377,7 +460,7 @@ UserDAO userDAO=new UserDAO();
             System.out.println("sssssssssssssssss");
             System.out.println(path_img);
         }else{
-            System.out.println("FICHIER erroné");
+            System.out.println("FICHIER erron");
                     }
 
  
@@ -385,4 +468,3 @@ UserDAO userDAO=new UserDAO();
     }
 
     
-

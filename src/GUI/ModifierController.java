@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import Service.UserDAO;
-import GUI.EspaceSanteBienEtre;
+import GUI.FXMain;
 import Utils.Mail;
 import javafx.scene.control.TextField;
 
@@ -46,7 +46,7 @@ public class ModifierController implements Initializable {
 //        tel.setText(EspaceSanteBienEtre.currentUser.getTelephone());
 //        password.setText(EspaceSanteBienEtre.currentUser.getPassword());
 //        password2.setText(EspaceSanteBienEtre.currentUser.getPassword());
-        CurrentuserId=EspaceSanteBienEtre.currentUser.getId();
+        CurrentuserId=FXMain.currentUser.getId();
        User u =  UserDAO.findById(CurrentuserId);
        nom.setText(u.getFirstname());
         prenom.setText(u.getLastname());
@@ -63,17 +63,17 @@ public class ModifierController implements Initializable {
          
             User user = new User();
             UserDAO userDAO=new UserDAO();
-            System.out.println(EspaceSanteBienEtre.currentUser.getRole());
+            System.out.println(FXMain.currentUser.getRole());
 
-            user.setId(EspaceSanteBienEtre.currentUser.getId());
-            user.setUsername(EspaceSanteBienEtre.currentUser.getUsername());
+            user.setId(FXMain.currentUser.getId());
+            user.setUsername(FXMain.currentUser.getUsername());
             user.setPassword(password.getText());
             user.setEmail(mail.getText());
             user.setFirstname(nom.getText());
             user.setLastname(prenom.getText());
-            user.setAdress(EspaceSanteBienEtre.currentUser.getAdress());
+            user.setAdress(FXMain.currentUser.getAdress());
             user.setTelephone(tel.getText());
-            user.setStatus(EspaceSanteBienEtre.currentUser.getStatus());
+            user.setStatus(FXMain.currentUser.getStatus());
             userDAO.update2(user);
             
             
