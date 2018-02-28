@@ -121,6 +121,22 @@ public class DashboardViewController implements Initializable {
        System.out.println(e);
                     }
         }
+   public void AjoutCat()
+   {
+       
+          try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLAjoutCat.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+        } catch (Exception e) {
+       System.out.println(e);
+                    }
+   }
 
    
 @FXML

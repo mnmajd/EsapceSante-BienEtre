@@ -113,7 +113,7 @@ public class QuestionService {
     }
          public static void UpdateQuestion(String s , int id)
          {
-             String req = "UPDATE question SET contenu_quest =? WHERE id_question =?";
+             String req = "UPDATE question SET contenu_quest =? WHERE id_question =? ";
          try {
              PreparedStatement  ste = ConnexionBD.getInstance().getConnection().prepareStatement(req);
              ste.setString(1, s);
@@ -130,7 +130,7 @@ public class QuestionService {
             
                {
                    
-                   String req = "Select c.id_question ,c.contenu_quest, c.Sujet_Question, c.Date_publication, c.nbr_rep , u.nom , u.prenom from question c join user u on c.id_user = u.id_user where nom_catF=? ORDER BY c.Date_publication DESC";
+                   String req = "Select c.id_question ,c.contenu_quest, c.Sujet_Question, c.Date_publication, c.nbr_rep , u.nom , u.prenom,u.avatar from question c join user u on c.id_user = u.id_user where nom_catF=? and c.Approved_Question=1 ORDER BY c.Date_publication DESC";
          List<Question> p = new ArrayList<>();
          try {
             
@@ -145,7 +145,7 @@ public class QuestionService {
                   p.add(
                  new Question(result.getInt("id_question"), result.getString("contenu_quest"),result.getString("sujet_question") 
                          ,result.getTimestamp("Date_publication").toString(), result.getInt("nbr_rep")
-                         , result.getString("nom"),result.getString("prenom")
+                         , result.getString("nom"),result.getString("prenom"),result.getString("avatar")
                   )
                  );
              

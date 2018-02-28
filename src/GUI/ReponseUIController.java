@@ -110,7 +110,7 @@ public class ReponseUIController implements Initializable {
         nomprenom.setText(q.getNom()+" "+q.getPrenom());
         dare.setText(q.getDate_publication().substring(0, 16));
       
-      Image  image  = new Image("/GUI/Images/majdpic.jpg", true); 
+      Image  image  = new Image("/GUI/Images/profilmajd.jpg", true); 
                             img.setImage(image);
                               img.setFitHeight(200);
                             img.setFitWidth(700);

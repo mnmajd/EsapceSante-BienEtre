@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI ;
 
 import Entite.Service_Medecin;
+import static GUI.AjoutServiceMedController.copier;
 import static GUI.ConsulterServiceMEDController.l;
 //import static Interfaces.ConsulterMonServiceController.I;
 import static GUI.FirstInterfaceController.nom;
@@ -97,14 +98,14 @@ public class ModifierMonServiceController implements Initializable, MapComponent
     private CheckBox yes;
     @FXML
     private CheckBox no;
-public String  imageUrl;
+    public String imageUrl;
     static int I;
-    
-    int c ;
-     File pDir ;
-     File pfile ;
-      String lien ;
-    
+
+    int c;
+    File pDir;
+    File pfile;
+    String lien;
+
     @FXML
     private ImageView img;
     @FXML
@@ -113,14 +114,14 @@ public String  imageUrl;
     private Button imf;
     @FXML
     private TextField rechercher;
-    
+
     static double k;
     static double l;
     static String nn;
     static Stage stg;
     private GoogleMap map;
     private GeocodingService geocodingService;
-    
+
     @FXML
     private GoogleMapView mapView;
     @FXML
@@ -131,6 +132,7 @@ public String  imageUrl;
     private TextField toTextField;
     @FXML
     private TextField fromTextField;
+
     public String getNom() {
         return nom.getText();
     }
@@ -150,51 +152,51 @@ public String  imageUrl;
     public String getAdresse_etab() {
         return adr.getText();
     }
-    
-    
-     private void choisirimage(ActionEvent event) {
-         FileChooser fileChooser = new FileChooser();
 
-    File file = fileChooser.showOpenDialog(null);
-    if (file != null) {
-        try {
-            imageUrl = file.toURI().toURL().toExternalForm();
-            lab.setText(imageUrl);
-            
-        } catch (MalformedURLException ex) {
-            throw new IllegalStateException(ex);
-            
+    private void choisirimage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            try {
+                imageUrl = file.toURI().toURL().toExternalForm();
+                lab.setText(imageUrl);
+
+            } catch (MalformedURLException ex) {
+                throw new IllegalStateException(ex);
+
+            }
         }
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Validate image");
+        alert.setHeaderText(null);
+        alert.setContentText("Please Enter image");
+        alert.showAndWait();
     }
-            
-            } 
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         altitude.setVisible(false);
         longitude.setVisible(false);
         fromTextField.setVisible(false);
         toTextField.setVisible(false);
         lab.setVisible(false);
-      fromTextField.setText(String.valueOf( l=ConsulterMonServiceController.LAT));
-      toTextField.setText(String.valueOf(k=ConsulterMonServiceController.LONGI));
+        fromTextField.setText(String.valueOf(l = ConsulterMonServiceController.LAT));
+        toTextField.setText(String.valueOf(k = ConsulterMonServiceController.LONGI));
         mapView.addMapInializedListener(this);
-        
+
         address.bind(rechercher.textProperty());
-        
-        c = (int)( Math.random()*( 300000 - 2 + 1 ) ) + 2; 
-             pDir = new File("src/Interfaces/images/objet"+c+".jpg");
-                lien = "images/objet"+c+".jpg" ;
-        
-        
-        //if(carte.getText()){ carte.setSelected(true);}
-id.setVisible(false);
-    id.setText(String.valueOf(ConsulterMonServiceController.ID));
-        nom.setText(nn=ConsulterMonServiceController.NOM);
+
+        c = (int) (Math.random() * (300000 - 2 + 1)) + 2;
+        pDir = new File("src/GUI/Images/addquestion.jpg" );
+        lien = "src/GUI/Images/addquestion.jpg";
+        id.setVisible(false);
+        id.setText(String.valueOf(ConsulterMonServiceController.ID));
+        nom.setText(nn = ConsulterMonServiceController.NOM);
         prenom.setText(ConsulterMonServiceController.PRENOM);
         dip.setText(ConsulterMonServiceController.DIPL);
         lang.setText(ConsulterMonServiceController.LANGUE);
@@ -203,27 +205,30 @@ id.setVisible(false);
         tarif.setText(String.valueOf(ConsulterMonServiceController.TARIF));
         tel.setText(String.valueOf(ConsulterMonServiceController.TEL));
         adr.setText(ConsulterMonServiceController.ADR);
-         altitude.setText(String.valueOf( l=ConsulterMonServiceController.LAT));
-        longitude.setText(String.valueOf(k=ConsulterMonServiceController.LONGI));
-        
-      mail.setText(ConsulterMonServiceController.MAIL);
-      System.out.println(ConsulterMonServiceController.MAIL);
-      
-      String IMAGE=ConsulterMonServiceController.IMAGE;
-       System.out.println(IMAGE);
-       Image image1 = new Image("file:///C:/users/chayma/Documents/NetBeansProjects/EsapceSante-BienEtre/src/Interfaces/"+IMAGE);
+        altitude.setText(String.valueOf(l = ConsulterMonServiceController.LAT));
+        longitude.setText(String.valueOf(k = ConsulterMonServiceController.LONGI));
+
+        mail.setText(ConsulterMonServiceController.MAIL);
+        System.out.println(ConsulterMonServiceController.MAIL);
+
+        String IMAGE = ConsulterMonServiceController.IMAGE;
+        System.out.println(IMAGE);
+        try {
+             Image image1 = new Image("/GUI/Images/addquestion.jpg");
         img.setImage(image1);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+       
 
     }
-    
-    
-    
-     @Override
+
+    @Override
     public void mapInitialized() {
 
         geocodingService = new GeocodingService();
         MapOptions mapOptions = new MapOptions();
-        LatLong Location = new LatLong(l,k);
+        LatLong Location = new LatLong(l, k);
         MarkerOptions markerOptions1 = new MarkerOptions();
         Marker m = new Marker(markerOptions1);
         System.out.println(Location);
@@ -239,26 +244,23 @@ id.setVisible(false);
         map = mapView.createMap(mapOptions);
         map.addMouseEventHandler(UIEventType.click, (GMapMouseEvent event) -> {
             LatLong latLong = event.getLatLong();
-                fromTextField.setText(String.valueOf(latLong.getLatitude()));
-                toTextField.setText(String.valueOf(latLong.getLongitude()));
+            fromTextField.setText(String.valueOf(latLong.getLatitude()));
+            toTextField.setText(String.valueOf(latLong.getLongitude()));
             markerOptions1.position(latLong)
                     .visible(true)
                     .title(nn);
             m.setOptions(markerOptions1);
-            
+
             map.addMarker(m);
         });
     }
-    
-    
 
     @FXML
     private void Sauvegarder(ActionEvent event) throws IOException {
-        
+ copier( pfile,pDir) ;
         Service_service s = new Service_service();
 
-        if ( validateFields()& validatenom()& validateEmaill()& validateprenom()& validatetarif()& validateMobileNo()&validateouvert()&validateferme())
-        {
+        if (validateFields() & validatenom() & validateEmaill() & validateprenom() & validatetarif() & validateMobileNo() & validateouvert() & validateferme()) {
 
             String a = "";
             if (esp.isSelected()) {
@@ -270,47 +272,41 @@ id.setVisible(false);
             if (carte.isSelected()) {
                 a += carte.getText() + "\n";
             }
-            
-            
-            Service_Medecin sm = new Service_Medecin(ouv.getText(), ferm.getText(),dip.getText(), Float.parseFloat(tarif.getText()), mail.getText(),adr.getText(), Integer.parseInt(tel.getText()),
-                    lien,lang.getText(),a, b,   
-                   
-                    nom.getText(), prenom.getText(),Double.parseDouble(fromTextField.getText()),Double.parseDouble(toTextField.getText()));
-             I = ConsulterMonServiceController.ID;
+
+            Service_Medecin sm = new Service_Medecin(ouv.getText(), ferm.getText(), dip.getText(), Float.parseFloat(tarif.getText()), mail.getText(), adr.getText(), Integer.parseInt(tel.getText()),
+                    lien, lang.getText(), a, b,
+                    nom.getText(), prenom.getText(), Double.parseDouble(fromTextField.getText()), Double.parseDouble(toTextField.getText()));
+            I = ConsulterMonServiceController.ID;
             s.updateServiceMED(sm, I);
-           
-             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Service updated successfully.");
-        alert.setHeaderText(null);
-        alert.setContentText("Your service has been updated.");
-        alert.showAndWait();
-            
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Service updated successfully.");
+            alert.setHeaderText(null);
+            alert.setContentText("Your service has been updated.");
+            alert.showAndWait();
+
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
             Scene scene = new Scene(FXMLLoader.load(getClass().getResource("FirstInterface.fxml")));
             stage.setScene(scene);
             stage.show();
-           
-            
+
         }
     }
 
     @FXML
     private void Annuler(ActionEvent event) throws IOException {
-        
+
         Node source = (Node) event.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
-            stage.close();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ConsulterMonService.fxml")));
-            stage.setScene(scene);
-            stage.show();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ConsulterMonService.fxml")));
+        stage.setScene(scene);
+        stage.show();
     }
 
-    
-    
-    
-private void saveAlert(Service_Medecin sm) {
+    private void saveAlert(Service_Medecin sm) {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Service saved successfully.");
@@ -353,143 +349,145 @@ private void saveAlert(Service_Medecin sm) {
         }
     }
 
-    private boolean validatetarif(){
+    private boolean validatetarif() {
         Pattern p = Pattern.compile("[0-9]*\\.?[0-9]+");
         Matcher m = p.matcher(tarif.getText());
-        if(m.find() && m.group().equals(tarif.getText())){
+        if (m.find() && m.group().equals(tarif.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Number");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter Valid tarif");
-                alert.showAndWait();
-            
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Number");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Valid tarif");
+            alert.showAndWait();
+
+            return false;
         }
     }
-     private boolean validateouvert(){
+
+    private boolean validateouvert() {
         Pattern p = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
         Matcher m = p.matcher(ouv.getText());
-        if(m.find() && m.group().equals(ouv.getText())){
+        if (m.find() && m.group().equals(ouv.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Number");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter Valid Date d'ouverture");
-                alert.showAndWait();
-            
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Number");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Valid Date d'ouverture");
+            alert.showAndWait();
+
+            return false;
         }
     }
-     
-      private boolean validateferme(){
+
+    private boolean validateferme() {
         Pattern p = Pattern.compile("([01]?[0-9]|2[0-3]):[0-5][0-9]");
         Matcher m = p.matcher(ferm.getText());
-        if(m.find() && m.group().equals(ferm.getText())){
+        if (m.find() && m.group().equals(ferm.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Number");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter Valid Date de fermeture");
-                alert.showAndWait();
-            
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Number");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Valid Date de fermeture");
+            alert.showAndWait();
+
+            return false;
         }
     }
-    
-    private boolean validatenom(){
-    Pattern p = Pattern.compile("[a-zA-Z]+");
+
+    private boolean validatenom() {
+        Pattern p = Pattern.compile("[a-zA-Z]+");
         Matcher m = p.matcher(nom.getText());
-        if(m.find() && m.group().equals(nom.getText())){
+        if (m.find() && m.group().equals(nom.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate nom");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter Valid First Name");
-                alert.showAndWait();
-            
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate nom");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Valid First Name");
+            alert.showAndWait();
+
+            return false;
         }
     }
-        private boolean validateprenom(){
-    Pattern p = Pattern.compile("[a-zA-Z]+");
+
+    private boolean validateprenom() {
+        Pattern p = Pattern.compile("[a-zA-Z]+");
         Matcher m = p.matcher(prenom.getText());
-        if(m.find() && m.group().equals(prenom.getText())){
+        if (m.find() && m.group().equals(prenom.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate prenom");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter Valid First Name");
-                alert.showAndWait();
-            
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate prenom");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Valid First Name");
+            alert.showAndWait();
+
+            return false;
         }
     }
-        
-        private boolean validateEmaill(){
-             List<Service_Medecin> list;
-   list=Service_service.findmedbymail(mail.getText());
+
+    private boolean validateEmaill() {
+        List<Service_Medecin> list;
+        list = Service_service.findmedbymail(mail.getText());
         Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+");
         Matcher m = p.matcher(mail.getText());
-        if(m.find() && m.group().equals(mail.getText())&& (list.isEmpty())){
+        if (m.find() && m.group().equals(mail.getText()) && (list.isEmpty())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Email");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter Valid Email");
-                alert.showAndWait();
-            
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Email");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Valid Email");
+            alert.showAndWait();
+
+            return false;
         }
     }
-        
-        private boolean validateFields(){
-        if( adr.getText().isEmpty()){
-            
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Fields");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter Into The Fields");
-                alert.showAndWait();
-                
-                return false;
+
+    private boolean validateFields() {
+        if (adr.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Into The Fields");
+            alert.showAndWait();
+
+            return false;
         }
-        if(ouv.getText().isEmpty()){
-            
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Fields");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter The Date d'ouverture");
-                alert.showAndWait();
-                
-                return false;
+        if (ouv.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter The Date d'ouverture");
+            alert.showAndWait();
+
+            return false;
         }
-        if(ferm.getText().isEmpty()){
-            
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Fields");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter The Date de fermeture");
-                alert.showAndWait();
-                
-                return false;
+        if (ferm.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter The Date de fermeture");
+            alert.showAndWait();
+
+            return false;
         }
-        
-         if(dip.getText().isEmpty()){
-            
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Fields");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter The Ddiplome");
-                alert.showAndWait();
-                
-                return false;
+
+        if (dip.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter The Ddiplome");
+            alert.showAndWait();
+
+            return false;
         }
 //        if(!(ara.isSelected() | fra.isSelected() | anglais.isSelected())){
 //            
@@ -501,43 +499,43 @@ private void saveAlert(Service_Medecin sm) {
 //                
 //                return false;
 //        }
-         if(!(esp.isSelected() | carte.isSelected() | cheq.isSelected())){
-            
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Fields");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Selct The langues");
-                alert.showAndWait();
-                
-                return false;
+        if (!(esp.isSelected() | carte.isSelected() | cheq.isSelected())) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Selct The langues");
+            alert.showAndWait();
+
+            return false;
         }
-        if(!(yes.isSelected() | no.isSelected())){
-            
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Fields");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Selct One of The cnaam ");
-                alert.showAndWait();
-                
-                return false;
+        if (!(yes.isSelected() | no.isSelected())) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Selct One of The cnaam ");
+            alert.showAndWait();
+
+            return false;
         }
-        
+
         return true;
     }
-        
-        private boolean validateMobileNo(){
+
+    private boolean validateMobileNo() {
         Pattern p = Pattern.compile("[0-9]+");
         Matcher m = p.matcher(tel.getText());
-        if(m.find() && m.group().equals(tel.getText())){
+        if (m.find() && m.group().equals(tel.getText())) {
             return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Validate Mobile Number");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter Valid Mobile Number");
-                alert.showAndWait();
-            
-            return false;            
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate Mobile Number");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Valid Mobile Number");
+            alert.showAndWait();
+
+            return false;
         }
     }
     String b = "";
@@ -561,8 +559,8 @@ private void saveAlert(Service_Medecin sm) {
         }
 
     }
-    
-     public static boolean copier(File source, File dest) {
+
+    public static boolean copier(File source, File dest) {
         try (InputStream sourceFile = new java.io.FileInputStream(source);
                 OutputStream destinationFile = new FileOutputStream(dest)) {
             // Lecture par segment de 0.5Mo  
@@ -581,44 +579,34 @@ private void saveAlert(Service_Medecin sm) {
     @FXML
     private void choose(ActionEvent event) throws MalformedURLException {
         FileChooser fileChooser = new FileChooser();
-fileChooser.setTitle( "Select image.." );
-    
-/* - get saved directory - or get user`s home dir */
+        fileChooser.setTitle("Select image..");
 
+        /* - get saved directory - or get user`s home dir */
+ /* - set filters */
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png"),
+                new FileChooser.ExtensionFilter("BMP", "*.bmp")
+        );
 
-
-
-    
-/* - set filters */
-    
-fileChooser.getExtensionFilters().addAll(
-  new FileChooser.ExtensionFilter( "JPG", "*.jpg" ),
-  new FileChooser.ExtensionFilter( "PNG", "*.png" ),
-  new FileChooser.ExtensionFilter( "BMP", "*.bmp" )
-);
-    
-/* - open dialog */
-    
+        /* - open dialog */
         Window stage = null;
         pfile = fileChooser.showOpenDialog(stage);
 
-/* - draw image */
-    
-if ( pfile != null )
-{      
-      
-  /* -- read image */
-    imf.setText("image sélectionné");
-      
-  Image image = new Image( pfile.toURI().toURL().toExternalForm() );
-        img.setImage(image);
+        /* - draw image */
+        if (pfile != null) {
 
-        
-    }
+            /* -- read image */
+            imf.setText("image sélectionné");
+
+            Image image = new Image(pfile.toURI().toURL().toExternalForm());
+            img.setImage(image);
+
+        }
     }
 
-    
-      private StringProperty address = new SimpleStringProperty();
+    private StringProperty address = new SimpleStringProperty();
+
     @FXML
     private void search(ActionEvent event) {
         geocodingService.geocode(address.get(), (GeocodingResult[] results, GeocoderStatus status) -> {
@@ -638,9 +626,7 @@ if ( pfile != null )
             }
 
             map.setCenter(latLong);
-   adr.setText(String.valueOf(rechercher.getText()));
+            adr.setText(String.valueOf(rechercher.getText()));
         });
     }
-    }
-
-
+}

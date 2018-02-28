@@ -8,11 +8,11 @@
 <AnchorPane id="AnchorPane" prefHeight="432.0" prefWidth="754.0" styleClass="background3" stylesheets="@Css/AjoutCat.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.QuestionUpdateController">
    <children>
       <TextArea fx:id="contenu" layoutX="312.0" layoutY="113.0" prefHeight="253.0" prefWidth="318.0" />
-      <Button layoutX="512.0" layoutY="377.0" mnemonicParsing="false" onAction="#UpdateQuestion" text="Update">
+      <Button layoutX="512.0" layoutY="377.0" mnemonicParsing="false" onAction="#UpdateQuestion" styleClass="custom-button" stylesheets="@Css/style.css" text="Update">
          <font>
             <Font name="Comic Sans MS Bold" size="14.0" />
          </font></Button>
-      <Button layoutX="385.0" layoutY="376.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
+      <Button layoutX="385.0" layoutY="376.0" mnemonicParsing="false" onAction="#cancel" styleClass="custom-button" stylesheets="@Css/style.css" text="Cancel">
          <font>
             <Font name="Comic Sans MS Bold" size="14.0" />
          </font></Button>

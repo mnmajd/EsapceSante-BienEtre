@@ -10,12 +10,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import static javafx.application.ConditionalFeature.FXML;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -37,7 +41,9 @@ public class FXMLAjoutCatController implements Initializable {
     }    
           public  void AddCat()
         {
-        if (CatNom.getText().equals(""))
+            try {
+                
+                  if (CatNom.getText().equals(""))
         {
            Alert alert = new Alert(AlertType.ERROR);
            alert.setTitle("Champs  catégorie vide");
@@ -56,7 +62,28 @@ public class FXMLAjoutCatController implements Initializable {
                   alert.setContentText("Ajout cat effectué"); 
                   alert.showAndWait();
                   CatNom.clear();
+                  
              } 
+                
+                
+                
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+                      try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DashboardView.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+        } catch (Exception e) {
+       System.out.println(e);
+                    }
+            
+      
         
     
 }

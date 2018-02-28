@@ -6,6 +6,7 @@
 package GUI;
 
 import Entite.Service_Medecin;
+import static GUI.FXMain.stg;
 import Service.Service_service;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -76,18 +78,18 @@ public class ConsulterMonServiceController implements Initializable {
     private Label tarif;
 
     @FXML
-    private Button modif;
+    private Label modif;
     @FXML
-    private Button delete;
+    private Label delete;
     @FXML
-    private Button consulte;
+    private Label consulte;
     @FXML
     private Label ouvet;
      @FXML
     private Label cnam;
        
     
-    static int ID;
+    static int ID ;
     static Service_Medecin service_med;
     @FXML
     private TextField id;
@@ -112,9 +114,8 @@ public class ConsulterMonServiceController implements Initializable {
     static Stage stg;
     @FXML
     private Button retour;
-   
-    @FXML
-    void consulterservice(ActionEvent event) throws IOException {
+   @FXML
+    private void consulterservice(MouseEvent event) throws IOException {
          
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
@@ -124,9 +125,8 @@ public class ConsulterMonServiceController implements Initializable {
             stage.show();
 
     }
-
-    @FXML
-    void deleteservice(ActionEvent event) throws IOException {
+@FXML
+    private void deleteservice(MouseEvent event) throws IOException {
       
        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("DELETE");
@@ -158,9 +158,8 @@ public class ConsulterMonServiceController implements Initializable {
         
 
           }
-
-    @FXML
-    void modifierservice(ActionEvent event) throws IOException {
+@FXML
+    private void modifierservice(MouseEvent event) throws IOException {
          ID = ConsulterMonServiceController.ID;
          NOM = ConsulterMonServiceController.NOM;
          PRENOM = ConsulterMonServiceController.PRENOM;
@@ -179,13 +178,17 @@ public class ConsulterMonServiceController implements Initializable {
          LONGI= ConsulterMonServiceController.LONGI;
          
          System.out.println(IMG);
-
-            Node source = (Node) event.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
-            stage.close();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ModifierMonService.fxml")));
-            stage.setScene(scene);
-            stage.show();
+            try {
+          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ModifierMonService.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+         
+     } catch (Exception e) {
+     }
     }
 
     @FXML
@@ -202,6 +205,8 @@ public class ConsulterMonServiceController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
         Service_service ss = new Service_service();
  List<Service_Medecin> serviceM = ss.findmedbyiduser(3);
       
@@ -256,14 +261,21 @@ public class ConsulterMonServiceController implements Initializable {
         /*final URL imageURL= getClass().getResource(IMAGE);
         final Image imag= new Image(imageURL.toExternalForm());
         System.out.println(IMAGE);*/
-        Image imag = new Image("file:///C:/users/chayma/Documents/NetBeansProjects/EsapceSante-BienEtre/src/Interfaces/"+IMAGE);
+        try {
+             Image imag = new Image("/GUI/Images/"+IMAGE);
         System.out.println();
         image.setImage(imag);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+       
         
-        
-        
-
-
     }
 
+    
+   
+
+   
+
+    
 }

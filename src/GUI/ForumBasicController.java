@@ -67,7 +67,7 @@ public class ForumBasicController implements Initializable {
     private Button Questionbtn;
     static int id_question;// pour recupurer l'id du question a modifié
      static String CurrentActiveTab;
-     static int CurrentUserId = 3 ;
+     static int CurrentUserId =8;
     @Override
    
     public void initialize(URL url, ResourceBundle rb) {
@@ -303,7 +303,7 @@ public class ForumBasicController implements Initializable {
                             );
                             vBox.setSpacing(15);
                           
-                          Image  image  = new Image("https://scontent.ftun3-1.fna.fbcdn.net/v/t1.0-9/27541143_281014289095859_6804380293155361267_n.jpg?oh=9361e76214952e253b4e3df941501f91&oe=5B09A8E7", true); 
+                          Image  image  = new Image("/GUI/Images/profilmajd.jpg", true); 
                             ImageView imv =new ImageView(image);
                             
                             imv.setFitHeight(130);

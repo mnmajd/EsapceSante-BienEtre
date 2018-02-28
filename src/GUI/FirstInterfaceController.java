@@ -52,8 +52,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
  */
 public class FirstInterfaceController implements Initializable {
 
-    @FXML
-    private TextField rechspec;
+   
     @FXML
     private TextField rechnom;
     @FXML
@@ -90,20 +89,21 @@ public class FirstInterfaceController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+      ObservableList specialités = FXCollections.observableArrayList(
+            "Dentiste", "Cardiologue", "Dermatologue", "Généraliste", "Ophtalmologue", "Pédiatre");
+    @FXML
+    private ImageView imgch;
+    @FXML
+    private Label ch;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        spec.setItems(specialités);
+        msg.setVisible(false);
         Service_service ss = new Service_service();
         System.out.println(ss.getVote(162));
-        rechspec.textProperty().addListener(new ChangeListener() {
-            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                //filterList((String) oldValue, (String) newValue);
-                //listviewmed.refresh();
-                
-                 ObservableList specialités = FXCollections.observableArrayList(
-            "Dentiste", "Cardiologue", "Dermatologue", "Généraliste", "Ophtalmologue", "Pédiatre");
-                  spec.setItems(specialités);
-            }
-        });
 
         ObservableList<Service_Medecin> data = FXCollections.observableArrayList(ss.SelectServiceMED1("medecin"));
 
@@ -117,17 +117,21 @@ public class FirstInterfaceController implements Initializable {
                         super.updateItem(item, empty);
                         if (item != null) {
                             rating = new Rating();
+                             msg = new Label();
 
                             rating.setOnMouseClicked((MouseEvent event) -> {
                                 Service_service ss = new Service_service();
                                 System.out.println("tttttt");
                             });
+                            float a =  Service_service.getVote(item.getId_service());
+                              msg.setText("      Rating : "+a  );
 
                             VBox vBox = new VBox(
                                     new Text(item.getNom()), new Text(item.getPrenom()),
                                     new Text(item.getSpecialite()), new Text(String.valueOf(item.getTarif())),
                                     new Text(item.getAdresse_etab()),
-                                    new ToolBar(rating)
+                                     new ToolBar(rating,msg)
+
                             );
 
                             rating.ratingProperty().addListener(new ChangeListener<Number>() {
@@ -135,20 +139,30 @@ public class FirstInterfaceController implements Initializable {
                                 public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
                                     msg.setText("Rating : " + t1);
                                     Service_service ss = new Service_service();
+                                    float a = ss.getRating(item.getId_user(), item.getId_service()) ;
+                                    System.out.println(item.getId_service());
+                                    System.out.println(item.getId_user());
+                               if ( a == 0)
                                    
-                                     List l= ss.Selectrat(163);
-                                     for (int i = 0; i < l.size(); i++)
-                                        System.out.println(l);
-                                     
-                                     //ss.setRating(163, 2, t1.intValue());
-                                     //ss.updateRating( t1.intValue(), 2, 161);
-                                     //ss.getVote(162);
-                                     //System.out.println(ss.getVote(162));
+                                   
+                               {
+                                   ss.setRating(item.getId_service(),item.getId_user(),t1.intValue());
+                                   
+                                    listviewmed.refresh();
                                 }
+                               else {
+                                   ss.updateRating(t1.intValue(),item.getId_user(),item.getId_service() );
+
+                                       listviewmed.refresh();
+                               }
+
+                                       }
+
+                                
                             });
                             vBox.setSpacing(4);
                             String IMAGE = item.getImage_serv();
-                            Image image = new Image("file:///C:/users/chayma/Documents/NetBeansProjects/EsapceSante-BienEtre/src/Interfaces/" + IMAGE);
+                          Image image = new Image("/GUI/Images/objet163332.jpg",true);
 
                             ImageView imv = new ImageView(image);
                             System.out.println(image);
@@ -199,8 +213,6 @@ public class FirstInterfaceController implements Initializable {
                     stage.setScene(new Scene(root));
                     stage.show();
 
-//            FXMain.stg.close();
-//            FXMain.stg = stage;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -216,7 +228,7 @@ public class FirstInterfaceController implements Initializable {
                 List<String> nom = new ArrayList<>();
                 Service_service ss = new Service_service();
                 ObservableList<Service_Medecin> data = FXCollections.observableArrayList(ss.findmedbynom(rechnom.getText()));
-                // khoudh el texte eli fl texte field w naba3tthou fi argument fi methode rechercher
+                // nekhou el texte eli fl texte field w naba3tthou fi argument fi methode rechercher
 
                 for (Service_Medecin s : data) {
                     nom.add(s.getNom());
@@ -233,7 +245,7 @@ public class FirstInterfaceController implements Initializable {
             listviewmed.setItems(FXCollections.observableArrayList(ss.findmedbynom(rechnom.getText())));
 //            listviewmed.refresh();
 
-listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Service_Medecin>>() {
+  listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Service_Medecin>>() {
             @Override
             public ListCell<Service_Medecin> call(ListView<Service_Medecin> param) {
                 return new ListCell<Service_Medecin>() {
@@ -242,30 +254,53 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
                         super.updateItem(item, empty);
                         if (item != null) {
                             rating = new Rating();
+                             msg = new Label();
 
                             rating.setOnMouseClicked((MouseEvent event) -> {
-
+                                Service_service ss = new Service_service();
                                 System.out.println("tttttt");
                             });
+                            float a =  Service_service.getVote(item.getId_service());
+                              msg.setText("raiting de ce Service: "+a  );
 
                             VBox vBox = new VBox(
                                     new Text(item.getNom()), new Text(item.getPrenom()),
                                     new Text(item.getSpecialite()), new Text(String.valueOf(item.getTarif())),
                                     new Text(item.getAdresse_etab()),
-                                    new ToolBar(rating)
+                                     new ToolBar(rating,msg)
+
                             );
 
                             rating.ratingProperty().addListener(new ChangeListener<Number>() {
                                 @Override
                                 public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
-                                    msg.setText("Rating : " + t1.toString());
-
+                                    msg.setText("Rating : " + t1);
+                                    Service_service ss = new Service_service();
+                                    float a = ss.getRating(item.getId_user(), item.getId_service()) ;
+                                    System.out.println(item.getId_service());
+                                    System.out.println(item.getId_user());
+                               if ( a == 0)
+                                   
+                                   
+                               {
+                                   ss.setRating(item.getId_service(),item.getId_user(),t1.intValue());
+                                   
+                                    listviewmed.refresh();
                                 }
-                            });
+                               else {
+                                   ss.updateRating(t1.intValue(),item.getId_user(),item.getId_service() );
 
+                                       listviewmed.refresh();
+                               }
+
+                                       }
+
+                                    
+                                
+                            });
                             vBox.setSpacing(4);
                             String IMAGE = item.getImage_serv();
-                            Image image = new Image("file:///C:/users/chayma/Documents/NetBeansProjects/EsapceSante-BienEtre/src/Interfaces/" + IMAGE);
+                             Image image = new Image("/GUI/Images/objet163332.jpg",true);
 
                             ImageView imv = new ImageView(image);
                             System.out.println(image);
@@ -275,7 +310,6 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
                             hBox.setSpacing(10);
 
                             setGraphic(hBox);
-
                         }
                     }
 
@@ -287,6 +321,8 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
         });
         
         
+     
+        
     new AutoCompletionTextFieldBinding(rechadresse, new Callback<AutoCompletionBinding.ISuggestionRequest, Collection>() {
             // rechercher howa esm el text field mte3i
             @Override
@@ -295,7 +331,7 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
                 List<String> adresse = new ArrayList<>();
                 Service_service ss = new Service_service();
                 ObservableList<Service_Medecin> data = FXCollections.observableArrayList(ss.findmedbyadresse(rechadresse.getText()));
-                // khoudh el texte eli fl texte field w naba3tthou fi argument fi methode rechercher
+                // nekhou el texte eli fl texte field w naba3tthou fi argument fi methode rechercher
 
                 for (Service_Medecin s : data) {
                     adresse.add(s.getAdresse_etab());
@@ -308,7 +344,7 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
         rechadresse.textProperty().addListener((observable, oldValue, newValue) -> {
 
             listviewmed.setItems(FXCollections.observableArrayList(ss.findmedbyadresse(rechadresse.getText())));
-listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Service_Medecin>>() {
+  listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Service_Medecin>>() {
             @Override
             public ListCell<Service_Medecin> call(ListView<Service_Medecin> param) {
                 return new ListCell<Service_Medecin>() {
@@ -317,30 +353,51 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
                         super.updateItem(item, empty);
                         if (item != null) {
                             rating = new Rating();
+                             msg = new Label();
 
                             rating.setOnMouseClicked((MouseEvent event) -> {
-
+                                Service_service ss = new Service_service();
                                 System.out.println("tttttt");
                             });
+                            float a =  Service_service.getVote(item.getId_service());
+                              msg.setText("raiting de ce Service: "+a  );
 
                             VBox vBox = new VBox(
                                     new Text(item.getNom()), new Text(item.getPrenom()),
                                     new Text(item.getSpecialite()), new Text(String.valueOf(item.getTarif())),
                                     new Text(item.getAdresse_etab()),
-                                    new ToolBar(rating)
+                                     new ToolBar(rating,msg)
+
                             );
 
                             rating.ratingProperty().addListener(new ChangeListener<Number>() {
                                 @Override
                                 public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
-                                    msg.setText("Rating : " + t1.toString());
-
+                                    msg.setText("Rating : " + t1);
+                                    Service_service ss = new Service_service();
+                                    float a = ss.getRating(item.getId_user(), item.getId_service()) ;
+                                    System.out.println(item.getId_service());
+                                    System.out.println(item.getId_user());
+                               if ( a == 0)
+                                   
+                                   
+                               {
+                                   ss.setRating(item.getId_service(),item.getId_user(),t1.intValue());
+                                   
+                                    listviewmed.refresh();
                                 }
-                            });
+                               else {
+                                   ss.updateRating(t1.intValue(),item.getId_user(),item.getId_service() );
 
+                                       listviewmed.refresh();
+                               }
+
+                                       }
+
+                            });
                             vBox.setSpacing(4);
                             String IMAGE = item.getImage_serv();
-                            Image image = new Image("file:///C:/users/chayma/Documents/NetBeansProjects/EsapceSante-BienEtre/src/Interfaces/" + IMAGE);
+                           Image image = new Image("/GUI/Images/objet163332.jpg",true);
 
                             ImageView imv = new ImageView(image);
                             System.out.println(image);
@@ -361,7 +418,7 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
        } );
         });
         
-        
+//        
 //        new AutoShowComboBoxHelper(ComboBox<String> spec, new Callback<String, String> textBuilder) {
 //        final ObservableList<String> items = FXCollections.observableArrayList(spec.getItems());
 //
@@ -379,9 +436,25 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
 //                comboBox.show();
 //            }
 //        });
-   }
+  }
 
-
+public void GoToService()
+     {
+         
+         try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("AjoutServiceMed.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+  } catch (Exception e) {
+       System.out.println(e);
+  }
+     }
+        
 
     public void refreshListe() {
         listviewmed.getItems().clear();
@@ -447,20 +520,105 @@ listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Serv
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-        Node source = (Node) event.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("ConsulterMonService.fxml")));
-        stage.setScene(scene);
+        
+       
+          try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ConsulterMonService.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
         stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+        } catch (Exception e) {
+       System.out.println(e);
+                    }
 
     }
 
+
     @FXML
     private void tfSearch(KeyEvent event) {
+    }
 
-//        listviewmed.getItems().clear();
-//        listviewmed.refresh();
-//        listviewmed.getItems().addAll(Service_service.findmedbynom(rechnom.getText()));
+    @FXML
+    private void chercher(MouseEvent event) {
+        
+         listviewmed.getItems().clear();
+        listviewmed.refresh();
+        listviewmed.getItems().addAll(Service_service.findmedbyspec(spec.getSelectionModel().getSelectedItem()));
+          listviewmed.setCellFactory(new Callback<ListView<Service_Medecin>, ListCell<Service_Medecin>>() {
+            @Override
+            public ListCell<Service_Medecin> call(ListView<Service_Medecin> param) {
+                return new ListCell<Service_Medecin>() {
+                    @Override
+                    protected void updateItem(Service_Medecin item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null) {
+                            rating = new Rating();
+                             msg = new Label();
+
+                            rating.setOnMouseClicked((MouseEvent event) -> {
+                                Service_service ss = new Service_service();
+                                System.out.println("tttttt");
+                            });
+                            float a =  Service_service.getVote(item.getId_service());
+                              msg.setText("raiting de ce Service: "+a  );
+
+                            VBox vBox = new VBox(
+                                    new Text(item.getNom()), new Text(item.getPrenom()),
+                                    new Text(item.getSpecialite()), new Text(String.valueOf(item.getTarif())),
+                                    new Text(item.getAdresse_etab()),
+                                     new ToolBar(rating,msg)
+
+                            );
+
+                            rating.ratingProperty().addListener(new ChangeListener<Number>() {
+                                @Override
+                                public void changed(ObservableValue<? extends Number> ov, Number t, Number t1) {
+                                    msg.setText("Rating : " + t1);
+                                    Service_service ss = new Service_service();
+                                    float a = ss.getRating(item.getId_user(), item.getId_service()) ;
+                                    System.out.println(item.getId_service());
+                                    System.out.println(item.getId_user());
+                               if ( a == 0)
+                                   
+                                   
+                               {
+                                   ss.setRating(item.getId_service(),item.getId_user(),t1.intValue());
+                                   
+                                    listviewmed.refresh();
+                                }
+                               else {
+                                   ss.updateRating(t1.intValue(),item.getId_user(),item.getId_service() );
+
+                                       listviewmed.refresh();
+                               }
+
+                                       }
+
+                            });
+                            vBox.setSpacing(4);
+                            String IMAGE = item.getImage_serv();
+                          Image image = new Image("/GUI/Images/objet163332.jpg",true);
+
+                            ImageView imv = new ImageView(image);
+                            System.out.println(image);
+                            imv.setFitHeight(130);
+                            imv.setFitWidth(130);
+                            HBox hBox = new HBox(imv, vBox);
+                            hBox.setSpacing(10);
+
+                            setGraphic(hBox);
+
+                        }
+                    }
+
+                };
+
+            }
+
+       } );
     }
 }

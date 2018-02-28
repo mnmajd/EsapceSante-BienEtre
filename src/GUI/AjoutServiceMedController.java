@@ -7,7 +7,6 @@ package GUI;
 
 import Entite.Service;
 import Entite.Service_Medecin;
-import GUI.MapController;
 import static GUI.MapController.k;
 import Service.Service_service;
 import com.lynden.gmapsfx.GoogleMapView;
@@ -163,7 +162,7 @@ public class AjoutServiceMedController implements Initializable, MapComponentIni
     static double LONGI;
     public String  imageUrl;
     
-    
+    int file = 0;
     int c ;
      File pDir ;
      File pfile ;
@@ -202,15 +201,7 @@ public class AjoutServiceMedController implements Initializable, MapComponentIni
             
         }
     }
-    else{
-                Alert alert = new Alert(AlertType.WARNING);
-                alert.setTitle("Image");
-                alert.setHeaderText(null);
-                alert.setContentText("Please Enter image");
-                alert.showAndWait();
-                   
-        }
-            
+   
             }  
             
  @FXML
@@ -277,6 +268,7 @@ public String getModes_de_reglement3() {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        file = 0;
          toTextField.setVisible(false);
         fromTextField.setVisible(false);     
         
@@ -288,7 +280,7 @@ public String getModes_de_reglement3() {
         spec.setItems(specialités);
          c = (int)( Math.random()*( 300000 - 2 + 1 ) ) + 2; 
              pDir = new File("src/GUI/Images/objet"+c+".jpg");
-                lien = "images/objet"+c+".jpg" ;
+                lien = "Images/objet"+c+".jpg" ;
                 System.out.println(LAN= MapController.k);
                  System.out.println(LAN= MapController.l);
 //                lat.setText(String.valueOf(LAN= MapController.k));
@@ -361,6 +353,7 @@ public String getModes_de_reglement3() {
         No.setSelected(false);
         nom.clear();
         prenom.clear();
+      img.setImage(null);
 
         spec.getSelectionModel().clearSelection();
 
@@ -368,7 +361,7 @@ public String getModes_de_reglement3() {
 
     @FXML
     void addMed(ActionEvent event) throws IOException {
-    copier( pfile,pDir) ;
+    file = 0;
         Service_service s = new Service_service();
 
         if ( validateFields()& validatenom()& validateEmaill()& validateprenom()& validatetarif()& validateMobileNo()& validateouvert()&validateferme())
@@ -397,12 +390,28 @@ public String getModes_de_reglement3() {
             if (carte.isSelected()) {
                 a += carte.getText() + "\n";
             }
+            
+            if ((file == 0)) {
+            File m = new File("C:\\Users\\chayma\\Documents\\NetBeansProjects\\EsapceSante-BienEtre\\src\\Interfaces\\images\\not.png");
+            copier( m,pDir) ;
             Service_Medecin sm = new Service_Medecin(ouvert.getText(), ferme.getText(), promo.getText(), Float.parseFloat(tarif.getText()),
                     mail.getText(), adr.getText(), Integer.parseInt(tel.getText()), lien, x, a,
                     b,
                     nom.getText(), prenom.getText(), spec.getSelectionModel().getSelectedItem(),Double.parseDouble(fromTextField.getText()),Double.parseDouble(toTextField.getText()));
+           
             s.addserviceMed(sm);
-            
+              saveAlert(sm);
+            reset();
+            }
+             else if ((file == 1)) {
+                  copier( pfile,pDir) ;
+            Service_Medecin sm = new Service_Medecin(ouvert.getText(), ferme.getText(), promo.getText(), Float.parseFloat(tarif.getText()),
+                    mail.getText(), adr.getText(), Integer.parseInt(tel.getText()), lien, x, a,
+                    b,
+                    nom.getText(), prenom.getText(), spec.getSelectionModel().getSelectedItem(),Double.parseDouble(fromTextField.getText()),Double.parseDouble(toTextField.getText()));
+           
+            s.addserviceMed(sm);
+               
             PRENOM=prenom.getText();
             SPEC=spec.getSelectionModel().getSelectedItem();
             ADRS=adr.getText();
@@ -419,7 +428,7 @@ public String getModes_de_reglement3() {
             
             saveAlert(sm);
             reset();
-          
+             }
 //              FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ConsulterMonService.fxml"));
 //            Parent root = (Parent) fxmlLoader.load();
 //            Stage stage = new Stage();
@@ -448,7 +457,7 @@ public String getModes_de_reglement3() {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return false; // Erreur 
+           
         }
         return true; // Résultat OK   
     }
@@ -761,14 +770,10 @@ public String getModes_de_reglement3() {
     private void choose(ActionEvent event) throws MalformedURLException {
         
          FileChooser fileChooser = new FileChooser();
-fileChooser.setTitle( "Select image.." );
+fileChooser.setTitle( "Choisir image" );
     
 /* - get saved directory - or get user`s home dir */
 
-
-
-
-    
 /* - set filters */
     
 fileChooser.getExtensionFilters().addAll(
@@ -788,13 +793,16 @@ if ( pfile != null )
 {      
       
   /* -- read image */
+    
     imf.setText("image sélectionné");
       
   Image image = new Image( pfile.toURI().toURL().toExternalForm() );
         img.setImage(image);
 
         
-    }}
+    }
+
+    }
 
 private StringProperty address = new SimpleStringProperty();
 

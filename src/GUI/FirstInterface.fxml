@@ -7,18 +7,32 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FirstInterfaceController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="1548.0" styleClass="background2" stylesheets="@Css/Chayma.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FirstInterfaceController">
    <children>
       <Text fill="#81a2e4" layoutX="348.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TROUVEZ VOTRE MÉDECIN" textAlignment="CENTER" wrappingWidth="442.13671875">
          <font>
             <Font name="Agency FB" size="31.0" />
          </font>
       </Text>
-      <TextField fx:id="rechspec" alignment="CENTER" layoutX="252.0" layoutY="94.0" prefHeight="29.0" prefWidth="147.0" promptText="Spécialité" style="-fx-background-color: #ffb3ff;">
+      <TextField fx:id="rechnom" alignment="CENTER" layoutX="487.0" layoutY="92.0" onKeyReleased="#tfSearch" prefHeight="47.0" prefWidth="164.0" promptText="Nom du docteur" style="-fx-background-color: #e85353;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font name="System Italic" size="16.0" />
+         </font>
+      </TextField>
+      <ListView fx:id="listviewmed" layoutX="53.0" layoutY="172.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="1006.0" />
+      <TextField fx:id="rechadresse" alignment="CENTER" layoutX="736.0" layoutY="91.0" prefHeight="47.0" prefWidth="164.0" promptText="Adresse" style="-fx-background-color: #e85353;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -29,32 +43,25 @@
             <Font name="System Italic" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="rechnom" alignment="CENTER" layoutX="487.0" layoutY="92.0" onKeyReleased="#tfSearch" prefHeight="47.0" prefWidth="164.0" promptText="Nom du docteur" style="-fx-background-color: #ffb3ff;">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <effect>
-            <Glow />
-         </effect>
+      <Button fx:id="retour" layoutX="1093.0" layoutY="651.0" mnemonicParsing="false" onAction="#retour" prefHeight="38.0" prefWidth="73.0" text="Retour" textFill="#e85353">
          <font>
-            <Font name="System Italic" size="20.0" />
-         </font>
-      </TextField>
-      <ListView fx:id="listviewmed" layoutX="44.0" layoutY="169.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="800.0" />
-      <TextField fx:id="rechadresse" alignment="CENTER" layoutX="736.0" layoutY="91.0" prefHeight="47.0" prefWidth="164.0" promptText="Adresse" style="-fx-background-color: #ffb3ff;">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <effect>
-            <Glow />
-         </effect>
-         <font>
-            <Font name="System Italic" size="20.0" />
-         </font>
-      </TextField>
-      <Button fx:id="retour" layoutX="1106.0" layoutY="651.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
       <Label fx:id="msg" layoutX="252.0" layoutY="33.0" text="Label" />
-      <ComboBox fx:id="spec" layoutX="251.0" layoutY="102.0" prefWidth="150.0" />
+      <ComboBox fx:id="spec" layoutX="184.0" layoutY="91.0" prefHeight="47.0" prefWidth="164.0" promptText="Specialité" style="-fx-background-color: #e85353;" visibleRowCount="5" />
+      <ImageView fx:id="imgch" fitHeight="55.0" fitWidth="64.0" layoutX="363.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/search_1.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="ch" layoutX="370.0" layoutY="105.0" onMouseClicked="#chercher" prefHeight="17.0" prefWidth="41.0" />
+      <ImageView fitHeight="288.0" fitWidth="184.0" layoutX="1166.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/mario.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1232.0" layoutY="28.0" mnemonicParsing="false" onAction="#GoToService" prefHeight="27.0" prefWidth="106.0" text="Creer Service" />
+  
      
    </children>
 </AnchorPane>

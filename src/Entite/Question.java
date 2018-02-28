@@ -5,6 +5,7 @@
  */
 package Entite;
 
+import GUI.FXMain;
 import Utils.ConnexionBD;
 
 /**
@@ -17,9 +18,9 @@ public class Question {
    
     private String contenu_question ;
     private String nom_catF ; 
-    private  int id_user = 3 ; 
+    private  int id_user = 8;
     private  int nbr_rep = 0 ;
-    String nom , prenom ;
+    String nom , prenom,avatar ;
     
     public String getDate_publication() {
         return Date_publication;
@@ -58,7 +59,7 @@ public class Question {
         this.contenu_question = contenu_question;
         this.nom_catF =nom_catF;
     }
-     public Question (int id_question, String contenu_question , String sujet_question ,  String Date_publication , int nbr_rep , String nom , String prenom )
+     public Question (int id_question, String contenu_question , String sujet_question ,  String Date_publication , int nbr_rep , String nom , String prenom)
      {
          this.contenu_question = contenu_question ; 
          this.sujet_question = sujet_question ; 
@@ -67,7 +68,30 @@ public class Question {
          this.prenom = prenom ;
          this.nbr_rep = nbr_rep ; 
         this.id_question= id_question;
+       
      }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+     
+      public Question (int id_question, String contenu_question , String sujet_question ,  String Date_publication , int nbr_rep , String nom , String prenom,String avatar )
+     {
+         this.contenu_question = contenu_question ;
+         this.sujet_question = sujet_question ; 
+         this.Date_publication = Date_publication ;
+         this.nom = nom ;
+         this.prenom = prenom ;
+         this.nbr_rep = nbr_rep ; 
+        this.id_question= id_question;
+        this.avatar = avatar;
+     }
+     
+     
       public Question (String contenu_question , String sujet_question ,  String Date_publication , int nbr_rep , String nom , String prenom )
      {
          this.contenu_question = contenu_question ; 

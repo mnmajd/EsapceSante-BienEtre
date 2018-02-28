@@ -28,7 +28,8 @@ public class AcceuilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    } 
+    
     public void GoToForum()
     {
             try {
@@ -45,6 +46,7 @@ public class AcceuilController implements Initializable {
   }
       
     }
+    
     public void GoToLogin ()
     {
     try {
@@ -91,4 +93,30 @@ public class AcceuilController implements Initializable {
        System.out.println(e);
   }
     }
+    
+    public void GoToService()
+    {
+        
+          try {
+                           
+       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FirstInterface.fxml"));
+        Parent root = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));  
+        stage.show();
+        FXMain.stg.close();
+        FXMain.stg = stage;
+  } catch (Exception e) {
+       System.out.println(e);
+  }
+        
+ 
+    
+    }
+
+
+
+
+
+
 }

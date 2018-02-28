@@ -61,6 +61,12 @@
                      <opaqueInsets>
                         <Insets top="100.0" />
                      </opaqueInsets></Separator>
+                     <Label onMouseClicked="#AjoutCat"  layoutX="20.0" layoutY="490.0" prefHeight="46.0" prefWidth="215.0" text="Ajouter Categorie" styleClass="menuItem" textFill="#060606" textOverrun="CENTER_ELLIPSIS">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                     
                   <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <Label fx:id="about" onMouseClicked="#about" prefHeight="19.0" prefWidth="257.0" styleClass="menuItem" text="A Propos">
                      <cursor>
